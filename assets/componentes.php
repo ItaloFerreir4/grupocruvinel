@@ -519,3 +519,11 @@ function tabs(){
         </section>
     HTML;
 }
+
+function banner(){
+    echo <<<HTML
+        <div>
+            <h1>Banner componente</h1>
+        </div>
+    HTML;
+}
