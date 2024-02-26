@@ -520,10 +520,8 @@ function tabs(){
     HTML;
 }
 
-function banner(){
+function banner($titulo){
     echo <<<HTML
-        <div>
-            <h1>Banner componente</h1>
-        </div>
+        {$titulo}
     HTML;
 }
