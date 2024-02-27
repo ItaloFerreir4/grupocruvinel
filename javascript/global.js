@@ -335,7 +335,7 @@ window.addEventListener("resize", () => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  checkCookieConsent();
+  // checkCookieConsent();
 
   /* colocar titulo no input do formulário */
   const tituloPaginas = document.querySelectorAll("#tituloPagina");

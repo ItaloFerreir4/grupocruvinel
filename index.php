@@ -14,11 +14,7 @@ include_once("./assets/componentes.php");
 </head>
 
 <body>
-    <?php banner('
-    <div>
-        <h1>teste</h1>
-    </div>
-    '); ?>
+    
 </body>
 
 </html>
