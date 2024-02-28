@@ -21,6 +21,8 @@ include_once("./assets/componentes.php");
 <body>
     <?php banner(
         "SERVIÇOS",
+        "SERVIÇOS",
+        "SERVIÇOS",
         "./assets/png/banner-servicos.png",
         "./assets/png/banner-servicos.png"
     ); ?>

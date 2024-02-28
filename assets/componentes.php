@@ -310,16 +310,16 @@ function formEmailNewsletter()
         </div>
         HTML;
 }
-function banner($titulo, $srcDesktop, $srcMobile)
+function banner($titulo, $altDesktop, $altMobile, $srcDesktop, $srcMobile)
 {
     echo <<<HTML
     <div class="banner">
         <img class="img-background desktop"
             src={$srcDesktop}
-            alt="Banner">
+            alt={$altDesktop}>
         <img class="img-background mobile"
             src={$srcMobile}
-            alt="Banner">
+            alt={$altMobile}>
         <div class="container">
             <div class="row">
             <div class="col-12 col-lg-6 bloco-1">
