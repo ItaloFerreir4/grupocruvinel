@@ -10,11 +10,11 @@ echo ''
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-md-6 col-sm-12">
-                <h2>Pagina Workshops</h2>
+                <h2>Pagina Clientes</h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a class="lista" pagina="lista" categoria="0" href="javascript:void(0);" onClick="Pagina(this)">Paginas</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Pagina Workshops</li>
+                        <li class="breadcrumb-item active" aria-current="page">Pagina Clientes</li>
                     </ol>
                 </nav>
             </div>
@@ -36,7 +36,7 @@ echo ''
                                 <input type="hidden" class="form-control" name="idConteudo" id="idConteudo" value="">
                                 <input type="hidden" class="form-control" name="numeroConteudo" id="numeroConteudo" value="1">
                         
-                                <div class="col-12">
+                                <div class="col-12 hidden">
                                     <div class="form-group">    
                                         <label>Titulo</label>
                                         <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">

@@ -160,7 +160,7 @@ echo ''
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Banner 2</h2>
+                        <h2>Imagem</h2>
                     </div>
                     <div class="body">     
                         <form method="post" id="form-2">
@@ -177,12 +177,12 @@ echo ''
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">    
-                                        <label>Imagem Fundo</label>
+                                        <label>Imagem</label>
                                         <button class="btn btn-default selecionarImagem" formConteudo="2" imagem="imagem1Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
                                         <img class="img-fluid wauto h200 objContain" id="imagem1Conteudo" src="" alt="">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Imagem Fabio</label>
                                         <button class="btn btn-default selecionarImagem" formConteudo="2" imagem="imagem2Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
@@ -191,13 +191,13 @@ echo ''
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">  
-                                        <label>Legenda da imagem fundo</label>                                            
+                                        <label>Legenda da imagem</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem1Conteudo" name="legendaImagem1Conteudo">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12 hidden">
                                     <div class="form-group">  
-                                        <label>Legenda da imagem fabio</label>                                            
+                                        <label>Legenda da imagem</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem2Conteudo" name="legendaImagem2Conteudo">
                                     </div>
                                 </div>
@@ -302,7 +302,7 @@ echo ''
                     <div class="body">
                         <form method="post" id="formEmail1">
                             <input type="hidden" class="form-control" id="idFormulario" name="idFormulario" value="0">
-                            <input type="hidden" class="form-control" id="paginaId" name="paginaId" value="<?php echo $_POST["idPagina"]; ?>">
+                            <input type="hidden" class="form-control" id="paginaId" name="paginaId" value="16">
                             <input type="hidden" class="form-control" id="descricaoFormulario" name="descricaoFormulario" value="">
                             <div class="row clearfix">                                
                                 <div class="col-12">

@@ -10,11 +10,11 @@ echo ''
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-md-6 col-sm-12">
-                <h2>Pagina Business</h2>
+                <h2>Pagina Serviços</h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a class="lista" pagina="lista" categoria="0" href="javascript:void(0);" onClick="Pagina(this)">Paginas</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Pagina Business</li>
+                        <li class="breadcrumb-item active" aria-current="page">Pagina Serviços</li>
                     </ol>
                 </nav>
             </div>
@@ -32,11 +32,11 @@ echo ''
                     <div class="body">     
                         <form method="post" id="form-1">
                             <div class="row clearfix">
-                                <input type="hidden" class="form-control" name="paginaId" id="paginaId" value="3">
+                                <input type="hidden" class="form-control" name="paginaId" id="paginaId" value="5">
                                 <input type="hidden" class="form-control" name="idConteudo" id="idConteudo" value="">
                                 <input type="hidden" class="form-control" name="numeroConteudo" id="numeroConteudo" value="1">
                         
-                                <div class="col-12">
+                                <div class="col-12 hidden">
                                     <div class="form-group">    
                                         <label>Titulo</label>
                                         <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">
@@ -165,10 +165,11 @@ echo ''
 
     <script>
         $(document).unbind("click").ready(function () {
-            CarregaSeo(3);
+            CarregaSeo(5);
             CarregaConteudo(1);
         });
     </script>
+
 <?php 
 '';
 ?>

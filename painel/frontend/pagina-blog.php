@@ -44,12 +44,12 @@ echo ''
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">    
-                                        <label>Imagem</label>
+                                        <label>Imagem Desktop</label>
                                         <button class="btn btn-default selecionarImagem" formConteudo="1" imagem="imagem1Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
                                         <img class="img-fluid wauto h200 objContain" id="imagem1Conteudo" src="" alt="">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 hidden">
+                                <div class="col-lg-6 col-md-12">
                                     <div class="form-group">  
                                         <label>Imagem Mobile</label>
                                         <button class="btn btn-default selecionarImagem" formConteudo="1" imagem="imagem2Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
@@ -58,11 +58,11 @@ echo ''
                                 </div>
                                 <div class="col-lg-6 col-md-12">
                                     <div class="form-group">  
-                                        <label>Legenda da imagem</label>                                            
+                                        <label>Legenda da imagem desktop</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem1Conteudo" name="legendaImagem1Conteudo">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 hidden">
+                                <div class="col-lg-6 col-md-12">
                                     <div class="form-group">  
                                         <label>Legenda da imagem mobile</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem2Conteudo" name="legendaImagem2Conteudo">

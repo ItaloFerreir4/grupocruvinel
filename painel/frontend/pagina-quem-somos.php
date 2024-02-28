@@ -10,11 +10,11 @@ echo ''
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-md-6 col-sm-12">
-                <h2>Pagina Biografia</h2>
+                <h2>Pagina Quem Somos</h2>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a class="lista" pagina="lista" categoria="0" href="javascript:void(0);" onClick="Pagina(this)">Paginas</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Pagina Biografia</li>
+                        <li class="breadcrumb-item active" aria-current="page">Pagina Quem Somos</li>
                     </ol>
                 </nav>
             </div>
@@ -160,7 +160,7 @@ echo ''
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Texto</h2>
+                        <h2>Breve resumo</h2>
                     </div>
                     <div class="body">     
                         <form method="post" id="form-2">
@@ -293,7 +293,7 @@ echo ''
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Video Biografia</h2>
+                        <h2>Banner 2</h2>
                     </div>
                     <div class="body">     
                         <form method="post" id="form-3">
@@ -302,15 +302,15 @@ echo ''
                                 <input type="hidden" class="form-control" name="idConteudo" id="idConteudo" value="">
                                 <input type="hidden" class="form-control" name="numeroConteudo" id="numeroConteudo" value="3">
                         
-                                <div class="col-12">
+                                <div class="col-12 hidden">
                                     <div class="form-group">    
                                         <label>Titulo</label>
                                         <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 hidden">
+                                <div class="col-lg-6 col-md-12">
                                     <div class="form-group">    
-                                        <label>Imagem 1</label>
+                                        <label>Imagem</label>
                                         <button class="btn btn-default selecionarImagem" formConteudo="3" imagem="imagem1Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
                                         <img class="img-fluid wauto h200 objContain" id="imagem1Conteudo" src="" alt="">
                                     </div>
@@ -322,9 +322,9 @@ echo ''
                                         <img class="img-fluid wauto h200 objContain" id="imagem2Conteudo" src="null" alt="">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 hidden">
+                                <div class="col-lg-6 col-md-12">
                                     <div class="form-group">  
-                                        <label>Legenda da imagem 1</label>                                            
+                                        <label>Legenda da imagem</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem1Conteudo" name="legendaImagem1Conteudo">
                                     </div>
                                 </div>
@@ -360,7 +360,7 @@ echo ''
                                         <input type="text" class="form-control" id="legendaImagem4Conteudo" name="legendaImagem4Conteudo">
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 hidden">
                                     <div class="form-group">  
                                         <label>Link Video</label>                                            
                                         <input type="text" class="form-control" id="linkVideoConteudo" name="linkVideoConteudo">
@@ -426,7 +426,7 @@ echo ''
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Banner Video</h2>
+                        <h2>Quem Somos</h2>
                     </div>
                     <div class="body">     
                         <form method="post" id="form-4">
@@ -435,7 +435,7 @@ echo ''
                                 <input type="hidden" class="form-control" name="idConteudo" id="idConteudo" value="">
                                 <input type="hidden" class="form-control" name="numeroConteudo" id="numeroConteudo" value="4">
                         
-                                <div class="col-12">
+                                <div class="col-12 hidden">
                                     <div class="form-group">    
                                         <label>Titulo</label>
                                         <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">
@@ -559,7 +559,7 @@ echo ''
             <div class="col-md-12">
                 <div class="card">
                     <div class="header">
-                        <h2>Banner 5</h2>
+                        <h2>Banner Video</h2>
                     </div>
                     <div class="body">     
                         <form method="post" id="form-5">
@@ -574,7 +574,7 @@ echo ''
                                         <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12 hidden">
                                     <div class="form-group">    
                                         <label>Imagem</label>
                                         <button class="btn btn-default selecionarImagem" formConteudo="5" imagem="imagem1Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
@@ -588,7 +588,7 @@ echo ''
                                         <img class="img-fluid wauto h200 objContain" id="imagem2Conteudo" src="null" alt="">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Legenda da imagem</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem1Conteudo" name="legendaImagem1Conteudo">
@@ -626,7 +626,7 @@ echo ''
                                         <input type="text" class="form-control" id="legendaImagem4Conteudo" name="legendaImagem4Conteudo">
                                     </div>
                                 </div>
-                                <div class="col-12 hidden">
+                                <div class="col-12">
                                     <div class="form-group">  
                                         <label>Link Video</label>                                            
                                         <input type="text" class="form-control" id="linkVideoConteudo" name="linkVideoConteudo">
@@ -638,19 +638,19 @@ echo ''
                                         <textarea class="form-control" id="textoConteudo5" name="textoConteudo5" rows="10"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-4 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Nome do botão</label>                                            
                                         <input type="text" class="form-control" id="nomeBotao1" name="nomeBotao1">
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-4 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Link do botão</label>                                            
                                         <input type="text" class="form-control" id="linkBotao1" name="linkBotao1">
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-4 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Target do botão</label>                                            
                                         <select class="form-control" name="targetBotao1" id="targetBotao1">

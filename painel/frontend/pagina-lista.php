@@ -217,6 +217,8 @@ echo ''
 
                 botaoCadastra.innerHTML = "Cadastrar";
 
+                console.log(data);
+
                 if (data) {
 
                     const conteudoPagina = JSON.parse(data);

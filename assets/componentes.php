@@ -40,12 +40,12 @@ function cHeader()
     HTML;
 }
 
-function cFooter()
-{
-    try {
-        $con = new PDO('mysql:host=localhost;dbname=fabiomunra', 'admin', '');
-    } catch (PDOException $ex) {
-        echo 'Erro: ' . $ex->getMessage();
+function cFooter(){
+    try{
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
+    }
+    catch (PDOException $ex){
+        echo 'Erro: '.$ex->getMessage();
     }
 
     $sqlContatos = $con->prepare("SELECT * FROM contatos WHERE idContato = :idContato");
@@ -187,12 +187,12 @@ function redesSociaisCompartilhar($cor)
     ';
 }
 
-function redesSociais($cor)
-{
-    try {
-        $con = new PDO('mysql:host=localhost;dbname=fabiomunra', 'admin', '');
-    } catch (PDOException $ex) {
-        echo 'Erro: ' . $ex->getMessage();
+function redesSociais($cor) {
+    try{
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
+    }
+    catch (PDOException $ex){
+        echo 'Erro: '.$ex->getMessage();
     }
 
     $sqlRedes = $con->prepare("SELECT * FROM redes WHERE idRede = :idRede");
@@ -261,12 +261,12 @@ function scriptBody()
     ';
 }
 
-function formEmailNewsletter()
-{
-    try {
-        $con = new PDO('mysql:host=localhost;dbname=fabiomunra', 'admin', '');
-    } catch (PDOException $ex) {
-        echo 'Erro: ' . $ex->getMessage();
+function formEmailNewsletter(){
+    try{
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
+    }
+    catch (PDOException $ex){
+        echo 'Erro: '.$ex->getMessage();
     }
 
     $sqlFormulario = $con->prepare("SELECT * FROM formularios WHERE descricaoFormulario = :descricaoFormulario");
@@ -310,8 +310,9 @@ function formEmailNewsletter()
         </div>
         HTML;
 }
-function banner($titulo, $altDesktop, $altMobile, $srcDesktop, $srcMobile)
-{
+
+function banner($titulo, $altDesktop, $altMobile, $srcDesktop, $srcMobile){
+
     echo <<<HTML
     <div class="banner">
         <img class="img-background desktop"
