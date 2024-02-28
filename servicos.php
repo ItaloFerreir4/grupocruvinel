@@ -41,8 +41,8 @@ $servicosArray = json_decode(json_encode($servicosArray));
         if($conteudo->numeroConteudo == 1){
             banner(
                 "SERVIÇOS",
-                "SERVIÇOS",
-                "SERVIÇOS",
+                "{$conteudo->legendaImagem1Conteudo}",
+                "{$conteudo->legendaImagem2Conteudo}",
                 "./assets/uploads/{$conteudo->imagem1Conteudo}",
                 "./assets/uploads/{$conteudo->imagem2Conteudo}"
             ); 
