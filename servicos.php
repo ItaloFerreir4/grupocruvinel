@@ -1,6 +1,23 @@
 <?php
 
-include_once("./assets/componentes.php");
+include_once "assets/componentes.php";
+include_once "painel/backend/conexao-banco.php";
+
+$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE idPagina = :idPagina");
+$sqlSeo->bindValue(":idPagina", 5);
+$sqlSeo->execute();
+$conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
+
+$sqlConteudos = $con->prepare("SELECT * FROM conteudos WHERE paginaId = :idPagina");
+$sqlConteudos->bindValue(":idPagina", $conteudoSeo["idPagina"]);
+$sqlConteudos->execute();
+$conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
+$conteudosArray = json_decode(json_encode($conteudosArray));
+
+$sqlServicos = $con->prepare("SELECT * FROM servicos WHERE status = 1");
+$sqlServicos->execute();
+$servicosArray = $sqlServicos->fetchAll(PDO::FETCH_ASSOC);
+$servicosArray = json_decode(json_encode($servicosArray));
 
 ?>
 
@@ -19,19 +36,32 @@ include_once("./assets/componentes.php");
 </head>
 
 <body>
-    <?php banner(
-        "SERVIÇOS",
-        "./assets/png/banner-servicos.png",
-        "./assets/png/banner-servicos.png"
-    ); ?>
+    <?php
+    foreach ($conteudosArray as $conteudo) {
+        if($conteudo->numeroConteudo == 1){
+            banner(
+                "SERVIÇOS",
+                "./assets/uploads/{$conteudo->imagem1Conteudo}",
+                "./assets/uploads/{$conteudo->imagem2Conteudo}"
+            ); 
+        }
+    }
+    ?>
 
     <section class="services">
         <div class="shaped-content container">
             <div class="grid-content">
+            <?php
+            foreach ($servicosArray as $servico) {
+                echo <<<HTML
                 <div class="card-service">
-                    <img src="assets/png/servico.png" alt="Serviço">
-                    <h1>Perícias</h1>
+                    <img src="assets/uploads/{$servico->imagemServico}" alt="{$servico->legendaImagemServico}">
+                    <h1>$servico->tituloServico</h1>
                 </div>
+                HTML;
+            }
+            ?>
+                
                 <div class="card-service">
                     <img src="assets/png/servico.png" alt="Serviço">
                     <h1>Perícias</h1>

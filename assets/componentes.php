@@ -311,36 +311,7 @@ function formEmailNewsletter(){
         HTML;
 }
 
-function tabs(){
-
-    try{
-        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
-    }
-    catch (PDOException $ex){
-        echo 'Erro: '.$ex->getMessage();
-    }
-
-    $sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, saiunamidias c WHERE c.paginaId = p.idPagina AND c.status = 1");
-    $sqlBlogs->execute();
-    $midiasArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
-    $midiasArray = json_decode(json_encode($midiasArray));
-
-    $sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = p.idPagina AND c.status = 1");
-    $sqlBlogs->execute();
-    $blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
-    $blogsArray = json_decode(json_encode($blogsArray));
-
-    $sqlArtigos = $con->prepare("SELECT p.*, c.* FROM paginas p, artigos c WHERE c.paginaId = p.idPagina AND c.status = 1");
-    $sqlArtigos->execute();
-    $artigosArray = $sqlArtigos->fetchAll(PDO::FETCH_ASSOC);
-    $artigosArray = json_decode(json_encode($artigosArray));
-
-    $sqlEventos = $con->prepare("SELECT * FROM eventos ev, paginas pa WHERE ev.paginaId = pa.idPagina AND status = 1");
-    $sqlEventos->execute();
-    $eventosArray = $sqlEventos->fetchAll(PDO::FETCH_ASSOC);
-    $eventosArray = json_decode(json_encode($eventosArray));
-
-    $baseURL = BASE_URL;
+function banner($titulo, $srcDesktop, $srcMobile){
 
     echo <<<HTML
     <div class="banner">
