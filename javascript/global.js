@@ -287,13 +287,6 @@ acc.forEach((element) => {
   });
 });
 
-function handleNavButtonsSizeOnMobile(navIsOpen) {
-  const expand = document.querySelector("nav .expand");
-  navIsOpen
-    ? (expand.style.maxHeight = "calc(100vh - 100px)")
-    : (expand.style.maxHeight = "0");
-}
-
 function handleFooterMapOnMobile(footerIsOpen) {
   const links = document.querySelector(".map.mobile .links");
   footerIsOpen
@@ -347,22 +340,18 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const isMobile = window.innerWidth < 992;
-  const buttonMenu = document.querySelector("nav button.menu");
-  const navButtons = document.querySelector(".nav-buttons");
-  const mapMobileButton = document.querySelector(".map.mobile > button");
+  // const buttonMenu = document.querySelector("nav button.menu");
+  // const mapMobileButton = document.querySelector(".map.mobile > button");
 
   if (isMobile) {
-    navButtons.classList.add("expand");
-    buttonMenu.addEventListener("click", () => {
-      navIsOpen = !navIsOpen;
-      handleNavButtonsSizeOnMobile(navIsOpen);
-    });
-    mapMobileButton.addEventListener("click", () => {
-      footerIsOpen = !footerIsOpen;
-      handleFooterMapOnMobile(footerIsOpen);
-    });
-    handleNavButtonsSizeOnMobile(navIsOpen);
-    handleFooterMapOnMobile(footerIsOpen);
+    // buttonMenu.addEventListener("click", () => {
+    //   navIsOpen = !navIsOpen;
+    // });
+    // mapMobileButton.addEventListener("click", () => {
+    //   footerIsOpen = !footerIsOpen;
+    //   handleFooterMapOnMobile(footerIsOpen);
+    // });
+    // handleFooterMapOnMobile(footerIsOpen);
   }
 
   if (instagram) {
