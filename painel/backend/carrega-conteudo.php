@@ -466,5 +466,47 @@ if (isset($_POST['origem'])) {
             }
 
             break;
+        case "listaServicos":
+            $sql = $con->prepare("SELECT * FROM servicos");
+
+            if ($sql->execute()) {
+
+                $conteudoPagina = $sql->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            echo json_encode($conteudoPagina);
+            break;
+
+        case "carregaServico":
+            $sql = $con->prepare("SELECT * FROM servicos WHERE idServico = :idServico");
+            $sql->bindValue(":idServico", $_POST['idServico']);
+
+            if ($sql->execute()) {
+                $conteudoPagina = $sql->fetch(PDO::FETCH_ASSOC);
+
+                echo json_encode($conteudoPagina);
+            }
+            break;
+        case "listaClientes":
+            $sql = $con->prepare("SELECT * FROM clientes");
+
+            if ($sql->execute()) {
+
+                $conteudoPagina = $sql->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            echo json_encode($conteudoPagina);
+            break;
+
+        case "carregaCliente":
+            $sql = $con->prepare("SELECT * FROM clientes WHERE idCliente = :idCliente");
+            $sql->bindValue(":idCliente", $_POST['idCliente']);
+
+            if ($sql->execute()) {
+                $conteudoPagina = $sql->fetch(PDO::FETCH_ASSOC);
+
+                echo json_encode($conteudoPagina);
+            }
+            break;
     }
 }

@@ -1094,5 +1094,74 @@ if (isset($_POST['origem'])) {
                 echo false;
             }
             break;
+        case "atualizaServico":
+            try {
+                $sql = $con->prepare('UPDATE servicos SET tituloServico = :tituloServico, imagemServico = :imagemServico, legendaImagemServico = :legendaImagemServico, linkServico = :linkServico, status = :status WHERE idServico = :idServico');
+                $sql->bindValue(":idServico", $_POST['idServico']);
+                $sql->bindValue(":tituloServico", $_POST['tituloServico']);
+                $sql->bindValue(":imagemServico", $_POST['imagemServico']);
+                $sql->bindValue(":legendaImagemServico", $_POST['legendaImagemServico']);
+                $sql->bindValue(":linkServico", $_POST['linkServico']);
+                $sql->bindValue(":status", $_POST['status']);
+
+                if ($sql->execute()) {
+                    echo true;
+
+                    //Operações do log
+
+                    $actionLog = "editou as informações do Servico de ID: " . $_POST['idServico'];
+
+                    $dateLog = new DateTime();
+                    $dateLog->setTimezone(new DateTimeZone('America/Sao_Paulo'));
+
+                    $sql = $con->prepare('INSERT INTO logs(usuarioId, acaoLogs, dataHoraLogs) VALUES(:usuarioId, :acaoLogs, :dataHoraLogs)');
+                    $sql->bindValue(":usuarioId", $_SESSION['idUsuario']);
+                    $sql->bindValue(":acaoLogs", $actionLog);
+                    $sql->bindValue(":dataHoraLogs", $dateLog->format('y/m/d H:i:s'));
+                    if ($sql->execute()) {
+                        echo true;
+                    } else {
+                        echo false;
+                    }
+                }
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
+                echo false;
+            }
+            break;
+        case "atualizaCliente":
+            try {
+                $sql = $con->prepare('UPDATE clientes SET imagemCliente = :imagemCliente, legendaImagemCliente = :legendaImagemCliente, linkCliente = :linkCliente, status = :status WHERE idCliente = :idCliente');
+                $sql->bindValue(":idCliente", $_POST['idCliente']);
+                $sql->bindValue(":imagemCliente", $_POST['imagemCliente']);
+                $sql->bindValue(":legendaImagemCliente", $_POST['legendaImagemCliente']);
+                $sql->bindValue(":linkCliente", $_POST['linkCliente']);
+                $sql->bindValue(":status", $_POST['status']);
+
+                if ($sql->execute()) {
+                    echo true;
+
+                    //Operações do log
+
+                    $actionLog = "editou as informações do cliente de ID: " . $_POST['idCliente'];
+
+                    $dateLog = new DateTime();
+                    $dateLog->setTimezone(new DateTimeZone('America/Sao_Paulo'));
+
+                    $sql = $con->prepare('INSERT INTO logs(usuarioId, acaoLogs, dataHoraLogs) VALUES(:usuarioId, :acaoLogs, :dataHoraLogs)');
+                    $sql->bindValue(":usuarioId", $_SESSION['idUsuario']);
+                    $sql->bindValue(":acaoLogs", $actionLog);
+                    $sql->bindValue(":dataHoraLogs", $dateLog->format('y/m/d H:i:s'));
+                    if ($sql->execute()) {
+                        echo true;
+                    } else {
+                        echo false;
+                    }
+                }
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
+                echo false;
+            }
+            break;
     }
 }

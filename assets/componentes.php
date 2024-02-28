@@ -41,7 +41,7 @@ function cHeader(){
 
 function cFooter(){
     try{
-        $con = new PDO('mysql:host=localhost;dbname=fabiomunra', 'admin', '');
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
     }
     catch (PDOException $ex){
         echo 'Erro: '.$ex->getMessage();
@@ -187,7 +187,7 @@ function redesSociaisCompartilhar($cor) {
 
 function redesSociais($cor) {
     try{
-        $con = new PDO('mysql:host=localhost;dbname=fabiomunra', 'admin', '');
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
     }
     catch (PDOException $ex){
         echo 'Erro: '.$ex->getMessage();
@@ -258,7 +258,7 @@ function scriptBody(){
 
 function formEmailNewsletter(){
     try{
-        $con = new PDO('mysql:host=localhost;dbname=fabiomunra', 'admin', '');
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
     }
     catch (PDOException $ex){
         echo 'Erro: '.$ex->getMessage();
@@ -309,7 +309,7 @@ function formEmailNewsletter(){
 function tabs(){
 
     try{
-        $con = new PDO('mysql:host=localhost;dbname=fabiomunra', 'admin', '');
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
     }
     catch (PDOException $ex){
         echo 'Erro: '.$ex->getMessage();

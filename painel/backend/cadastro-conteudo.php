@@ -60,7 +60,7 @@ if (isset($_POST['origem'])) {
                                         echo false;
                                     }
 
-                                    $numerosConteudo = [1, 2, 3];
+                                    $numerosConteudo = [1, 3];
 
                                     foreach ($numerosConteudo as $numero) {
                                         $sql = $con->prepare('INSERT INTO conteudos(paginaId, numeroConteudo) VALUES(:paginaId, :numeroConteudo)');
@@ -758,6 +758,83 @@ if (isset($_POST['origem'])) {
                     echo false;
                 }
             } catch (PDOException $e) {
+                echo false;
+            }
+            break;
+        case "cadastraServico":
+            try {
+                $sql = $con->prepare('INSERT INTO servicos (tituloServico, imagemServico, legendaImagemServico, linkServico, status) VALUES (:tituloServico, :imagemServico, :legendaImagemServico, :linkServico, :status)');
+                $sql->bindValue(":tituloServico", $_POST['tituloServico']);
+                $sql->bindValue(":imagemServico", $_POST['imagemServico']);
+                $sql->bindValue(":legendaImagemServico", $_POST['legendaImagemServico']);
+                $sql->bindValue(":linkServico", $_POST['linkServico']);
+                $sql->bindValue(":status", $_POST['status']);
+
+                if ($sql->execute()) {
+                    echo true;
+                }
+
+                //Operações do log
+
+                $sqlInfos = $con->prepare("SELECT MAX(idServico) AS max_id FROM servicos");
+                if ($sqlInfos->execute()) {
+                    $rowServico = $sqlInfos->fetch(PDO::FETCH_ASSOC);
+
+                    $actionLog = "cadastrou a Servico de ID: " . $rowServico['max_id'];
+
+                    $dateLog = new DateTime();
+                    $dateLog->setTimezone(new DateTimeZone('America/Sao_Paulo'));
+
+                    $sql = $con->prepare('INSERT INTO logs(usuarioId, acaoLogs, dataHoraLogs) VALUES(:usuarioId, :acaoLogs, :dataHoraLogs)');
+                    $sql->bindValue(":usuarioId", $_SESSION['idUsuario']);
+                    $sql->bindValue(":acaoLogs", $actionLog);
+                    $sql->bindValue(":dataHoraLogs", $dateLog->format('y/m/d H:i:s'));
+                    if ($sql->execute()) {
+                        echo true;
+                    } else {
+                        echo false;
+                    }
+                }
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
+                echo false;
+            }
+            break;
+        case "cadastraCliente":
+            try {
+                $sql = $con->prepare('INSERT INTO clientes (imagemCliente, legendaImagemCliente, linkCliente, status) VALUES (:imagemCliente, :legendaImagemCliente, :linkCliente, :status)');
+                $sql->bindValue(":imagemCliente", $_POST['imagemCliente']);
+                $sql->bindValue(":legendaImagemCliente", $_POST['legendaImagemCliente']);
+                $sql->bindValue(":linkCliente", $_POST['linkCliente']);
+                $sql->bindValue(":status", $_POST['status']);
+
+                if ($sql->execute()) {
+                    echo true;
+                }
+
+                //Operações do log
+
+                $sqlInfos = $con->prepare("SELECT MAX(idCliente) AS max_id FROM Clientes");
+                if ($sqlInfos->execute()) {
+                    $rowCliente = $sqlInfos->fetch(PDO::FETCH_ASSOC);
+
+                    $actionLog = "cadastrou a Cliente de ID: " . $rowCliente['max_id'];
+
+                    $dateLog = new DateTime();
+                    $dateLog->setTimezone(new DateTimeZone('America/Sao_Paulo'));
+
+                    $sql = $con->prepare('INSERT INTO logs(usuarioId, acaoLogs, dataHoraLogs) VALUES(:usuarioId, :acaoLogs, :dataHoraLogs)');
+                    $sql->bindValue(":usuarioId", $_SESSION['idUsuario']);
+                    $sql->bindValue(":acaoLogs", $actionLog);
+                    $sql->bindValue(":dataHoraLogs", $dateLog->format('y/m/d H:i:s'));
+                    if ($sql->execute()) {
+                        echo true;
+                    } else {
+                        echo false;
+                    }
+                }
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
                 echo false;
             }
             break;

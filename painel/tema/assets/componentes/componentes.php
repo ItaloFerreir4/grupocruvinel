@@ -47,44 +47,10 @@ function temaBar()
                                             <li><a class="lista" pagina="lista" categoria="20" href="javascript:void(0);" nomePagina="blog-detalhes/categorias" onClick="Pagina(this)">Categorias</a></li>
                                         </ul>
                                     </li>
-                                    <li class="">
-                                        <a href="#Video" class="has-arrow" aria-expanded="false"><i class="fa fa-files-o"></i><span>Videos</span></a>
-                                        <ul aria-expanded="false" class="collapse" style="height: 0px;">
-                                            <li><a class="lista" pagina="listaVideos" href="javascript:void(0);" nomePagina="Videos" onClick="Pagina(this)">Listar/Adicionar</a></li>
-                                            <li><a class="lista" pagina="lista" categoria="22" href="javascript:void(0);" nomePagina="video-detalhes/categorias" onClick="Pagina(this)">Categorias</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="">
-                                        <a href="#Podcast" class="has-arrow" aria-expanded="false"><i class="fa fa-files-o"></i><span>Podcasts</span></a>
-                                        <ul aria-expanded="false" class="collapse" style="height: 0px;">
-                                            <li><a class="lista" pagina="listaPodcasts" href="javascript:void(0);" nomePagina="Podcasts" onClick="Pagina(this)">Listar/Adicionar</a></li>
-                                            <li><a class="lista" pagina="lista" categoria="23" href="javascript:void(0);" nomePagina="podcast-detalhes/categorias" onClick="Pagina(this)">Categorias</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="">
-                                        <a href="#SaiuNaMidia" class="has-arrow" aria-expanded="false"><i class="fa fa-files-o"></i><span>Saiu Na Midia</span></a>
-                                        <ul aria-expanded="false" class="collapse" style="height: 0px;">
-                                            <li><a class="lista" pagina="lista" categoria="11" href="javascript:void(0);" nomePagina="saiu-na-midia-detalhes" onClick="Pagina(this)">Listar/Adicionar</a></li>
-                                            <li><a class="lista" pagina="lista" categoria="21" href="javascript:void(0);" nomePagina="saiu-na-midia-detalhes/categorias" onClick="Pagina(this)">Categorias</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="">
-                                        <a href="#SaiuNaMidia" class="has-arrow" aria-expanded="false"><i class="fa fa-files-o"></i><span>Artigos</span></a>
-                                        <ul aria-expanded="false" class="collapse" style="height: 0px;">
-                                            <li><a class="lista" pagina="lista" categoria="25" href="javascript:void(0);" nomePagina="artigo-detalhes" onClick="Pagina(this)">Listar/Adicionar</a></li>
-                                            <li><a class="lista" pagina="lista" categoria="26" href="javascript:void(0);" nomePagina="artigo-detalhes/categorias" onClick="Pagina(this)">Categorias</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="lista" pagina="lista" categoria="3" href="javascript:void(0);" nomePagina="Business-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Business</span></a></li>      
-                                    <li><a class="lista" pagina="listaAgendas" href="javascript:void(0);" nomePagina="Agendas" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Agendas</span></a></li>      
-                                    <li><a class="lista" pagina="lista" categoria="9" href="javascript:void(0);" nomePagina="Evento-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Eventos</span></a></li>
-                                    <li><a class="lista" pagina="lista" categoria="13" href="javascript:void(0);" nomePagina="Curso-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Cursos</span></a></li>
-                                    <li><a class="lista" pagina="lista" categoria="12" href="javascript:void(0);" nomePagina="Livro-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Livros</span></a></li>
-                                    <li><a class="lista" pagina="lista" categoria="27" href="javascript:void(0);" nomePagina="Ebook-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Ebooks</span></a></li>
-                                    <li><a class="lista" pagina="lista" categoria="24" href="javascript:void(0);" nomePagina="Palestra-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Palestras</span></a></li>
-                                    <li><a class="lista hidden" pagina="lista" categoria="6" href="javascript:void(0);" nomePagina="Mentoria-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Mentorias</span></a></li>
-                                    <li><a class="lista hidden" pagina="lista" categoria="8" href="javascript:void(0);" nomePagina="Consultoria-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Consultorias</span></a></li>
-                                    <li><a class="lista hidden" pagina="lista" categoria="4" href="javascript:void(0);" nomePagina="Workshop-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Workshops</span></a></li>
+                                    <li><a class="lista" pagina="lista" categoria="3" href="javascript:void(0);" nomePagina="Empresas-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Empresas</span></a></li>      
+                                    <li><a class="lista" pagina="listaServicos" href="javascript:void(0);" nomePagina="Servicos" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Servicos</span></a></li>      
+                                    <li><a class="lista" pagina="listaClientes" href="javascript:void(0);" nomePagina="Clientes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Clientes</span></a></li>      
+                                    
                                 </li>
                                 <li class="">
                                     <a href="#Gerais" class="has-arrow" aria-expanded="false"><i class="fa fa-gear"></i><span>Configurações</span></a>
