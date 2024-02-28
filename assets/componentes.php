@@ -2,7 +2,8 @@
 
 define('BASE_URL', 'http://localhost/grupocruvinel');
 
-function cHeader(){
+function cHeader()
+{
     $baseURL = BASE_URL;
 
     echo <<<HTML
@@ -48,19 +49,19 @@ function cFooter(){
     }
 
     $sqlContatos = $con->prepare("SELECT * FROM contatos WHERE idContato = :idContato");
-    $sqlContatos->bindValue(":idContato",1);
+    $sqlContatos->bindValue(":idContato", 1);
     $sqlContatos->execute();
     $conteudoContatos = $sqlContatos->fetch(PDO::FETCH_ASSOC);
 
     $telefone = preg_replace('/[\s\(\)\[\]]/', '', $conteudoContatos["telefoneContato"]);
-    
+
     $sqlFormulario = $con->prepare("SELECT * FROM formularios WHERE descricaoFormulario = :descricaoFormulario");
     $sqlFormulario->bindValue(":descricaoFormulario", "newsletter");
     $sqlFormulario->execute();
     $formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
 
     $sqlRedes = $con->prepare("SELECT * FROM redes WHERE idRede = :idRede");
-    $sqlRedes->bindValue(":idRede",1);
+    $sqlRedes->bindValue(":idRede", 1);
     $sqlRedes->execute();
     $conteudoRedes = $sqlRedes->fetch(PDO::FETCH_ASSOC);
 
@@ -174,14 +175,15 @@ function cFooter(){
     HTML;
 }
 
-function redesSociaisCompartilhar($cor) {
+function redesSociaisCompartilhar($cor)
+{
 
     echo '
-        <a href="javascript:" onClick="Compartilhar(this)" title="facebook"><img loading="lazy" src="' . BASE_URL . '/assets/svg/facebook-'.$cor.'.svg" alt="facebook"></a> 
-        <a href="javascript:" onClick="Compartilhar(this)" title="linkedin"><img loading="lazy" src="' . BASE_URL . '/assets/svg/linkedin-'.$cor.'.svg" alt="linkedin"></a> 
-        <a href="javascript:" onClick="Compartilhar(this)" title="twitter"><img loading="lazy" src="' . BASE_URL . '/assets/svg/x-'.$cor.'.svg" alt="twitter"></a> 
-        <a href="javascript:" onClick="Compartilhar(this)" title="telegram"><img loading="lazy" src="' . BASE_URL . '/assets/svg/telegram-'.$cor.'.svg" alt="telegram"></a> 
-        <a href="javascript:" onClick="Compartilhar(this)" title="whatsapp"><img loading="lazy" src="' . BASE_URL . '/assets/svg/whatsapp-'.$cor.'.svg" alt="whatsapp"></a>
+        <a href="javascript:" onClick="Compartilhar(this)" title="facebook"><img loading="lazy" src="' . BASE_URL . '/assets/svg/facebook-' . $cor . '.svg" alt="facebook"></a> 
+        <a href="javascript:" onClick="Compartilhar(this)" title="linkedin"><img loading="lazy" src="' . BASE_URL . '/assets/svg/linkedin-' . $cor . '.svg" alt="linkedin"></a> 
+        <a href="javascript:" onClick="Compartilhar(this)" title="twitter"><img loading="lazy" src="' . BASE_URL . '/assets/svg/x-' . $cor . '.svg" alt="twitter"></a> 
+        <a href="javascript:" onClick="Compartilhar(this)" title="telegram"><img loading="lazy" src="' . BASE_URL . '/assets/svg/telegram-' . $cor . '.svg" alt="telegram"></a> 
+        <a href="javascript:" onClick="Compartilhar(this)" title="whatsapp"><img loading="lazy" src="' . BASE_URL . '/assets/svg/whatsapp-' . $cor . '.svg" alt="whatsapp"></a>
     ';
 }
 
@@ -194,37 +196,38 @@ function redesSociais($cor) {
     }
 
     $sqlRedes = $con->prepare("SELECT * FROM redes WHERE idRede = :idRede");
-    $sqlRedes->bindValue(":idRede",1);
+    $sqlRedes->bindValue(":idRede", 1);
     $sqlRedes->execute();
     $conteudoRedes = $sqlRedes->fetch(PDO::FETCH_ASSOC);
 
     if (!empty($conteudoRedes['instagram'])) {
-        echo '<a href="' . $conteudoRedes['instagram'] . '" target="_blank" title="instagram"><img loading="lazy" src="' . BASE_URL . '/assets/svg/instagram-'.$cor.'.svg" alt="instagram"></a>';
-    }    
+        echo '<a href="' . $conteudoRedes['instagram'] . '" target="_blank" title="instagram"><img loading="lazy" src="' . BASE_URL . '/assets/svg/instagram-' . $cor . '.svg" alt="instagram"></a>';
+    }
     if (!empty($conteudoRedes['facebook'])) {
-        echo '<a href="' . $conteudoRedes['facebook'] . '" target="_blank" title="facebook"><img loading="lazy" src="' . BASE_URL . '/assets/svg/facebook-'.$cor.'.svg" alt="facebook"></a>';
-    }    
+        echo '<a href="' . $conteudoRedes['facebook'] . '" target="_blank" title="facebook"><img loading="lazy" src="' . BASE_URL . '/assets/svg/facebook-' . $cor . '.svg" alt="facebook"></a>';
+    }
     if (!empty($conteudoRedes['linkedin'])) {
-        echo '<a href="' . $conteudoRedes['linkedin'] . '" target="_blank" title="linkedin"><img loading="lazy" src="' . BASE_URL . '/assets/svg/linkedin-'.$cor.'.svg" alt="linkedin"></a>';
-    }    
+        echo '<a href="' . $conteudoRedes['linkedin'] . '" target="_blank" title="linkedin"><img loading="lazy" src="' . BASE_URL . '/assets/svg/linkedin-' . $cor . '.svg" alt="linkedin"></a>';
+    }
     if (!empty($conteudoRedes['twitter'])) {
-        echo '<a href="' . $conteudoRedes['twitter'] . '" target="_blank" title="twitter"><img loading="lazy" src="' . BASE_URL . '/assets/svg/x-'.$cor.'.svg" alt="twitter"></a>';
-    }    
+        echo '<a href="' . $conteudoRedes['twitter'] . '" target="_blank" title="twitter"><img loading="lazy" src="' . BASE_URL . '/assets/svg/x-' . $cor . '.svg" alt="twitter"></a>';
+    }
     if (!empty($conteudoRedes['telegram'])) {
-        echo '<a href="' . $conteudoRedes['telegram'] . '" target="_blank" title="telegram"><img loading="lazy" src="' . BASE_URL . '/assets/svg/telegram-'.$cor.'.svg" alt="telegram"></a>';
-    }    
+        echo '<a href="' . $conteudoRedes['telegram'] . '" target="_blank" title="telegram"><img loading="lazy" src="' . BASE_URL . '/assets/svg/telegram-' . $cor . '.svg" alt="telegram"></a>';
+    }
     if (!empty($conteudoRedes['pinterest'])) {
-        echo '<a href="' . $conteudoRedes['pinterest'] . '" target="_blank" title="pinterest"><img loading="lazy" src="' . BASE_URL . '/assets/svg/pinterest-'.$cor.'.svg" alt="pinterest"></a>';
+        echo '<a href="' . $conteudoRedes['pinterest'] . '" target="_blank" title="pinterest"><img loading="lazy" src="' . BASE_URL . '/assets/svg/pinterest-' . $cor . '.svg" alt="pinterest"></a>';
     }
     if (!empty($conteudoRedes['tiktok'])) {
-        echo '<a href="' . $conteudoRedes['tiktok'] . '" target="_blank" title="tiktok"><img loading="lazy" src="' . BASE_URL . '/assets/svg/tiktok-'.$cor.'.svg" alt="tiktok"></a>';
-    }   
+        echo '<a href="' . $conteudoRedes['tiktok'] . '" target="_blank" title="tiktok"><img loading="lazy" src="' . BASE_URL . '/assets/svg/tiktok-' . $cor . '.svg" alt="tiktok"></a>';
+    }
     if (!empty($conteudoRedes['youtube'])) {
-        echo '<a href="' . $conteudoRedes['youtube'] . '" target="_blank" title="youtube"><img loading="lazy" src="' . BASE_URL . '/assets/svg/youtube-'.$cor.'.svg" alt="youtube"></a>';
-    } 
+        echo '<a href="' . $conteudoRedes['youtube'] . '" target="_blank" title="youtube"><img loading="lazy" src="' . BASE_URL . '/assets/svg/youtube-' . $cor . '.svg" alt="youtube"></a>';
+    }
 }
 
-function elementosGerais(){
+function elementosGerais()
+{
     echo <<<HTML
         <div class="popup-video" id="popupVideo">
             <span class="fecha-popup" id="fechaPopup" onClick="PopUpVideo('Fechando')"></span>
@@ -240,14 +243,16 @@ function elementosGerais(){
     HTML;
 }
 
-function linksHead(){
+function linksHead()
+{
     echo '
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.min.css">
     ';
 }
 
-function scriptBody(){
+function scriptBody()
+{
     echo '
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.js"></script>
@@ -270,7 +275,7 @@ function formEmailNewsletter(){
     $formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
 
     $urlBase = BASE_URL;
-    
+
     echo <<<HTML
         <div class="info-email">
             <img src="{$urlBase}/assets/png/fabio-email.png" alt="Fabio Munrá" class="superior-img" />
@@ -338,190 +343,23 @@ function tabs(){
     $baseURL = BASE_URL;
 
     echo <<<HTML
-        <section class="tabs">
-            <div class="background">
-                <div class="grey"></div>
-                <div class="white"></div>
-            </div>
-            <div class="container">
-                <div class="button-container">
-                    <div class="tab-buttons">
-                        <button data-content="saiu-na-midia" class="active">Saiu na mídia</button>
-                        <button data-content="blog">Blog</button>
-                        <button data-content="artigos">Artigos</button>
-                        <button data-content="eventos">Eventos</button>
-                    </div>
+    <div class="banner">
+        <img class="img-background desktop"
+            src={$srcDesktop}
+            alt="Banner">
+        <img class="img-background mobile"
+            src={$srcMobile}
+            alt="Banner">
+        <div class="container">
+            <div class="row">
+            <div class="col-12 col-lg-6 bloco-1">
+                <div class="title">
+                <p>{$titulo}</p>
                 </div>
             </div>
-            <div class="tabs-content">
-                <div data-content="saiu-na-midia" class="saiu-na-midia">
-                    <div class="swiper-saiu-na-midia">
-    HTML;
-                        foreach ($midiasArray as $blog) {
-                            $dataBlog = $blog->dataBlog;
-
-                            $mesesEmPortugues = array(
-                                "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-                                "Jul", "Ago", "Set", "Out", "Nov", "Dez"
-                            );
-
-                            $diaDataBlog = date("d", strtotime($dataBlog));
-                            $mesDataBlog = date("m", strtotime($dataBlog));
-                            $anoDataBlog = date("y", strtotime($dataBlog));
-                            $mesPtDataBlog = $mesesEmPortugues[(int)date("m", strtotime($dataBlog)) - 1];
-
-                            echo <<<HTML
-                            
-                            <a href="{$baseURL}/saiu-na-midia-detalhes/{$blog->nomePagina}" title="{$blog->tituloPagina}">
-                                <div class="tab-card">
-                                    <div class="card-img">
-                                        <img src="{$baseURL}/assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}" />
-                                    </div>
-                                    <div class="content">
-                                        <p class="limit-text">{$blog->tituloBlog}</p>
-                                        <div class="bottom">
-                                            <div class="see-more">
-                                                <img src="{$baseURL}/assets/svg/seta-azul-escuro.svg" alt="Ver mais" />
-                                                <span>Ver mais</span>
-                                            </div>
-                                            <span>{$diaDataBlog} de {$mesPtDataBlog} de {$anoDataBlog}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            HTML;
-                        }
-    echo <<<HTML
-                    </div>
-                </div>
-                <div data-content="blog" class="blog">
-                    <div class="swiper-blog">
-    HTML;
-                    foreach ($blogsArray as $blog) {
-                        $dataBlog = $blog->dataBlog;
-
-                        $mesesEmPortugues = array(
-                            "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-                            "Jul", "Ago", "Set", "Out", "Nov", "Dez"
-                        );
-
-                        $diaDataBlog = date("d", strtotime($dataBlog));
-                        $mesDataBlog = date("m", strtotime($dataBlog));
-                        $anoDataBlog = date("y", strtotime($dataBlog));
-                        $mesPtDataBlog = $mesesEmPortugues[(int)date("m", strtotime($dataBlog)) - 1];
-
-                        echo <<<HTML
-                        
-                        <a href="{$baseURL}/blog-detalhes/{$blog->nomePagina}" title="{$blog->tituloPagina}">
-                            <div class="tab-card">
-                                <div class="card-img">
-                                    <img src="{$baseURL}/assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}" />
-                                </div>
-                                <div class="content">
-                                    <p class="limit-text">{$blog->tituloBlog}</p>
-                                    <div class="bottom">
-                                        <div class="see-more">
-                                            <img src="{$baseURL}/assets/svg/seta-azul-escuro.svg" alt="Ver mais" />
-                                            <span>Ver mais</span>
-                                        </div>
-                                        <span>{$diaDataBlog} de {$mesPtDataBlog} de {$anoDataBlog}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        HTML;
-                    }
-    echo <<<HTML
-                    </div>
-                </div>
-                <div data-content="artigos" class="artigos">
-                    <div class="swiper-artigos">
-    HTML;
-
-                    foreach ($artigosArray as $blog) {
-                        $dataBlog = $blog->dataBlog;
-
-                        $mesesEmPortugues = array(
-                            "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-                            "Jul", "Ago", "Set", "Out", "Nov", "Dez"
-                        );
-
-                        $diaDataBlog = date("d", strtotime($dataBlog));
-                        $mesDataBlog = date("m", strtotime($dataBlog));
-                        $anoDataBlog = date("y", strtotime($dataBlog));
-                        $mesPtDataBlog = $mesesEmPortugues[(int)date("m", strtotime($dataBlog)) - 1];
-
-                        echo <<<HTML
-                        
-                        <a href="{$baseURL}/artigo-detalhes/{$blog->nomePagina}" title="{$blog->tituloPagina}">
-                            <div class="tab-card">
-                                <div class="card-img">
-                                    <img src="{$baseURL}/assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}" />
-                                </div>
-                                <div class="content">
-                                    <p class="limit-text">{$blog->tituloBlog}</p>
-                                    <div class="bottom">
-                                        <div class="see-more">
-                                            <img src="{$baseURL}/assets/svg/seta-azul-escuro.svg" alt="Ver mais" />
-                                            <span>Ver mais</span>
-                                        </div>
-                                        <span>{$diaDataBlog} de {$mesPtDataBlog} de {$anoDataBlog}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        HTML;
-                    }
-    echo <<<HTML
-                    </div>
-                </div>
-                <div data-content="eventos" class="eventos">
-                    <div class="swiper-eventos">
-    HTML;
-                    foreach ($eventosArray as $evento) {
-                                                
-                        $dataEvento = $evento->dataEvento;
-
-                        $mesesEmPortugues = array(
-                            "Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
-                            "Jul", "Ago", "Set", "Out", "Nov", "Dez"
-                        );
-
-                        $diaDataEvento = date("d", strtotime($dataEvento));
-                        $mesDataEvento = date("m", strtotime($dataEvento));
-                        $anoDataEvento = date("y", strtotime($dataEvento));
-                        $mesPtDataEvento = $mesesEmPortugues[(int)date("m", strtotime($dataEvento)) - 1];
-                        
-                        echo <<<HTML
-                        <a href="{$baseURL}/evento-detalhes/{$evento->nomePagina}" class="event-card-wrapper" data-tag="{$evento->tagsEvento}" data-month="{$mesDataEvento}" data-year="{$anoDataEvento}">
-                            <div class="tab-card">
-                                <div class="card-img">
-                                <img src="{$baseURL}/assets/uploads/{$evento->imagemEvento}" alt="{$evento->legendaImagemEvento}" />
-                                </div>
-                                <div class="content">
-                                    <p class="limit-text">{$evento->tituloEvento}</p>
-                                    <div class="bottom">
-                                        <div class="see-more">
-                                            <img src="{$baseURL}/assets/svg/seta-azul-escuro.svg" alt="Ver mais" />
-                                            <span>Ver mais</span>
-                                        </div>
-                                        <span>{$diaDataEvento} de {$mesPtDataEvento} de {$anoDataEvento}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        HTML;
-                    }
-    echo <<<HTML
-                    </div>
-                </div>
+            <div class="col-12 col-lg-6 bloco-2"></div>
             </div>
-        </section>
-    HTML;
-}
-
-function banner($titulo){
-    echo <<<HTML
-        {$titulo}
+        </div>
+    </div>
     HTML;
 }
