@@ -1447,7 +1447,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .business::after {
-  content: url(../assets/svg/hexagono-amarelo-video.svg);
+  content: url(../assets/svg/hexagono-amarelo.svg);
   position: absolute;
   right: 30px;
   bottom: 70px;
@@ -1745,8 +1745,8 @@ input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 
-.contact-form form label {
-  color: var(--bege, #a69374);
+label {
+  color: var(--bege);
   font-family: "OpenSans";
   font-size: 11px;
   font-style: normal;
