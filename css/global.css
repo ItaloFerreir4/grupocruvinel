@@ -813,7 +813,7 @@ input[type="text"].parsley-error::placeholder {
   font-family: "AvertaStd Bold";
 }
 
-/* content */
+/* shaped-content */
 
 .shaped-content {
   position: relative;
@@ -1495,25 +1495,6 @@ input[type="text"].parsley-error::placeholder {
   );
   height: 700px;
 }
-
-/* .business::before {
-  content: url(../assets/svg/expand.svg);
-  position: absolute;
-  bottom: 45px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background-color: var(--amarelo);
-  z-index: 2;
-  border-radius: 50%;
-  -webkit-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
-} */
 
 .business-card > .row {
   gap: 0px;

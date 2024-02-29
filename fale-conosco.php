@@ -44,12 +44,12 @@ $categoriasArray = json_decode(json_encode($categoriasArray));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fale Conosco</title>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/global.css">
-    <link rel="stylesheet" href="css/fale-conosco.css">
-</head>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/fale-conosco.css">
+</head> 
 
 <body>
     <?php
