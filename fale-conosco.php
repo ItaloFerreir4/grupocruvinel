@@ -1,6 +1,39 @@
 <?php
 
-include_once("./assets/componentes.php");
+include_once "assets/componentes.php";
+include_once "painel/backend/conexao-banco.php";
+
+$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE idPagina = :idPagina");
+$sqlSeo->bindValue(":idPagina", 16);
+$sqlSeo->execute();
+$conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
+
+$sqlConteudos = $con->prepare("SELECT * FROM conteudos WHERE paginaId = :idPagina");
+$sqlConteudos->bindValue(":idPagina", $conteudoSeo["idPagina"]);
+$sqlConteudos->execute();
+$conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
+$conteudosArray = json_decode(json_encode($conteudosArray));
+
+$sqlContatos = $con->prepare("SELECT * FROM contatos WHERE idContato = :idContato");
+$sqlContatos->bindValue(":idContato", 1);
+$sqlContatos->execute();
+$contatos = $sqlContatos->fetch(PDO::FETCH_ASSOC);
+
+$sqlFormulario = $con->prepare("SELECT * FROM formularios WHERE paginaId = :paginaId");
+$sqlFormulario->bindValue(":paginaId", 16);
+$sqlFormulario->execute();
+$formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
+
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs->execute();
+$blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
+$blogsArray = json_decode(json_encode($blogsArray));
+
+$sqlCategorias = $con->prepare("SELECT * FROM categorias c, paginas p WHERE c.paginaId = p.idPagina AND c.tipoCategoria = :tipoCategoria");
+$sqlCategorias->bindValue(":tipoCategoria", 1);
+$sqlCategorias->execute();
+$categoriasArray = $sqlCategorias->fetchAll(PDO::FETCH_ASSOC);
+$categoriasArray = json_decode(json_encode($categoriasArray));
 
 ?>
 
@@ -19,13 +52,19 @@ include_once("./assets/componentes.php");
 </head>
 
 <body>
-    <?php banner(
-        "FALE CONOSCO",
-        "FALE CONOSCO",
-        "FALE CONOSCO",
-        "./assets/png/banner-fale-conosco.png",
-        "./assets/png/banner-fale-conosco.png"
-    ); ?>
+    <?php
+    foreach ($conteudosArray as $conteudo) {
+        if($conteudo->numeroConteudo == 1){
+            banner(
+                "Fale Conosco",
+                "{$conteudo->legendaImagem1Conteudo}",
+                "{$conteudo->legendaImagem2Conteudo}",
+                "./assets/uploads/{$conteudo->imagem1Conteudo}",
+                "./assets/uploads/{$conteudo->imagem2Conteudo}"
+            ); 
+        }
+    }
+    ?>
 
     <section class="contact-us">
         <div class="shaped-content">
@@ -34,13 +73,26 @@ include_once("./assets/componentes.php");
                     <div class="col-12 col-lg-7 contact-form">
                         <h1>Conte para nosso atendimento o que você precisa. E vamos lhe ajudar!</h1>
                         <form id="formulario-1">
+                            <input type="hidden" name="origem" id="origem" value="formulario">
+                            <input type="hidden" name="quemRecebe" id="quemRecebe" value="<?php echo $formulario['emailFormulario']; ?>">
+                            <input type="hidden" name="tituloPagina" id="tituloPagina" value="">
                             <input name="contatoNome" id="contatoNome" type="text" placeholder="Nome:" />
                             <input name="contatoEmail" id="contatoEmail" type="text" placeholder="E-mail:" />
                             <select name="contatoAssunto" id="contatoAssunto" type="text" placeholder="Assunto:">
                                 <optgroup>
                                     <option value="">Assunto:</option>
                                 </optgroup>
-                                <option value="{$option}">opcao 1</option>
+                                <?php
+                                    $options = $formulario['select1Formulario'];
+
+                                    $options = explode(",", $options);
+                        
+                                    foreach ($options as &$option) {
+                                        echo <<<HTML
+                                            <option value="{$option}">{$option}</option>
+                                        HTML;
+                                    }
+                                ?>
                             </select>
                             <input name="contatoTelefone" id="contatoTelefone" type="text" placeholder="Telefone:"
                                 onkeyup="mascaraTel(this);" maxlength="15" />
@@ -50,8 +102,7 @@ include_once("./assets/componentes.php");
                                 <input id="contact-checkbox" type="checkbox" name="contatoTermo" id="contatoTermo" />
                                 Concordo que os dados pessoais fornecidos acima serão utilizados para envio de conteúdo
                                 informativo, analítico e publicitário sobre produtos, serviços e assuntos gerais, nos
-                                termos da Lei Geral de Proteção de Dados.
-                                Voluptatum, necessitatibus?</label>
+                                termos da Lei Geral de Proteção de Dados.</label>
                             <button type="button" class="send botao-enviar" onClick="EnviarFormulario(1)">
                                 Enviar
                                 <img loading="lazy" src="assets/svg/seta-dir-amarela.svg" alt="Seta" />
@@ -59,20 +110,28 @@ include_once("./assets/componentes.php");
                         </form>
                     </div>
                     <div class="col-12 col-lg-5 images">
-                        <img src="assets/png/fale-conosco.png" alt="Fale Conosco" class="main-img">
+                        <?php
+                            foreach ($conteudosArray as $conteudo) {
+                                if($conteudo->numeroConteudo == 2){
+                                    echo <<<HTML
+                                    <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}" class="main-img">
+                                    HTML;
+                                }
+                            }
+                        ?>
+                        
                         <div class="contact-info">
                             <div>
                                 <div class="icon"><img src="assets/svg/email-marrom.svg" alt="Email"></div>
-                                <span>assessoria@evidjuri.com.br</span>
+                                <span><?php echo $contatos['emailContato']; ?> </span>
                             </div>
                             <div>
                                 <div class="icon"><img src="assets/svg/whatsapp-branco.svg" alt="Whatsapp"></div>
-                                <strong>(34)
-                                    3221-4716</strong>
+                                <strong><?php echo $contatos['whatsappContato']; ?> </strong>
                             </div>
                             <div>
                                 <div class="icon"><img src="assets/svg/telefone-verde.svg" alt="Telefone"></div>
-                                <strong>(34) 3221-4716</strong>
+                                <strong><?php echo $contatos['telefoneContato']; ?> </strong>
                             </div>
 
                         </div>
@@ -83,70 +142,54 @@ include_once("./assets/componentes.php");
     </section>
     <section class="map">
         <div class="container">
-            <h2>R. Helvécio Schiavinato, 281 - Vigilato Pereira, Uberlândia - MG, 38408-608</h2>
+            <h2><?php echo $contatos['enderecoContato']; ?> </h2>
         </div>
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1973529954835!2d-46.6564943!3d-23.5613545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1709170155410!5m2!1spt-BR!2sbr"
-            width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <?php echo $contatos['mapa']; ?>
     </section>
     <section class="other-blogs">
         <h1>Blog do Grupo</h1>
         <div class="swiper-other-blogs container">
-            <div class="card-blog">
-                <img src="assets/png/blog.png" alt="Blog">
-                <div>
-                    <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                </div>
-            </div>
-            <div class="card-blog">
-                <img src="assets/png/blog.png" alt="Blog">
-                <div>
-                    <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                </div>
-            </div>
-            <div class="card-blog">
-                <img src="assets/png/blog.png" alt="Blog">
-                <div>
-                    <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                </div>
-            </div>
-            <div class="card-blog">
-                <img src="assets/png/blog.png" alt="Blog">
-                <div>
-                    <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                </div>
-            </div>
-            <div class="card-blog">
-                <img src="assets/png/blog.png" alt="Blog">
-                <div>
-                    <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                </div>
-            </div>
-            <div class="card-blog">
-                <img src="assets/png/blog.png" alt="Blog">
-                <div>
-                    <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                </div>
-            </div>
+            <?php
+                foreach ($blogsArray as $blog) {
+
+                    $dataBlog = $blog->dataBlog;
+                    $categoriasId = $blog->categoriasId;
+
+                    $dataBlog = new DateTime($dataBlog);
+                    $dataBlog = $dataBlog->format('d/m/Y');
+
+                    $primeiraCategoriaBlog = json_decode($categoriasId);
+                    if($primeiraCategoriaBlog){
+                        $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+
+                        foreach ($categoriasArray as $rowCat) {
+                            if($rowCat->idCategoria == $primeiraCategoriaBlog){
+                                $nomeCategoriaBlog = $rowCat->nomeCategoria;
+                            }
+                        }
+
+                    }
+                    else{
+                        $nomeCategoriaBlog = "";
+                    }
+                    
+                    echo <<<HTML
+                    <a href="./blog-detalhes/{$blog->nomePagina}">
+                        <div class="card-blog">
+                            <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                            <div>
+                                <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
+                            </div>
+                            <h1>{$blog->tituloBlog}</h1>
+                            <div class="outline-button">
+                                Ler mais 
+                                <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                            </div>
+                        </div>
+                    </a>
+                    HTML;
+                }
+            ?>
         </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
