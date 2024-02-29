@@ -1,0 +1,29 @@
+/* grid-content */
+
+.grid-content {
+  grid-template-columns: repeat(auto-fit, min(280px, 100%));
+}
+
+/* clients */
+
+.clients .shaped-content {
+  padding-bottom: 20px;
+}
+
+.clients .grid-content {
+  padding-top: 100px;
+}
+
+.client {
+  background-color: var(--branco);
+  aspect-ratio: 2 / 1;
+  padding: 25px 50px;
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.client img {
+  height: 100%;
+}
