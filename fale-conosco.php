@@ -164,48 +164,45 @@ $categoriasArray = json_decode(json_encode($categoriasArray));
     </section>
     <section class="other-blogs">
         <h1>Blog do Grupo</h1>
-        <div class="swiper-other-blogs container">
-            <?php
-                foreach ($blogsArray as $blog) {
-
-                    $dataBlog = $blog->dataBlog;
-                    $categoriasId = $blog->categoriasId;
-
-                    $dataBlog = new DateTime($dataBlog);
-                    $dataBlog = $dataBlog->format('d/m/Y');
-
-                    $primeiraCategoriaBlog = json_decode($categoriasId);
-                    if($primeiraCategoriaBlog){
-                        $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
-
-                        foreach ($categoriasArray as $rowCat) {
-                            if($rowCat->idCategoria == $primeiraCategoriaBlog){
-                                $nomeCategoriaBlog = $rowCat->nomeCategoria;
+        <div class="container">
+            <div class="swiper-other-blogs">
+                <?php
+                    foreach ($blogsArray as $blog) {
+                        $dataBlog = $blog->dataBlog;
+                        $categoriasId = $blog->categoriasId;
+                        $dataBlog = new DateTime($dataBlog);
+                        $dataBlog = $dataBlog->format('d/m/Y');
+                        $primeiraCategoriaBlog = json_decode($categoriasId);
+                        if($primeiraCategoriaBlog){
+                            $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+                            foreach ($categoriasArray as $rowCat) {
+                                if($rowCat->idCategoria == $primeiraCategoriaBlog){
+                                    $nomeCategoriaBlog = $rowCat->nomeCategoria;
+                                }
                             }
                         }
-
-                    }
-                    else{
-                        $nomeCategoriaBlog = "";
-                    }
-                    
-                    echo <<<HTML
-                    <a href="./blog-detalhes/{$blog->nomePagina}">
-                        <div class="card-blog">
-                            <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
-                            <div>
-                                <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
+                        else{
+                            $nomeCategoriaBlog = "";
+                        }
+            
+                        echo <<<HTML
+                        <a href="./blog-detalhes/{$blog->nomePagina}">
+                            <div class="card-blog">
+                                <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                <div>
+                                    <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
+                                </div>
+                                <h1>{$blog->tituloBlog}</h1>
+                                <div class="outline-button">
+                                    Ler mais
+                                    <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                </div>
                             </div>
-                            <h1>{$blog->tituloBlog}</h1>
-                            <div class="outline-button">
-                                Ler mais 
-                                <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                            </div>
-                        </div>
-                    </a>
-                    HTML;
-                }
-            ?>
+                        </a>
+                        HTML;
+                    }
+                ?>
+            </div>
         </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
