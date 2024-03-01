@@ -5,7 +5,7 @@ include_once("./assets/componentes.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
