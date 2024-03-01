@@ -54,6 +54,12 @@ echo ''
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
+                                    <label>Titulo texto</label>
+                                    <input type="text" class="form-control" id="tituloBusiness" name="tituloBusiness">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
                                     <label>Texto</label>
                                     <textarea class="form-control" id="textoBusiness" name="textoBusiness" rows="10"></textarea>
                                 </div>
@@ -571,6 +577,7 @@ echo ''
     function CarregaBusiness(paginaId) {
         const formulario = $("#form-business");
         const nomeBusiness = formulario.find("#nomeBusiness")[0];
+        const tituloBusiness = formulario.find("#tituloBusiness")[0];
         const imagemBusiness = formulario.find("#imagemBusiness")[0];
         const legendaImagemBusiness = formulario.find("#legendaImagemBusiness")[0];
         const categoriaBusiness = formulario.find("#categoriaBusiness")[0];
@@ -609,6 +616,7 @@ echo ''
                 editor.setData(textoBusiness);
 
                 nomeBusiness.value = conteudoPagina.nomeBusiness;
+                tituloBusiness.value = conteudoPagina.tituloBusiness;
                 legendaImagemBusiness.value = conteudoPagina.legendaImagemBusiness;
                 categoriaBusiness.value = conteudoPagina.categoriaBusiness;
                 nomeBotao1.value = conteudoPagina.nomeBotao1;
@@ -628,6 +636,7 @@ echo ''
         const formulario = $("#form-business");
         const paginaId = formulario.find("#paginaId")[0];
         const nomeBusiness = formulario.find("#nomeBusiness")[0];
+        const tituloBusiness = formulario.find("#tituloBusiness")[0];
         const imagemBusiness = formulario.find("#imagemBusiness")[0];
         const legendaImagemBusiness = formulario.find("#legendaImagemBusiness")[0];
         const categoriaBusiness = formulario.find("#categoriaBusiness")[0];
@@ -651,6 +660,7 @@ echo ''
         formData.append("origem", "atualizaBusiness");
         formData.append("paginaId", paginaId.value);
         formData.append("nomeBusiness", nomeBusiness.value);
+        formData.append("tituloBusiness", tituloBusiness.value);
         formData.append("imagemBusiness", srcimagemBusiness);
         formData.append("legendaImagemBusiness", legendaImagemBusiness.value);
         formData.append("categoriaBusiness", categoriaBusiness.value);
