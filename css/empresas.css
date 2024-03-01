@@ -1,0 +1,78 @@
+/* company-card */
+
+.company-card {
+  display: flex;
+  gap: 80px;
+  margin-bottom: 100px;
+}
+
+.company-card-wrapper:nth-child(1) {
+  padding-top: 100px;
+}
+
+.company-card-wrapper:nth-child(even) .content {
+  order: -1;
+}
+
+.company-card .img-container {
+  aspect-ratio: 7 / 4;
+  height: 200px;
+  background-color: #dfdbd0;
+  padding: 30px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.company-card .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.company-card .img-container img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.company-card h1 {
+  color: var(--preto);
+  font-family: "OpenSans";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.company-card p {
+  color: var(--preto);
+  font-family: "OpenSans";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.company-card .outline-button {
+  margin-bottom: 0px;
+}
+
+@media (max-width: 992px) {
+  .company-card {
+    display: block;
+  }
+
+  .company-card .img-container {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    padding: 0px;
+    margin: 0 auto;
+  }
+
+  .company-card h1 {
+    margin: 15px 0 5px;
+  }
+}

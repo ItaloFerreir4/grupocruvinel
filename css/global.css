@@ -691,129 +691,97 @@ input[type="text"].parsley-error::placeholder {
 /* filter */
 
 .filter {
-  display: flex;
-  flex-direction: column;
+  margin-bottom: 65px;
+}
+
+.filter h1 {
+  color: var(--bege-2);
+  font-family: "OpenSans";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 20px;
 }
 
 .filter button,
 .filter a {
-  color: var(--azul-escuro);
-  font-family: "AvertaStd Regular";
-  text-align: start;
+  color: var(--cinza, #333);
+  font-family: "OpenSans";
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: 0.72px;
   position: relative;
   width: 100%;
   overflow: hidden;
-  transition: all 0.2s ease-out;
-  max-height: 0;
-  padding: 0 35px;
+  padding: 25px 0px;
   display: block;
   text-decoration: none;
-  order: 2;
+  text-align: start;
+  background-color: transparent;
+  border-bottom: 1px solid #c4c4c4;
 }
 
-.filter.active button,
-.filter.active a {
-  max-height: fit-content;
-  border-bottom: 1px solid var(--azul);
-  padding: 25px 35px;
+.filter button.active,
+.filter a.active {
+  color: var(--bege);
+  border-bottom: 1px solid var(--amarelo);
 }
 
-.filter button.selected,
-.filter a.selected {
-  background: linear-gradient(94deg, #3f8599 5.63%, #3e5d67 103.57%);
-  box-shadow: -8px 13px 10.5px -7px rgba(0, 0, 0, 0.25);
-  color: var(--branco);
-  font-family: "AvertaStd Bold";
-  padding: 25px;
-  border: none;
-  margin-bottom: 8px;
-  z-index: 1;
-  max-height: fit-content;
-  order: 1;
-}
-
-.filter button.selected:after,
-.filter a.selected:after {
+.filter button.active:after,
+.filter a.active:after {
   position: absolute;
-  content: url("../assets/svg/mais-branco.svg");
+  content: url(../assets/svg/seta-dir-bege.svg);
   font-size: 21px;
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
-  transition: transform 0.2s ease-out;
-  border: none;
-}
-
-.filter.active button.selected:after {
-  transform: translateY(-50%) rotate(45deg);
-}
-
-.filter button:after {
-  content: attr(data-count);
-  border: 1px solid var(--azul-escuro);
-  border-radius: 50%;
-  color: var(--azul-escuro);
-  text-align: center;
-  font-family: "AvertaStd Regular";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.72px;
-  position: absolute;
-  top: 50%;
-  right: 30px;
-  transform: translateY(-50%);
-  display: inline-flex;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
 }
 
 /* tag-filter */
 
-.tag-filter {
+.tag-filter h1 {
+  color: var(--bege-2);
+  font-family: "OpenSans";
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  display: block;
+}
+
+.tag-filter .buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   margin-top: 30px;
 }
 
-.tag-filter.mobile {
-  margin-bottom: 30px;
-}
-
 .tag-filter button {
-  background-color: var(--branco);
+  background-color: #e2dccf;
+  border-radius: 15px;
   display: inline-flex;
   height: 26px;
   padding: 10px;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: #000;
-  font-family: "AvertaStd Regular";
-  font-size: 14px;
+  color: var(--preto);
+  font-family: "OpenSans Bold";
+  font-size: 13px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  letter-spacing: 0.56px;
   cursor: pointer;
 }
 
-.tag-filter button.selected {
-  background: var(--azul-claro);
-  color: var(--branco);
-  font-family: "AvertaStd Bold";
+.tag-filter button.active {
+  background-color: var(--preto);
+  color: #e2dccf;
 }
 
-/* content */
+/* shaped-content */
 
 .shaped-content {
   position: relative;
@@ -1447,7 +1415,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .business::after {
-  content: url(../assets/svg/hexagono-amarelo-video.svg);
+  content: url(../assets/svg/hexagono-amarelo.svg);
   position: absolute;
   right: 30px;
   bottom: 70px;
@@ -1495,25 +1463,6 @@ input[type="text"].parsley-error::placeholder {
   );
   height: 700px;
 }
-
-/* .business::before {
-  content: url(../assets/svg/expand.svg);
-  position: absolute;
-  bottom: 45px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 50px;
-  background-color: var(--amarelo);
-  z-index: 2;
-  border-radius: 50%;
-  -webkit-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 25px 0px rgba(0, 0, 0, 0.75);
-} */
 
 .business-card > .row {
   gap: 0px;
@@ -1764,8 +1713,8 @@ input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 
-.contact-form form label {
-  color: var(--bege, #a69374);
+label {
+  color: var(--bege);
   font-family: "OpenSans";
   font-size: 11px;
   font-style: normal;
