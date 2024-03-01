@@ -1,6 +1,29 @@
 <?php
 
-include_once("./assets/componentes.php");
+include_once "assets/componentes.php";
+include_once "painel/backend/conexao-banco.php";
+
+$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE idPagina = :idPagina");
+$sqlSeo->bindValue(":idPagina", 10);
+$sqlSeo->execute();
+$conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
+
+$sqlConteudos = $con->prepare("SELECT * FROM conteudos WHERE paginaId = :idPagina");
+$sqlConteudos->bindValue(":idPagina", $conteudoSeo["idPagina"]);
+$sqlConteudos->execute();
+$conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
+$conteudosArray = json_decode(json_encode($conteudosArray));
+
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs->execute();
+$blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
+$blogsArray = json_decode(json_encode($blogsArray));
+
+$sqlCategorias = $con->prepare("SELECT * FROM categorias c, paginas p WHERE c.paginaId = p.idPagina AND c.tipoCategoria = :tipoCategoria");
+$sqlCategorias->bindValue(":tipoCategoria", 1);
+$sqlCategorias->execute();
+$categoriasArray = $sqlCategorias->fetchAll(PDO::FETCH_ASSOC);
+$categoriasArray = json_decode(json_encode($categoriasArray));
 
 ?>
 
@@ -17,13 +40,20 @@ include_once("./assets/componentes.php");
 </head>
 
 <body>
-    <?php banner(
-        "BLOG",
-        "BLOG",
-        "BLOG",
-        "./assets/png/banner-blog.png",
-        "./assets/png/banner-blog.png"
-    ); ?>
+    <?php
+    foreach ($conteudosArray as $conteudo) {
+        if($conteudo->numeroConteudo == 1){
+            banner(
+                "BLOG",
+                "{$conteudo->legendaImagem1Conteudo}",
+                "{$conteudo->legendaImagem2Conteudo}",
+                "./assets/uploads/{$conteudo->imagem1Conteudo}",
+                "./assets/uploads/{$conteudo->imagem2Conteudo}"
+            ); 
+        }
+    }
+    ?>
+
     <section class="blogs">
         <div class="shaped-content container">
             <div class="row">
@@ -32,38 +62,88 @@ include_once("./assets/componentes.php");
                         <div class="filter" data-filter="category">
                             <h1>Categorias</h1>
                             <button class="active" data-category="" data-url="/blog">Todas as Categorias</button>
-                            <button data-category="1" data-url="/blog-categoria">Dicas</button>
-                            <button data-category="2" data-url="/blog-categoria">Blog</button>
-                            <button data-category="3" data-url="/blog-categoria">Estilo</button>
+                            <?php
+                                foreach ($categoriasArray as $categoria) {
+                                    echo <<<HTML
+                                    <button data-url="./blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
+                                    HTML;
+                                }
+                            ?>
                         </div>
                         <div class=" tag-filter">
                             <h1>Tags</h1>
                             <div class="buttons">
-                                <button data-tag="Moda">Moda</button>
-                                <button data-tag="Estilos">Estilos</button>
-                                <button data-tag="Semijoias">Semijoias</button>
-                                <button data-tag="Munrá">Munrá</button>
+                                <?php
+                                    foreach ($blogsArray as $row) {
+                                        $tagsBlog = $row->tagsBlog;
+
+                                        $tags = explode(",", $tagsBlog);
+
+                                        foreach ($tags as &$tag) {
+                                            echo <<<HTML
+                                            <button data-tag="{$tag}">{$tag}</button>
+                                            HTML;
+                                        }
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-8">
                     <div class="row">
-                        <a data-category="2" data-tag="Moda" href=" ./blog-detalhes/{$blog->nomePagina}" class="col-12
-                            col-lg-6 card-blog-wrapper">
-                            <div class="card-blog">
-                                <img src="assets/png/blog.png" alt="{$blog->legendaImagemBlog}">
-                                <div>
-                                    <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                                </div>
-                                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde ad dolores voluptatem
-                                    repellat labore perferendis?</h1>
-                                <div class="outline-button">
-                                    Ler mais
-                                    <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                                </div>
-                            </div>
-                        </a>
+                        <?php
+                            foreach ($blogsArray as $blog) {
+
+                                $dataBlog = $blog->dataBlog;
+                                $categoriasId = $blog->categoriasId;
+
+                                $dataBlog = new DateTime($dataBlog);
+                                $dataBlog = $dataBlog->format('d/m/Y');
+
+                                $primeiraCategoriaBlog = json_decode($categoriasId);
+                                if($primeiraCategoriaBlog){
+                                    $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+
+                                    foreach ($categoriasArray as $rowCat) {
+                                        if($rowCat->idCategoria == $primeiraCategoriaBlog){
+                                            $nomeCategoriaBlog = $rowCat->nomeCategoria;
+                                        }
+                                    }
+
+                                }
+                                else{
+                                    $nomeCategoriaBlog = "";
+                                }
+
+                                // Remove colchetes e aspas de cada parte entre vírgulas
+                                $categoriasBlog = preg_replace('/\["(.*?)"]/', '$1', $categoriasId);
+
+                                // Divide a string em um array usando "," como delimitador
+                                $categoriasBlog = explode(',', $categoriasBlog);
+
+                                // Transforma o array em uma string separada por ","
+                                $categoriasBlog = implode(',', $categoriasBlog);
+                                
+                                echo <<<HTML
+                                <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href=" ./blog-detalhes/{$blog->nomePagina}" class="col-12
+                                    col-lg-6 card-blog-wrapper">
+                                    <div class="card-blog">
+                                        <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                        <div>
+                                            <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
+                                        </div>
+                                        <h1>{$blog->tituloBlog}</h1>
+                                        <div class="outline-button">
+                                            Ler mais
+                                            <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                        </div>
+                                    </div>
+                                </a>
+                                HTML;
+                            }
+                        ?>
+                        
                     </div>
                     <button class="outline-button load-more" onclick="loadMore(listElements)">
                         Carregar Mais

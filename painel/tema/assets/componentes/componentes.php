@@ -47,7 +47,7 @@ function temaBar()
                                             <li><a class="lista" pagina="lista" categoria="20" href="javascript:void(0);" nomePagina="blog-detalhes/categorias" onClick="Pagina(this)">Categorias</a></li>
                                         </ul>
                                     </li>
-                                    <li><a class="lista" pagina="lista" categoria="3" href="javascript:void(0);" nomePagina="Empresas-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Empresas</span></a></li>      
+                                    <li><a class="lista" pagina="lista" categoria="3" href="javascript:void(0);" nomePagina="Empresa-Detalhes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Empresas</span></a></li>      
                                     <li><a class="lista" pagina="listaServicos" href="javascript:void(0);" nomePagina="Servicos" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Servicos</span></a></li>      
                                     <li><a class="lista" pagina="listaClientes" href="javascript:void(0);" nomePagina="Clientes" onClick="Pagina(this)"><i class="fa fa-files-o"></i><span>Clientes</span></a></li>      
                                     

@@ -74,7 +74,7 @@ if (isset($_POST['origem'])) {
 
                         // Mapeia a categoriaId para o diretório correspondente
                         $mapeamentoDiretorio = [
-                            '3' => 'business-detalhes',
+                            '3' => 'empresa-detalhes',
                             '4' => 'workshop-detalhes',
                             '6' => 'mentoria-detalhes',
                             '8' => 'consultoria-detalhes',
@@ -489,9 +489,10 @@ if (isset($_POST['origem'])) {
 
         case "atualizaBusiness":
             try {
-                $sql = $con->prepare('UPDATE business SET nomeBusiness = :nomeBusiness, imagemBusiness = :imagemBusiness, legendaImagemBusiness = :legendaImagemBusiness, categoriaBusiness = :categoriaBusiness, nomeBotao1 = :nomeBotao1, linkBotao1 = :linkBotao1, targetBotao1 = :targetBotao1, textoBusiness = :textoBusiness WHERE paginaId = :paginaId');
+                $sql = $con->prepare('UPDATE business SET nomeBusiness = :nomeBusiness, tituloBusiness = :tituloBusiness, imagemBusiness = :imagemBusiness, legendaImagemBusiness = :legendaImagemBusiness, categoriaBusiness = :categoriaBusiness, nomeBotao1 = :nomeBotao1, linkBotao1 = :linkBotao1, targetBotao1 = :targetBotao1, textoBusiness = :textoBusiness WHERE paginaId = :paginaId');
                 $sql->bindValue(":paginaId", $_POST['paginaId']);
                 $sql->bindValue(":nomeBusiness", $_POST['nomeBusiness']);
+                $sql->bindValue(":tituloBusiness", $_POST['tituloBusiness']);
                 $sql->bindValue(":imagemBusiness", $_POST['imagemBusiness']);
                 $sql->bindValue(":legendaImagemBusiness", $_POST['legendaImagemBusiness']);
                 $sql->bindValue(":categoriaBusiness", $_POST['categoriaBusiness']);
