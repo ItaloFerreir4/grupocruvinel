@@ -662,18 +662,58 @@ input[type="text"].parsley-error::placeholder {
   transform: translateY(-50%) rotate(45deg);
 }
 
+.accordion .title {
+  position: relative;
+  padding: 25px;
+  background-color: var(--branco);
+}
+
+.accordion.active .title {
+  background-color: var(--bege);
+}
+
+.accordion.active .title span {
+  color: var(--branco);
+}
+
+.accordion .title::after {
+  content: url(../assets/svg/mais-preto.svg);
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  transition: all 0.25s ease-in;
+  transform: translateY(-50%);
+}
+
+.accordion.active .title::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.accordion .title span {
+  color: var(--preto);
+  font-family: "OpenSans";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
 .accordion .panel {
   background-color: var(--branco);
   display: block;
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
+  transition: max-height 0.3s ease-out;
   max-height: 0;
   padding: 0 30px 0 50px;
 }
 
+.accordion.active .panel {
+  background-color: var(--bege);
+}
+
 .panel p {
-  color: #000;
-  font-family: "AvertaStd Regular";
+  color: var(--branco, #fff);
+  font-family: "OpenSans";
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -971,7 +1011,7 @@ input[type="text"].parsley-error::placeholder {
     content: url(../assets/svg/seta-direita-swiper-azul.svg);
   }
 
-  .slick-slider .slick-prev {
+  /* .slick-slider .slick-prev {
     top: 52.5%;
     left: -25px;
   }
@@ -979,7 +1019,7 @@ input[type="text"].parsley-error::placeholder {
   .slick-slider .slick-next {
     top: 52.5%;
     right: -25px;
-  }
+  } */
 
   .contact-form {
     padding: 80px 0;
