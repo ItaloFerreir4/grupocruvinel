@@ -60,7 +60,7 @@ if (isset($_POST['origem'])) {
                                         echo false;
                                     }
 
-                                    $numerosConteudo = [1, 3];
+                                    $numerosConteudo = [1, 3, 4];
 
                                     foreach ($numerosConteudo as $numero) {
                                         $sql = $con->prepare('INSERT INTO conteudos(paginaId, numeroConteudo) VALUES(:paginaId, :numeroConteudo)');
