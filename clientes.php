@@ -19,6 +19,14 @@ $sqlClientes->execute();
 $clientesArray = $sqlClientes->fetchAll(PDO::FETCH_ASSOC);
 $clientesArray = json_decode(json_encode($clientesArray));
 
+$sqlEmpresas = $con->prepare("SELECT p.*, c.* FROM paginas p, business c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlEmpresas->execute();
+$empresasArray = $sqlEmpresas->fetchAll(PDO::FETCH_ASSOC);
+$empresasArray = json_decode(json_encode($empresasArray));
+
+ob_start();
+redesSociais("marrom");
+$redes = ob_get_clean();
 ?>
 
 
@@ -51,6 +59,7 @@ $clientesArray = json_decode(json_encode($clientesArray));
 </head>
 
 <body>
+    <?php cHeader(); ?>
     <?php
     foreach ($conteudosArray as $conteudo) {
         if($conteudo->numeroConteudo == 1){
@@ -87,10 +96,75 @@ $clientesArray = json_decode(json_encode($clientesArray));
         </div>
     </section>
 
-    <!-- -------------------------------- -->
-    <!-- ADICIONAR COMPONENTE DE BUSINESS -->
-    <!-- -------------------------------- -->
+    <section class="business">
+        <h1>Empresas do <strong>Grupo Cruvinel</strong></h1>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="swiper-business">
+                    <?php
+                        foreach ($empresasArray as $empresa) {
+                            echo <<<HTML
+                            <div class="business-card">
+                                <div class="business-info">
+                                    <div class="info-content">
+                                        <div class="yellow-highlight">
+                                            <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                            <p class="limit-text">
+                                                {$empresa->tituloBusiness}
+                                            </p>
+                                            <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
+                                        </div>
+                                        <div class="social-media">
+                                            {$redes}
+                                        </div>
+                                        <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
+                                            <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
+                                                    alt="Saiba Mais">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            HTML;
+                        }
+                    ?>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 business-video">
+                <?php
+                foreach ($conteudosArray as $conteudo) {
+                    if($conteudo->numeroConteudo == 2){
+                        $linkVideo = $conteudo->linkVideoConteudo;
 
+                        if ($linkVideo) {
+                            if (strpos($linkVideo, "shorts") !== false) {
+                                $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
+                            }
+                            $parts = parse_url($linkVideo);
+                            $videoId = "";
+
+                            parse_str($parts['query'], $query);
+
+                            if (isset($query['v'])) {
+                                $videoId = $query['v'];
+                            }
+                        } else {
+                            $videoId = "";
+                        }
+                        
+                        echo <<<HTML
+                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                        HTML;
+                    }
+                }
+                ?>
+            </div>
+        </div>
+    </section>
+
+    <?php cFooter(); ?>
+    <?php elementosGerais(); ?>
+    <?php scriptBody(); ?>
     <script>
         let maxVisibleElements = 12;
         const listElements = document.querySelectorAll(".client-wrapper");

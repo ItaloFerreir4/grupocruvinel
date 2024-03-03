@@ -49,6 +49,7 @@ $empresasArray = json_decode(json_encode($empresasArray));
 </head>
 
 <body>
+    <?php cHeader(); ?>
     <?php
     foreach ($conteudosArray as $conteudo) {
         if($conteudo->numeroConteudo == 1){
@@ -77,7 +78,7 @@ $empresasArray = json_decode(json_encode($empresasArray));
                                 <div class="content">
                                     <h1>{$empresa->nomeBusiness}</h1>
                                     {$empresa->tituloBusiness}
-                                    <a href="empresa-detalhes.php" class="outline-button">
+                                    <a href="./empresa-detalhes/{$empresa->nomePagina}" class="outline-button">
                                         Saiba Mais
                                         <img src="assets/svg/seta-dir-marrom.svg" alt="Saiba Mais">
                                     </a>
@@ -94,6 +95,9 @@ $empresasArray = json_decode(json_encode($empresasArray));
             </button>
         </div>
     </section>
+    <?php cFooter(); ?>
+    <?php elementosGerais(); ?>
+    <?php scriptBody(); ?>
      <script>
         let maxVisibleElements = 6;
         const listElements = document.querySelectorAll(".company-card-wrapper");

@@ -19,6 +19,14 @@ $sqlServicos->execute();
 $servicosArray = $sqlServicos->fetchAll(PDO::FETCH_ASSOC);
 $servicosArray = json_decode(json_encode($servicosArray));
 
+$sqlEmpresas = $con->prepare("SELECT p.*, c.* FROM paginas p, business c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlEmpresas->execute();
+$empresasArray = $sqlEmpresas->fetchAll(PDO::FETCH_ASSOC);
+$empresasArray = json_decode(json_encode($empresasArray));
+
+ob_start();
+redesSociais("marrom");
+$redes = ob_get_clean();
 ?>
 
 <!DOCTYPE html>
@@ -52,6 +60,7 @@ $servicosArray = json_decode(json_encode($servicosArray));
 </head>
 
 <body>
+    <?php cHeader(); ?>
     <?php
     foreach ($conteudosArray as $conteudo) {
         if($conteudo->numeroConteudo == 1){
@@ -86,82 +95,74 @@ $servicosArray = json_decode(json_encode($servicosArray));
             </button>
         </div>
     </section>
-
     <section class="business">
         <h1>Empresas do <strong>Grupo Cruvinel</strong></h1>
-        <div class="swiper-business">
-            <div class="business-card">
-                <div class="row">
-                    <div class="col-12 col-lg-6 business-info">
-                        <div class="info-content">
-                            <div class="yellow-highlight">
-                                <img src="assets/png/logo-evidjuri.png" alt="EvidJuri" class="business-logo">
-                                <p class="limit-text">A EVIDJURI foi o 1° Escritório Técnico Full Service do País com
-                                    foco
-                                    em
-                                    Produção de Provas
-                                    para Processos Judiciais, contando hoje com + de 350 técnicos espalhados pelo Brasil
-                                    e
-                                    vasta
-                                    atuação de Perícias e Auditorias e atualmente tem + de 2,5 bilhões em portfólio de
-                                    Ações.
-                                </p>
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="swiper-business">
+                    <?php
+                        foreach ($empresasArray as $empresa) {
+                            echo <<<HTML
+                            <div class="business-card">
+                                <div class="business-info">
+                                    <div class="info-content">
+                                        <div class="yellow-highlight">
+                                            <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                            <p class="limit-text">
+                                                {$empresa->tituloBusiness}
+                                            </p>
+                                            <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
+                                        </div>
+                                        <div class="social-media">
+                                            {$redes}
+                                        </div>
+                                        <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
+                                            <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
+                                                    alt="Saiba Mais">
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="social-media">
-                                <img src="assets/svg/instagram-marrom.svg" alt="Instagram"><img
-                                    src="assets/svg/facebook-marrom.svg" alt="Facebook"><img
-                                    src="assets/svg/linkedin-marrom.svg" alt="LinkedIn"><img
-                                    src="assets/svg/x-marrom.svg" alt="X"><img src="assets/svg/telegram-marrom.svg"
-                                    alt="Telegram">
-                            </div>
-                            <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
-                                    alt="Saiba Mais">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 business-video">
-                        <img src="assets/png/video-fundo.png" alt="Vídeo" class="video-bg">
-                        <img src="assets/svg/play.svg" alt="Play" class="play-video">
-                    </div>
+                            HTML;
+                        }
+                    ?>
                 </div>
             </div>
-            <div class="business-card">
-                <div class="row">
-                    <div class="col-12 col-lg-6 business-info">
-                        <div class="info-content">
-                            <div class="yellow-highlight">
-                                <img src="assets/png/logo-evidjuri.png" alt="EvidJuri" class="business-logo">
-                                <p class="limit-text">A EVIDJURI foi o 1° Escritório Técnico Full Service do País com
-                                    foco
-                                    em
-                                    Produção de Provas
-                                    para Processos Judiciais, contando hoje com + de 350 técnicos espalhados pelo Brasil
-                                    e
-                                    vasta
-                                    atuação de Perícias e Auditorias e atualmente tem + de 2,5 bilhões em portfólio de
-                                    Ações.
-                                </p>
-                            </div>
-                            <div class="social-media">
-                                <img src="assets/svg/instagram-marrom.svg" alt="Instagram"><img
-                                    src="assets/svg/facebook-marrom.svg" alt="Facebook"><img
-                                    src="assets/svg/linkedin-marrom.svg" alt="LinkedIn"><img
-                                    src="assets/svg/x-marrom.svg" alt="X"><img src="assets/svg/telegram-marrom.svg"
-                                    alt="Telegram">
-                            </div>
-                            <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
-                                    alt="Saiba Mais">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-6 business-video">
-                        <img src="assets/png/video-fundo.png" alt="Vídeo" class="video-bg">
-                        <img src="assets/svg/play.svg" alt="Play" class="play-video">
-                    </div>
-                </div>
+            <div class="col-12 col-lg-6 business-video">
+                <?php
+                foreach ($conteudosArray as $conteudo) {
+                    if($conteudo->numeroConteudo == 2){
+                        $linkVideo = $conteudo->linkVideoConteudo;
+
+                        if ($linkVideo) {
+                            if (strpos($linkVideo, "shorts") !== false) {
+                                $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
+                            }
+                            $parts = parse_url($linkVideo);
+                            $videoId = "";
+
+                            parse_str($parts['query'], $query);
+
+                            if (isset($query['v'])) {
+                                $videoId = $query['v'];
+                            }
+                        } else {
+                            $videoId = "";
+                        }
+                        
+                        echo <<<HTML
+                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                        HTML;
+                    }
+                }
+                ?>
             </div>
         </div>
     </section>
+    <?php cFooter(); ?>
+    <?php elementosGerais(); ?>
+    <?php scriptBody(); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>

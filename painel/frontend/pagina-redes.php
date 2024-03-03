@@ -77,7 +77,7 @@ echo ''
             </div>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 hidden">
             <div class="card">
                 <div class="body">
                     <div class="row clearfix">

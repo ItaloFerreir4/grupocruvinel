@@ -2,41 +2,24 @@
 
 define('BASE_URL', 'http://localhost/grupocruvinel');
 
-function cHeader()
-{
+function cHeader(){
     $baseURL = BASE_URL;
 
     echo <<<HTML
-    <nav>
-    <a href="{$baseURL}"><img src="{$baseURL}/assets/svg/logo-munra-azul.svg" alt="logo" /></a>
-      <div class="nav-buttons">
-        <a href="{$baseURL}/biografia">Biografia</a>
-        <a href="{$baseURL}/business">Business</a>
-        <div class="dropdown">
-          <span class="desktop">Conteúdo</span>
-          <div class="content-buttons">
-            <a href="{$baseURL}/artigos">Artigos</a>
-            <a href="{$baseURL}/ebooks">Ebooks</a>
-            <a href="{$baseURL}/videos">Vídeos</a>
-            <a href="{$baseURL}/podcast">Podcast</a>
-            <a href="{$baseURL}/livros">Livros</a>
-            <a href="{$baseURL}/blog">Blog</a>
-            <a href="{$baseURL}/agenda">Agenda</a>
-            <a href="{$baseURL}/palestras">Palestras</a>
-          </div>
-        </div>
-
-        <a href="{$baseURL}/saiu-na-midia">Na Mídia</a>
-        <a href="{$baseURL}/eventos">Eventos</a>
-        <a href="{$baseURL}/palestras">Palestras</a>
-        <a href="{$baseURL}/contato">Contato</a>
-        <a href="{$baseURL}/cursos" class="mobile">Cursos</a>
-        <a class="blue-link desktop" href="{$baseURL}/cursos">Cursos</a>
-      </div>
-      <button class="menu">
-        <img src="{$baseURL}/assets/svg/burger.svg" alt="Menu" />
-      </button>
-    </nav>
+    <header>
+        <a href="{$baseURL}" title="home"><img src="{$baseURL}/assets/svg/logo-cruvinel-dourado.svg" alt="Logo" class="logo"></a>
+        <nav>
+            <a href="{$baseURL}/quem-somos">QUEM SOMOS</a>
+            <a href="{$baseURL}/empresas">EMPRESAS</a>
+            <a href="{$baseURL}/servicos">SERVICOS</a>
+            <a href="{$baseURL}/clientes">CLIENTES</a>
+            <a href="{$baseURL}/blog">BLOG</a>
+            <a href="{$baseURL}/fale-conosco">FALE CONOSCO</a>
+            <button class="menu">
+                <img src="{$baseURL}/assets/svg/menu.svg" alt="Menu">
+            </button>
+        </nav>
+    </header>
     HTML;
 }
 
@@ -53,130 +36,87 @@ function cFooter(){
     $sqlContatos->execute();
     $conteudoContatos = $sqlContatos->fetch(PDO::FETCH_ASSOC);
 
-    $telefone = preg_replace('/[\s\(\)\[\]]/', '', $conteudoContatos["telefoneContato"]);
-
-    $sqlFormulario = $con->prepare("SELECT * FROM formularios WHERE descricaoFormulario = :descricaoFormulario");
-    $sqlFormulario->bindValue(":descricaoFormulario", "newsletter");
-    $sqlFormulario->execute();
-    $formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
-
-    $sqlRedes = $con->prepare("SELECT * FROM redes WHERE idRede = :idRede");
-    $sqlRedes->bindValue(":idRede", 1);
-    $sqlRedes->execute();
-    $conteudoRedes = $sqlRedes->fetch(PDO::FETCH_ASSOC);
-
     $urlBase = BASE_URL;
 
     ob_start();
-    redesSociais("preto");
+    redesSociais("amarelo");
     $redes = ob_get_clean();
 
     echo <<<HTML
-    <div class="container">
-        <div class="instagram">
-            <div class="title">
-                <h1>Siga meu instagram</h1>
-                <a href="{$conteudoRedes['instagram']}">
-                    <h2>@fabio.munra</h2>
-                </a>
-            </div>
-            <div class="images">
-                <div class="swiper-insta" id="feedInsta"></div>
-            </div>
-            <div class="actions container">
-                <a href="{$conteudoRedes['instagram']}" class="blue-btn">Veja mais</a>
-                <div class="social-media">
-                    {$redes}
-                </div>
-            </div>
-        </div>
-    </div>
     <footer>
-        <div class="map mobile">
-        <button>
-            Mapa do Site <img src="{$urlBase}/assets/svg/seta-branca.svg" alt="Seta" />
-        </button>
-        <div class="container">
-            <div class="links">
-            <a href="{$urlBase}/biografia">Biografia</a>
-            <a href="{$urlBase}/ebooks">Ebooks</a>
-            <a href="{$urlBase}/podcast">Podcast</a>
-            <a href="{$urlBase}/palestras">Palestras</a>
-            <a href="{$urlBase}/artigos">Artigos</a>
-            <a href="{$urlBase}/agenda">Agenda</a>
-            <a href="{$urlBase}/business">Business</a>
-            <a href="{$urlBase}/livros">Livros</a>
-            <a href="{$urlBase}/blog">Blog</a>
-            <a href="{$urlBase}/saiu-na-midia">Saiu na Mídia</a>
-            <a href="{$urlBase}/videos">Vídeos</a>
-            <a href="{$urlBase}/cursos">Cursos</a>
-            <a href="{$urlBase}/eventos">Eventos</a>
-            </div>
-            <img src="{$urlBase}/assets/png/logo-munra-branco.png" alt="Munrá" />
-            <div class="contact">
-            <img src="{$urlBase}/assets/svg/fabio-branco.svg" alt="Fabio Munrá" />
-            <span>{$conteudoContatos['enderecoContato']}</span>
-            <span><img src="{$urlBase}/assets/svg/whatsapp-branco.svg" alt="Whatsapp" />{$conteudoContatos['whatsappContato']}</span>
-            </div>
-        </div>
-        </div>
-        <div class="map desktop">
-        <div class="container">
-            <div class="links">
-            <a href="{$urlBase}/biografia">Biografia</a>
-            <a href="{$urlBase}/ebooks">Ebooks</a>
-            <a href="{$urlBase}/podcast">Podcast</a>
-            <a href="{$urlBase}/palestras">Palestras</a>
-            <a href="{$urlBase}/artigos">Artigos</a>
-            <a href="{$urlBase}/agenda">Agenda</a>
-            <a href="{$urlBase}/business">Business</a>
-            <a href="{$urlBase}/livros">Livros</a>
-            <a href="{$urlBase}/blog">Blog</a>
-            <a href="{$urlBase}/saiu-na-midia">Saiu na Mídia</a>
-            <a href="{$urlBase}/videos">Vídeos</a>
-            <a href="{$urlBase}/cursos">Cursos</a>
-            <a href="{$urlBase}/eventos">Eventos</a>
-            </div>
-            <img src="{$urlBase}/assets/png/logo-munra-branco.png" alt="Munrá" />
-            <div class="contact">
-            <img src="{$urlBase}/assets/svg/fabio-branco.svg" alt="Fabio Munrá" />
-            <span>{$conteudoContatos['enderecoContato']}</span>
-            <span><img src="{$urlBase}/assets/svg/whatsapp-branco.svg" alt="Whatsapp" />{$conteudoContatos['whatsappContato']}</span>
-            </div>
-        </div>
-        </div>
-        <div class="terms">
-        <a href="{$urlBase}/politica-de-privacidade">Política de Privacidade</a><a href="{$urlBase}/termos-de-uso">Termos de Uso</a><a
-            href="{$urlBase}/seguranca-no-uso-da-internet">Segurança no Uso da Internet</a>
-        </div>
-        <div class="rights-reserved">
-        <img src="{$urlBase}/assets/svg/logo-wmb.svg" alt="WMB" />
-        <span>2023 - Todos os direitos reservados - Fábio Munrá</span>
-        </div>
-    </footer>
-    <div class="btn-flutuante">
-        <button type="button" class="btn-sobe-topo" alt="Voltar ao topo da pagina" onClick="SubirTopo()"><i class="fa-solid fa-angle-up" aria-label="Botão flutuante contato" title="Botão flutuante contato"></i></button>
-        <a class="whatsapp" href="{$conteudoContatos['linkWhatsappContato']}" title="Whatsapp" target="_blank">
-            <img loading="lazy" src="{$urlBase}/assets/svg/whatsapp-branco.svg" alt="Imagem Whatsapp">
-        </a>
-    </div>
-    <section class="section_cookie hidden">
-        <div class="container">
-            <div class="col-12">
-                <div class="row box">
-                    <div class="col-12 text">
-                        <p>Cookies: a gente guarda estatísticas de visitas para melhorar sua experiência de navegação. Ao continuar, você concorda com nossa <a href="./politica-de-privacidade">Política de Privacidade</a>.</p>
-                        <button type="button" class="close_cookie" onClick="acceptCookies()"> Concordo e fechar </button>
+        <div class="links">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-3"><img class="logo" src="{$urlBase}/assets/svg/logo-cruvinel-dourado.svg"
+                            alt="Logo"></div>
+                    <div class="col-12 col-lg-6 pages">
+                        <div class="accordion">
+                            <div class="title">
+                                <div>
+                                    <span class="limit-text">MENU NAVEGAÇÃO</span>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <a href="{$urlBase}/quem-somos">QUEM SOMOS</a>
+                                <a href="{$urlBase}/empresas">NOSSAS EMPRESAS</a>
+                                <a href="{$urlBase}/servicos">SERVIÇOS</a>
+                                <a href="{$urlBase}/depoimentos">DEPOIMENTOS</a>
+                                <a href="{$urlBase}/clientes">NOSSOS CLIENTES</a>
+                                <a href="{$urlBase}/blog">BLOG</a>
+                                <a href="{$urlBase}/fale-conosco">FALE CONOSCO</a>
+                                <a href="{$urlBase}/">STHEFANO CRUVINEL CEO E FUNDADOR</a>
+                            </div>
+                        </div>
+                        <a href="{$urlBase}/quem-somos">QUEM SOMOS</a>
+                        <a href="{$urlBase}/empresas">NOSSAS EMPRESAS</a>
+                        <a href="{$urlBase}/servicos">SERVIÇOS</a>
+                        <a href="{$urlBase}/depoimentos">DEPOIMENTOS</a>
+                        <a href="{$urlBase}/clientes">NOSSOS CLIENTES</a>
+                        <a href="{$urlBase}/blog">BLOG</a>
+                        <a href="{$urlBase}/fale-conosco">FALE CONOSCO</a>
+                        <a href="{$urlBase}/">STHEFANO CRUVINEL CEO E FUNDADOR</a>
+                    </div>
+                    <div class="col-12 col-lg-3 contact">
+                        <span>{$conteudoContatos['whatsappContato']}</span>
+                        <span>{$conteudoContatos['telefoneContato']}</span>
+                        <span class="email">{$conteudoContatos['emailContato']}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-3"></div>
+                    <div class="col-12 col-lg-6">
+                        <span class="label-social-media">Siga meus canais</span>
+                        <div class="social-media">
+                            {$redes}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="location">
+            <h1>{$conteudoContatos['enderecoContato']}</h1>
+        </div>
+        <div class="terms">
+            <a href="#">Termos de uso</a>
+            <a href="#">Política de privacidade</a>
+            <a href="#">Segurança no Uso da Internet</a>
+        </div>
+        <div class="rights">
+            <div class="container">
+                <p>TODOS OS DIREITOS RESERVADOS. Todo o conteúdo do site, todas as fotos, imagens, logotipos, marcas,
+                    dizeres, som, software, conjunto imagem, layout, trade dress, aqui veiculados são de propriedade
+                    exclusiva da Sthefano Cruvinel. ou de seus parceiros. É vedada qualquer reprodução, total ou
+                    parcial, de
+                    qualquer elemento de identidade, sem expressa autorização. A violação de qualquer direito mencionado
+                    implicará na responsabilização cível e criminal nos termos da Lei.</p>
+                <span>© 2024 EvidJuri Desenvolvido por: WMB Marketing Digital</span>
+            </div>
+        </div>
+    </footer>
     HTML;
 }
 
-function redesSociaisCompartilhar($cor)
-{
+function redesSociaisCompartilhar($cor){
 
     echo '
         <a href="javascript:" onClick="Compartilhar(this)" title="facebook"><img loading="lazy" src="' . BASE_URL . '/assets/svg/facebook-' . $cor . '.svg" alt="facebook"></a> 
@@ -226,8 +166,7 @@ function redesSociais($cor) {
     }
 }
 
-function elementosGerais()
-{
+function elementosGerais(){
     echo <<<HTML
         <div class="popup-video" id="popupVideo">
             <span class="fecha-popup" id="fechaPopup" onClick="PopUpVideo('Fechando')"></span>
@@ -243,16 +182,14 @@ function elementosGerais()
     HTML;
 }
 
-function linksHead()
-{
+function linksHead(){
     echo '
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.min.css">
     ';
 }
 
-function scriptBody()
-{
+function scriptBody(){
     echo '
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.js"></script>

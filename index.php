@@ -14,6 +14,31 @@ $sqlConteudos->execute();
 $conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
 $conteudosArray = json_decode(json_encode($conteudosArray));
 
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs->execute();
+$blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
+$blogsArray = json_decode(json_encode($blogsArray));
+
+$sqlCategorias = $con->prepare("SELECT * FROM categorias c, paginas p WHERE c.paginaId = p.idPagina AND c.tipoCategoria = :tipoCategoria");
+$sqlCategorias->bindValue(":tipoCategoria", 1);
+$sqlCategorias->execute();
+$categoriasArray = $sqlCategorias->fetchAll(PDO::FETCH_ASSOC);
+$categoriasArray = json_decode(json_encode($categoriasArray));
+
+$sqlClientes = $con->prepare("SELECT * FROM clientes WHERE status = 1");
+$sqlClientes->execute();
+$clientesArray = $sqlClientes->fetchAll(PDO::FETCH_ASSOC);
+$clientesArray = json_decode(json_encode($clientesArray));
+
+$sqlEmpresas = $con->prepare("SELECT p.*, c.* FROM paginas p, business c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlEmpresas->execute();
+$empresasArray = $sqlEmpresas->fetchAll(PDO::FETCH_ASSOC);
+$empresasArray = json_decode(json_encode($empresasArray));
+
+ob_start();
+redesSociais("marrom");
+$redes = ob_get_clean();
+
 ?>
 
 <!DOCTYPE html>
@@ -50,65 +75,67 @@ $conteudosArray = json_decode(json_encode($conteudosArray));
 </head>
 
 <body>
+    <?php cHeader(); ?>
     <main>
         <div class="swiper-banner">
-            <div class="banner-slide">
-                <img src="assets/png/banner-home.png" alt="Banner">
-                <div class="content">
-                    <h1>Um grupo com DNA de resultados</h1>
-                    <div class="outline-button white">
-                        Saiba mais
-                        <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
+            <?php
+            foreach ($conteudosArray as $conteudo) {
+                if($conteudo->numeroConteudo == 1){
+                    echo <<<HTML
+                    <div class="banner-slide">
+                        <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                        <div class="content">
+                            {$conteudo->textoConteudo}
+                            <a href="{$conteudo->linkBotao1}" title="{$conteudo->nomeBotao1}" target="{$conteudo->targetBotao1}">
+                                <div class="outline-button white">
+                                    {$conteudo->nomeBotao1}
+                                    <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="banner-slide">
-                <img src="assets/png/banner-home.png" alt="Banner">
-                <div class="content">
-                    <h1>Um grupo com DNA de resultados</h1>
-                    <div class="outline-button white">
-                        Saiba mais
-                        <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
-                    </div>
-                </div>
-            </div>
-            <div class="banner-slide">
-                <img src="assets/png/banner-home.png" alt="Banner">
-                <div class="content">
-                    <h1>Um grupo com DNA de resultados</h1>
-                    <div class="outline-button white">
-                        Saiba mais
-                        <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
-                    </div>
-                </div>
-            </div>
+                    HTML;
+                }
+            }
+            ?>
         </div>
         <section class="about">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-6 text">
-                        <div class="social-media">
-                            <img src="assets/svg/instagram-marrom.svg" alt="Instagram">
-                            <img src="assets/svg/facebook-marrom.svg" alt="Facebook">
-                            <img src="assets/svg/linkedin-marrom.svg" alt="LinkedIn">
-                            <img src="assets/svg/x-marrom.svg" alt="X">
-                            <img src="assets/svg/telegram-marrom.svg" alt="Telegram">
-                        </div>
-                        <h1>Soluções especializadas: Auditorias, Recuperação de Impostos, Tecnologia e Mais</h1>
-                        <p>Atuamos em todo o Brasil e globalmente, proporcionando inovação e expertise para impulsionar
-                            resultados financeiros e evitar desgastes com fornecedores e matrizes.</p>
-                        <div class="outline-button">
-                            Saiba Mais
-                            <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
-                        </div>
+                        <?php
+                        foreach ($conteudosArray as $conteudo) {
+                            if($conteudo->numeroConteudo == 2){
+                                echo <<<HTML
+                                <div class="social-media">
+                                    {$redes}
+                                </div>
+                                <h1>{$conteudo->tituloConteudo}</h1>
+                                {$conteudo->textoConteudo}
+                                <a href="{$conteudo->linkBotao1}" title="Saiba Mais"  target="{$conteudo->targetBotao1}">
+                                    <div class="outline-button">
+                                        Saiba Mais
+                                        <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
+                                    </div>
+                                </a>
+                                HTML;
+                            }
+                        }
+                        ?>
                     </div>
                     <div class="col-12 col-lg-6 image">
-                        <img src="assets/png/solucoes-especializadas-home.png" alt="Soluções especializadas">
-                        <div class="brown-box">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia quae illum ullam
-                                tempore a
-                                iusto sit ex! Quaerat, totam itaque?</p>
-                        </div>
+                        <?php
+                        foreach ($conteudosArray as $conteudo) {
+                            if($conteudo->numeroConteudo == 3){
+                                echo <<<HTML
+                                <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                                <div class="brown-box">
+                                    {$conteudo->textoConteudo}
+                                </div>
+                                HTML;
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -118,43 +145,22 @@ $conteudosArray = json_decode(json_encode($conteudosArray));
             <div class="container">
                 <h1>Resultados Financeiros Impulsionados por Inovação e Conhecimento</h1>
                 <div class="swiper-financial">
-                    <div class="financial-card">
-                        <img src="assets/png/resultados.png" alt="Resultados">
-                        <h1>SOMOS 350</h1>
-                        <p>Mais de 350 parceiros e colaboradores especializados</p>
-                    </div>
-                    <div class="financial-card">
-                        <img src="assets/png/resultados.png" alt="Resultados">
-                        <h1>SOMOS 350</h1>
-                        <p>Mais de 350 parceiros e colaboradores especializados</p>
-                    </div>
-                    <div class="financial-card">
-                        <img src="assets/png/resultados.png" alt="Resultados">
-                        <h1>SOMOS 350</h1>
-                        <p>Mais de 350 parceiros e colaboradores especializados</p>
-                    </div>
-                    <div class="financial-card">
-                        <img src="assets/png/resultados.png" alt="Resultados">
-                        <h1>SOMOS 350</h1>
-                        <p>Mais de 350 parceiros e colaboradores especializados</p>
-                    </div>
-                    <div class="financial-card">
-                        <img src="assets/png/resultados.png" alt="Resultados">
-                        <h1>SOMOS 350</h1>
-                        <p>Mais de 350 parceiros e colaboradores especializados</p>
-                    </div>
-                    <div class="financial-card">
-                        <img src="assets/png/resultados.png" alt="Resultados">
-                        <h1>SOMOS 350</h1>
-                        <p>Mais de 350 parceiros e colaboradores especializados</p>
-                    </div>
+                    <?php
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 4){
+                            echo <<<HTML
+                            <div class="financial-card">
+                                <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                                <h1>{$conteudo->tituloConteudo}</h1>
+                                {$conteudo->textoConteudo}
+                            </div>
+                            HTML;
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="social-media">
-                    <img src="assets/svg/instagram-amarelo.svg" alt="Instagram">
-                    <img src="assets/svg/facebook-amarelo.svg" alt="Facebook">
-                    <img src="assets/svg/linkedin-amarelo.svg" alt="LinkedIn">
-                    <img src="assets/svg/x-amarelo.svg" alt="X">
-                    <img src="assets/svg/telegram-amarelo.svg" alt="Telegram">
+                    <?php echo $redes; ?>
                 </div>
             </div>
         </section>
@@ -162,106 +168,37 @@ $conteudosArray = json_decode(json_encode($conteudosArray));
             <div class="container white-box">
                 <h1>Depoimentos</h1>
                 <div class="swiper-testimonials">
-                    <div class="slide-testimonial">
-                        <div class="row">
-                            <div class="col-12 col-lg-3 company">
-                                <img src="./assets/png/logo-evidjuri.png" alt="EvidJuri">
-                                <span class="person">Sr. Alisson Fernandes</span>
-                                <span class="position">Diretor de Processos/TI da
-                                    Carmen Steffens</span>
+                    <?php
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 5){
+                            echo <<<HTML
+                            <div class="slide-testimonial">
+                                <div class="row">
+                                    <div class="col-12 col-lg-3 company">
+                                        <img src="./assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                                        <span class="person">{$conteudo->legendaImagem2Conteudo}</span>
+                                        <span class="position">{$conteudo->legendaImagem3Conteudo}</span>
+                                    </div>
+                                    <div class="col-12 col-lg-9 testimonial">
+                                        {$conteudo->textoConteudo}
+                                        <a href="{$conteudo->linkBotao1}" class="read-more" target="{$conteudo->targetBotao1}">Ler mais <img src="./assets/svg/play-ler-mais.svg"
+                                                alt="Ler Mais"></a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-12 col-lg-9 testimonial">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil modi ullam autem qui
-                                    consequuntur quaerat quidem ipsa cum? Ipsam, reprehenderit?</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis eos dolores,
-                                    cumque
-                                    eligendi iste nesciunt quia enim quibusdam doloremque natus quis architecto debitis,
-                                    officia
-                                    odio aspernatur quos minus? Odio est nesciunt laudantium, rem reiciendis quod,
-                                    obcaecati
-                                    nemo aliquam asperiores minima modi illum blanditiis aut ex?</p>
-                                <a href="#" class="read-more">Ler mais <img src="./assets/svg/play-ler-mais.svg"
-                                        alt="Ler Mais"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide-testimonial">
-                        <div class="row">
-                            <div class="col-12 col-lg-3 company">
-                                <img src="./assets/png/logo-evidjuri.png" alt="EvidJuri">
-                                <span class="person">Sr. Alisson Fernandes</span>
-                                <span class="position">Diretor de Processos/TI da
-                                    Carmen Steffens</span>
-                            </div>
-                            <div class="col-12 col-lg-9 testimonial">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil modi ullam autem qui
-                                    consequuntur quaerat quidem ipsa cum? Ipsam, reprehenderit?</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis eos dolores,
-                                    cumque
-                                    eligendi iste nesciunt quia enim quibusdam doloremque natus quis architecto debitis,
-                                    officia
-                                    odio aspernatur quos minus? Odio est nesciunt laudantium, rem reiciendis quod,
-                                    obcaecati
-                                    nemo aliquam asperiores minima modi illum blanditiis aut ex?</p>
-                                <a href="#" class="read-more">Ler mais <img src="./assets/svg/play-ler-mais.svg"
-                                        alt="Ler Mais"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide-testimonial">
-                        <div class="row">
-                            <div class="col-12 col-lg-3 company">
-                                <img src="./assets/png/logo-evidjuri.png" alt="EvidJuri">
-                                <span class="person">Sr. Alisson Fernandes</span>
-                                <span class="position">Diretor de Processos/TI da
-                                    Carmen Steffens</span>
-                            </div>
-                            <div class="col-12 col-lg-9 testimonial">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil modi ullam autem qui
-                                    consequuntur quaerat quidem ipsa cum? Ipsam, reprehenderit?</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis eos dolores,
-                                    cumque
-                                    eligendi iste nesciunt quia enim quibusdam doloremque natus quis architecto debitis,
-                                    officia
-                                    odio aspernatur quos minus? Odio est nesciunt laudantium, rem reiciendis quod,
-                                    obcaecati
-                                    nemo aliquam asperiores minima modi illum blanditiis aut ex?</p>
-                                <a href="#" class="read-more">Ler mais <img src="./assets/svg/play-ler-mais.svg"
-                                        alt="Ler Mais"></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slide-testimonial">
-                        <div class="row">
-                            <div class="col-12 col-lg-3 company">
-                                <img src="./assets/png/logo-evidjuri.png" alt="EvidJuri">
-                                <span class="person">Sr. Alisson Fernandes</span>
-                                <span class="position">Diretor de Processos/TI da
-                                    Carmen Steffens</span>
-                            </div>
-                            <div class="col-12 col-lg-9 testimonial">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil modi ullam autem qui
-                                    consequuntur quaerat quidem ipsa cum? Ipsam, reprehenderit?</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis eos dolores,
-                                    cumque
-                                    eligendi iste nesciunt quia enim quibusdam doloremque natus quis architecto debitis,
-                                    officia
-                                    odio aspernatur quos minus? Odio est nesciunt laudantium, rem reiciendis quod,
-                                    obcaecati
-                                    nemo aliquam asperiores minima modi illum blanditiis aut ex?</p>
-                                <a href="#" class="read-more">Ler mais <img src="./assets/svg/play-ler-mais.svg"
-                                        alt="Ler Mais"></a>
-                            </div>
-                        </div>
-                    </div>
+                            HTML;
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </section>
         <section class="newsletter">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-2"><img class="whatsapp-icon" src="assets/svg/botao-whatsapp-verde.svg"
-                            alt="Whatsapp"></div>
+                    <div class="col-12 col-lg-2">
+                        <img class="whatsapp-icon" src="assets/svg/botao-whatsapp-verde.svg" alt="Whatsapp">
+                    </div>
                     <div class="col-12 col-lg-4">
                         <p>Receba meus lançamentos e novidades na sua caixa de mensagens ou WhatsApp.</p>
                     </div>
@@ -284,9 +221,71 @@ $conteudosArray = json_decode(json_encode($conteudosArray));
             </div>
         </section>
 
-        <!-- -------------------------------- -->
-        <!-- ADICIONAR COMPONENTE DE BUSINESS -->
-        <!-- -------------------------------- -->
+        <section class="business">
+            <h1>Empresas do <strong>Grupo Cruvinel</strong></h1>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="swiper-business">
+                        <?php
+                            foreach ($empresasArray as $empresa) {
+                                echo <<<HTML
+                                <div class="business-card">
+                                    <div class="business-info">
+                                        <div class="info-content">
+                                            <div class="yellow-highlight">
+                                                <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                                <p class="limit-text">
+                                                    {$empresa->tituloBusiness}
+                                                </p>
+                                                <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
+                                            </div>
+                                            <div class="social-media">
+                                                {$redes}
+                                            </div>
+                                            <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
+                                                <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
+                                                        alt="Saiba Mais">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                HTML;
+                            }
+                        ?>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 business-video">
+                    <?php
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 6){
+                            $linkVideo = $conteudo->linkVideoConteudo;
+
+                            if ($linkVideo) {
+                                if (strpos($linkVideo, "shorts") !== false) {
+                                    $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
+                                }
+                                $parts = parse_url($linkVideo);
+                                $videoId = "";
+
+                                parse_str($parts['query'], $query);
+
+                                if (isset($query['v'])) {
+                                    $videoId = $query['v'];
+                                }
+                            } else {
+                                $videoId = "";
+                            }
+                            
+                            echo <<<HTML
+                                <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                            HTML;
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+        </section>
 
         <section class="what-we-do">
             <img src="assets/svg/fundo-mapa.svg" alt="Fundo">
@@ -294,22 +293,32 @@ $conteudosArray = json_decode(json_encode($conteudosArray));
                 <div class="row">
                     <div class="col-12 col-lg-4">
                         <h1>O que fazemos?</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt quod molestiae esse
-                            maxime quae nobis, officia ipsum provident at ad voluptatum asperiores nihil ipsam maiores
-                            dolorum consequatur ex laborum commodi. Eos natus fugit quas suscipit velit rerum corrupti
-                            aliquam labore blanditiis officiis explicabo, sapiente cumque odit molestiae necessitatibus
-                            maiores.</p>
-                        <div class="outline-button">
-                            Saiba mais
-                            <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                        </div>
+                        <?php
+                        foreach ($conteudosArray as $conteudo) {
+                            if($conteudo->numeroConteudo == 7){
+                                echo <<<HTML
+                                {$conteudo->textoConteudo}
+                                <a href="{$conteudo->linkBotao1}" titlle="{$conteudo->nomeBotao1}" target="{$conteudo->targetBotao1}">
+                                    <div class="outline-button">
+                                        {$conteudo->nomeBotao1}
+                                        <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                    </div>
+                                </a>
+                                HTML;
+                            }
+                        }
+                        ?>
                     </div>
                     <div class="col-12 col-lg-8">
-                        <div class="card"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span></div>
-                        <div class="card"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span></div>
-                        <div class="card"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span></div>
-                        <div class="card"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span></div>
-                        <div class="card"><span>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</span></div>
+                        <?php
+                        foreach ($conteudosArray as $conteudo) {
+                            if($conteudo->numeroConteudo == 8){
+                                echo <<<HTML
+                                <div class="card"><span>{$conteudo->tituloConteudo}</span></div>
+                                HTML;
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -318,24 +327,17 @@ $conteudosArray = json_decode(json_encode($conteudosArray));
             <div class="container shaped-content">
                 <h1>Nossos clientes</h1>
                 <div class="swiper-clients">
-                    <div class="client">
-                        <img src="assets/png/cliente.png" alt="Cliente">
-                    </div>
-                    <div class="client">
-                        <img src="assets/png/cliente.png" alt="Cliente">
-                    </div>
-                    <div class="client">
-                        <img src="assets/png/cliente.png" alt="Cliente">
-                    </div>
-                    <div class="client">
-                        <img src="assets/png/cliente.png" alt="Cliente">
-                    </div>
-                    <div class="client">
-                        <img src="assets/png/cliente.png" alt="Cliente">
-                    </div>
-                    <div class="client">
-                        <img src="assets/png/cliente.png" alt="Cliente">
-                    </div>
+                    <?php
+                    foreach ($clientesArray as $cliente) {
+                        echo <<<HTML
+                        <a href="{$cliente->linkCliente}" class="client-wrapper">
+                            <div class="client">
+                                <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
+                            </div>
+                        </a>
+                        HTML;
+                    }
+                    ?>
                 </div>
             </div>
         </section>
@@ -343,64 +345,49 @@ $conteudosArray = json_decode(json_encode($conteudosArray));
             <h1>Blog do Grupo</h1>
             <div class="container">
                 <div class="swiper-other-blogs">
-                    <div class="card-blog">
-                        <img src="assets/png/blog.png" alt="Blog">
-                        <div>
-                            <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                        </div>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                        <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                        </div>
-                    </div>
-                    <div class="card-blog">
-                        <img src="assets/png/blog.png" alt="Blog">
-                        <div>
-                            <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                        </div>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                        <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                        </div>
-                    </div>
-                    <div class="card-blog">
-                        <img src="assets/png/blog.png" alt="Blog">
-                        <div>
-                            <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                        </div>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                        <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                        </div>
-                    </div>
-                    <div class="card-blog">
-                        <img src="assets/png/blog.png" alt="Blog">
-                        <div>
-                            <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                        </div>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                        <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                        </div>
-                    </div>
-                    <div class="card-blog">
-                        <img src="assets/png/blog.png" alt="Blog">
-                        <div>
-                            <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                        </div>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                        <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                        </div>
-                    </div>
-                    <div class="card-blog">
-                        <img src="assets/png/blog.png" alt="Blog">
-                        <div>
-                            <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                        </div>
-                        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                        <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                        </div>
-                    </div>
+                    <?php
+                        foreach ($blogsArray as $blog) {
+                            $dataBlog = $blog->dataBlog;
+                            $categoriasId = $blog->categoriasId;
+                            $dataBlog = new DateTime($dataBlog);
+                            $dataBlog = $dataBlog->format('d/m/Y');
+                            $primeiraCategoriaBlog = json_decode($categoriasId);
+                            if($primeiraCategoriaBlog){
+                                $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+                                foreach ($categoriasArray as $rowCat) {
+                                    if($rowCat->idCategoria == $primeiraCategoriaBlog){
+                                        $nomeCategoriaBlog = $rowCat->nomeCategoria;
+                                    }
+                                }
+                            }
+                            else{
+                                $nomeCategoriaBlog = "";
+                            }
+                
+                            echo <<<HTML
+                            <a href="./blog-detalhes/{$blog->nomePagina}">
+                                <div class="card-blog">
+                                    <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                    <div>
+                                        <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
+                                    </div>
+                                    <h1>{$blog->tituloBlog}</h1>
+                                    <div class="outline-button">
+                                        Ler mais
+                                        <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                    </div>
+                                </div>
+                            </a>
+                            HTML;
+                        }
+                    ?>
                 </div>
             </div>
         </section>
     </main>
+    <?php cFooter(); ?>
+    <?php elementosGerais(); ?>
+    <?php scriptBody(); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>

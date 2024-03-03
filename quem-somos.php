@@ -1,6 +1,33 @@
 <?php
 
-include_once("./assets/componentes.php");
+include_once "assets/componentes.php";
+include_once "painel/backend/conexao-banco.php";
+
+$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE idPagina = :idPagina");
+$sqlSeo->bindValue(":idPagina", 2);
+$sqlSeo->execute();
+$conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
+
+$sqlConteudos = $con->prepare("SELECT * FROM conteudos WHERE paginaId = :idPagina");
+$sqlConteudos->bindValue(":idPagina", $conteudoSeo["idPagina"]);
+$sqlConteudos->execute();
+$conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
+$conteudosArray = json_decode(json_encode($conteudosArray));
+
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs->execute();
+$blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
+$blogsArray = json_decode(json_encode($blogsArray));
+
+$sqlCategorias = $con->prepare("SELECT * FROM categorias c, paginas p WHERE c.paginaId = p.idPagina AND c.tipoCategoria = :tipoCategoria");
+$sqlCategorias->bindValue(":tipoCategoria", 1);
+$sqlCategorias->execute();
+$categoriasArray = $sqlCategorias->fetchAll(PDO::FETCH_ASSOC);
+$categoriasArray = json_decode(json_encode($categoriasArray));
+
+ob_start();
+redesSociais("marrom");
+$redes = ob_get_clean();
 
 ?>
 
@@ -10,7 +37,23 @@ include_once("./assets/componentes.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quem Somos</title>
+    
+    <!-- Tags Open Graph -->
+    <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
+    <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
+    <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
+    <meta name="description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
+    <meta name="keywords" content="<?php echo $conteudoSeo["palavrasChavesPagina"] ?>">
+    <meta name="robots" content="index,follow">
+    <meta name="rating" content="General">
+    <meta name="revisit-after" content="7 days">
+    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
+
+    <?php linksHead(); ?>
+
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -19,78 +62,72 @@ include_once("./assets/componentes.php");
 </head>
 
 <body>
-    <header>
-        <img src="assets/svg/logo-cruvinel-dourado.svg" alt="Logo" class="logo">
-        <nav>
-            <a href="quem-somos.php">QUEM SOMOS</a>
-            <a href="empresas.php">EMPRESAS</a>
-            <a href="servicos.php">SERVICOS</a>
-            <a href="clientes.php">CLIENTES</a>
-            <a href="blog.php">BLOG</a>
-            <a href="fale-conosco.php">FALE CONOSCO</a>
-            <button class="menu">
-                <img src="assets/svg/menu.svg" alt="Menu">
-            </button>
-        </nav>
-    </header>
-    <?php banner(
-        "QUEM SOMOS",
-        "QUEM SOMOS",
-        "QUEM SOMOS",
-        "./assets/png/banner-quem-somos.png",
-        "./assets/png/banner-quem-somos.png"
-    ); ?>
+    <?php cHeader(); ?>
+    <?php
+    foreach ($conteudosArray as $conteudo) {
+        if($conteudo->numeroConteudo == 1){
+            banner(
+                "QUEM SOMOS",
+                "{$conteudo->legendaImagem1Conteudo}",
+                "{$conteudo->legendaImagem2Conteudo}",
+                "./assets/uploads/{$conteudo->imagem1Conteudo}",
+                "./assets/uploads/{$conteudo->imagem2Conteudo}"
+            ); 
+        }
+    }
+    ?>
     <section class="who-we-are">
         <div class="shaped-content container">
             <div class="row">
                 <div class="col-12 col-lg-7 description-text">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ipsam, inventore incidunt nam
-                        doloremque aperiam magni ad saepe error ipsum blanditiis harum explicabo, quasi nesciunt ratione
-                        dignissimos ullam? Earum quos asperiores praesentium saepe eveniet error possimus repudiandae
-                        aperiam, ipsa blanditiis ipsam soluta voluptatibus ab ad. Laboriosam aut corrupti perferendis
-                        nostrum.</p>
-                    <div class="social-media">
-                        <img src="assets/svg/instagram-marrom.svg" alt="Instagram"><img
-                            src="assets/svg/facebook-marrom.svg" alt="Facebook"><img
-                            src="assets/svg/linkedin-marrom.svg" alt="LinkedIn"><img src="assets/svg/x-marrom.svg"
-                            alt="X"><img src="assets/svg/telegram-marrom.svg" alt="Telegram">
-                    </div>
+                    <?php
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 2){
+                            echo <<<HTML
+                            {$conteudo->textoConteudo}
+                            <div class="social-media">
+                                {$redes}
+                            </div>
+                            HTML;
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="col-12 col-lg-5 description-image">
-                    <img src="assets/png/quem-somos.png" alt="Quem Somos">
-                    <div class="brown-box">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia quae illum ullam tempore a
-                            iusto sit ex! Quaerat, totam itaque?</p>
-                    </div>
+                    <?php
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 3){
+                            echo <<<HTML
+                            <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                            <div class="brown-box">
+                                {$conteudo->textoConteudo}
+                            </div>
+                            HTML;
+                        }
+                    }
+                    ?>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <div class="white-box">
                         <div class="row">
-                            <div class="col-12 col-lg-4 video">
-                                <div class="watch-video">
-                                    <img src="assets/png/video-quem-somos.png" alt="Quem Somos" class="video-bg">
-                                    <img src="assets/svg/play.svg" alt="Play" class="play-button">
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-8 text">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non eos voluptatem eveniet
-                                    unde nulla blanditiis magnam laboriosam. Cupiditate, mollitia odio repudiandae sunt
-                                    maiores quis dolorem perferendis beatae nobis vero, quod rem! Eos hic minima
-                                    voluptate vel et obcaecati, error rerum quos quas dicta explicabo incidunt ratione
-                                    eum doloribus harum necessitatibus, repudiandae adipisci tempore nesciunt quod qui
-                                    possimus quam quis! Nostrum dolore optio deserunt ipsum praesentium dolorem odit
-                                    beatae quam vero et. Molestiae voluptate, aliquid saepe possimus asperiores dolores
-                                    quibusdam ipsum deleniti rerum sapiente necessitatibus eaque, consequatur
-                                    consectetur, quaerat ipsa atque. Voluptatum dolorem facilis ea tempora,
-                                    exercitationem autem asperiores! Dignissimos quam, saepe, facilis blanditiis sed
-                                    quasi obcaecati at ratione atque perferendis voluptatibus eveniet. Delectus soluta
-                                    at consequatur nulla voluptas sed, perferendis cum hic in amet quibusdam placeat
-                                    quidem minus voluptate unde ad quo earum repudiandae ipsa doloremque animi!
-                                    Distinctio, illo. Doloribus qui eius laudantium soluta laborum maxime reiciendis
-                                    omnis quaerat molestiae?</p>
-                            </div>
+                            <?php
+                            foreach ($conteudosArray as $conteudo) {
+                                if($conteudo->numeroConteudo == 4){
+                                    echo <<<HTML
+                                    <div class="col-12 col-lg-4 video">
+                                        <div class="watch-video">
+                                            <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}" class="video-bg">
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-8 text">
+                                        {$conteudo->textoConteudo}
+                                    </div>
+                                    HTML;
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -106,231 +143,99 @@ include_once("./assets/componentes.php");
             </div>
             <div class="row">
                 <div class="col-12 col-lg-4">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nobis voluptatum esse odio totam
-                        ab quidem quaerat voluptates veniam magni rem officia omnis molestias sit recusandae ea, soluta
-                        autem sunt perferendis ipsum! Itaque enim at aliquam possimus minima iste fugiat.</p>
+                    <?php
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 5){
+                            echo <<<HTML
+                            {$conteudo->textoConteudo}
+                            HTML;
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="col-12 col-lg-8">
-                    <div class="accordion">
-                        <div class="title">
-                            <div>
-                                <span class="limit-text">agenda 1</span>
+                    <?php
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 6){
+                            echo <<<HTML
+                            
+                            <div class="accordion">
+                                <div class="title">
+                                    <div>
+                                        <span class="limit-text">{$conteudo->tituloConteudo}</span>
+                                    </div>
+                                </div>
+                                <div class="panel">
+                                    {$conteudo->textoConteudo}
+                                </div>
                             </div>
-                        </div>
-                        <div class="panel">
-                            <p>Lorem ipsum dolor sit amet consectetur. Aliquam netus et et sed dui eu. In turpis
-                                ultrices id tortor aenean. Vestibulum purus lacus maecenas faucibus consectetur orci
-                                habitasse in nibh.</p>
-                            <p>Sed molestie etiam arcu non turpis semper. Lorem ipsum dolor sit amet consectetur.
-                                Aliquam netus et et sed dui eu. In turpis ultrices id tortor aenean. Vestibulum purus
-                                lacus maecenas faucibus consectetur orci habitasse in nibh. Sed molestie etiam arcu non
-                                turpis semper.</p>
-                        </div>
-                    </div>
-                    <div class="accordion">
-                        <div class="title">
-                            <div>
-                                <span class="limit-text">agenda 1</span>
-                            </div>
-                        </div>
-                        <div class="panel">
-                            <p>Lorem ipsum dolor sit amet consectetur. Aliquam netus et et sed dui eu. In turpis
-                                ultrices id tortor aenean. Vestibulum purus lacus maecenas faucibus consectetur orci
-                                habitasse in nibh.</p>
-                            <p>Sed molestie etiam arcu non turpis semper. Lorem ipsum dolor sit amet consectetur.
-                                Aliquam netus et et sed dui eu. In turpis ultrices id tortor aenean. Vestibulum purus
-                                lacus maecenas faucibus consectetur orci habitasse in nibh. Sed molestie etiam arcu non
-                                turpis semper.</p>
-                        </div>
-                    </div>
-                    <div class="accordion">
-                        <div class="title">
-                            <div>
-                                <span class="limit-text">agenda 1</span>
-                            </div>
-                        </div>
-                        <div class="panel">
-                            <p>Lorem ipsum dolor sit amet consectetur. Aliquam netus et et sed dui eu. In turpis
-                                ultrices id tortor aenean. Vestibulum purus lacus maecenas faucibus consectetur orci
-                                habitasse in nibh.</p>
-                            <p>Sed molestie etiam arcu non turpis semper. Lorem ipsum dolor sit amet consectetur.
-                                Aliquam netus et et sed dui eu. In turpis ultrices id tortor aenean. Vestibulum purus
-                                lacus maecenas faucibus consectetur orci habitasse in nibh. Sed molestie etiam arcu non
-                                turpis semper.</p>
-                        </div>
-                    </div>
-                    <div class="accordion">
-                        <div class="title">
-                            <div>
-                                <span class="limit-text">agenda 1</span>
-                            </div>
-                        </div>
-                        <div class="panel">
-                            <p>Lorem ipsum dolor sit amet consectetur. Aliquam netus et et sed dui eu. In turpis
-                                ultrices id tortor aenean. Vestibulum purus lacus maecenas faucibus consectetur orci
-                                habitasse in nibh.</p>
-                            <p>Sed molestie etiam arcu non turpis semper. Lorem ipsum dolor sit amet consectetur.
-                                Aliquam netus et et sed dui eu. In turpis ultrices id tortor aenean. Vestibulum purus
-                                lacus maecenas faucibus consectetur orci habitasse in nibh. Sed molestie etiam arcu non
-                                turpis semper.</p>
-                        </div>
-                    </div>
+                            HTML;
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
         <div class="swiper-photos">
-            <div class="img-wrapper">
-                <img src="assets/png/quem-somos.png" alt="Foto">
-            </div>
-            <div class="img-wrapper">
-                <img src="assets/png/quem-somos.png" alt="Foto">
-            </div>
-            <div class="img-wrapper">
-                <img src="assets/png/quem-somos.png" alt="Foto">
-            </div>
-            <div class="img-wrapper">
-                <img src="assets/png/quem-somos.png" alt="Foto">
-            </div>
-            <div class="img-wrapper">
-                <img src="assets/png/quem-somos.png" alt="Foto">
-            </div>
+            <?php
+            foreach ($conteudosArray as $conteudo) {
+                if($conteudo->numeroConteudo == 7){
+                    echo <<<HTML
+                    <div class="img-wrapper">
+                        <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                    </div>
+                    HTML;
+                }
+            }
+            ?>
         </div>
     </section>
     <section class="other-blogs">
         <h1>Blog do Grupo</h1>
         <div class="container">
             <div class="swiper-other-blogs">
-                <div class="card-blog">
-                    <img src="assets/png/blog.png" alt="Blog">
-                    <div>
-                        <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                    </div>
-                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                    <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                    </div>
-                </div>
-                <div class="card-blog">
-                    <img src="assets/png/blog.png" alt="Blog">
-                    <div>
-                        <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                    </div>
-                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                    <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                    </div>
-                </div>
-                <div class="card-blog">
-                    <img src="assets/png/blog.png" alt="Blog">
-                    <div>
-                        <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                    </div>
-                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                    <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                    </div>
-                </div>
-                <div class="card-blog">
-                    <img src="assets/png/blog.png" alt="Blog">
-                    <div>
-                        <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                    </div>
-                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                    <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                    </div>
-                </div>
-                <div class="card-blog">
-                    <img src="assets/png/blog.png" alt="Blog">
-                    <div>
-                        <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                    </div>
-                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                    <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                    </div>
-                </div>
-                <div class="card-blog">
-                    <img src="assets/png/blog.png" alt="Blog">
-                    <div>
-                        <span class="tag">Tecnologia</span><span class="date">18/jan/2024</span>
-                    </div>
-                    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nulla?</h1>
-                    <div class="outline-button">Ler mais <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
-                    </div>
-                </div>
+                <?php
+                    foreach ($blogsArray as $blog) {
+                        $dataBlog = $blog->dataBlog;
+                        $categoriasId = $blog->categoriasId;
+                        $dataBlog = new DateTime($dataBlog);
+                        $dataBlog = $dataBlog->format('d/m/Y');
+                        $primeiraCategoriaBlog = json_decode($categoriasId);
+                        if($primeiraCategoriaBlog){
+                            $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+                            foreach ($categoriasArray as $rowCat) {
+                                if($rowCat->idCategoria == $primeiraCategoriaBlog){
+                                    $nomeCategoriaBlog = $rowCat->nomeCategoria;
+                                }
+                            }
+                        }
+                        else{
+                            $nomeCategoriaBlog = "";
+                        }
+            
+                        echo <<<HTML
+                        <a href="./blog-detalhes/{$blog->nomePagina}">
+                            <div class="card-blog">
+                                <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                <div>
+                                    <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
+                                </div>
+                                <h1>{$blog->tituloBlog}</h1>
+                                <div class="outline-button">
+                                    Ler mais
+                                    <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                </div>
+                            </div>
+                        </a>
+                        HTML;
+                    }
+                ?>
             </div>
         </div>
     </section>
-    <footer>
-        <div class="links">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-lg-3"><img class="logo" src="assets/svg/logo-cruvinel-dourado.svg"
-                            alt="Logo"></div>
-                    <div class="col-12 col-lg-6 pages">
-                        <div class="accordion">
-                            <div class="title">
-                                <div>
-                                    <span class="limit-text">MENU NAVEGAÇÃO</span>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <a href="quem-somos.php">QUEM SOMOS</a>
-                                <a href="empresas.php">NOSSAS EMPRESAS</a>
-                                <a href="servicos.php">SERVIÇOS</a>
-                                <a href="depoimentos">DEPOIMENTOS</a>
-                                <a href="clientes.php">NOSSOS CLIENTES</a>
-                                <a href="blog.php">BLOG</a>
-                                <a href="fale-conosco.php">FALE CONOSCO</a>
-                                <a href="https://google.com">STHEFANO CRUVINEL CEO E FUNDADOR</a>
-                            </div>
-                        </div>
-                        <a href="quem-somos.php">QUEM SOMOS</a>
-                        <a href="empresas.php">NOSSAS EMPRESAS</a>
-                        <a href="servicos.php">SERVIÇOS</a>
-                        <a href="depoimentos">DEPOIMENTOS</a>
-                        <a href="clientes.php">NOSSOS CLIENTES</a>
-                        <a href="blog.php">BLOG</a>
-                        <a href="fale-conosco.php">FALE CONOSCO</a>
-                        <a href="https://google.com">STHEFANO CRUVINEL CEO E FUNDADOR</a>
-                    </div>
-                    <div class="col-12 col-lg-3 contact">
-                        <span>(34) 3221-4716</span>
-                        <span>(34) 98435-9365</span>
-                        <span class="email">contato@grupocruvinel.com.br</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-lg-3"></div>
-                    <div class="col-12 col-lg-6">
-                        <span class="label-social-media">Siga meus canais</span>
-                        <div class="social-media">
-                            <img src="assets/svg/instagram-amarelo.svg" alt="Instagram">
-                            <img src="assets/svg/facebook-amarelo.svg" alt="Facebook">
-                            <img src="assets/svg/linkedin-amarelo.svg" alt="LinkedIn">
-                            <img src="assets/svg/x-amarelo.svg" alt="X">
-                            <img src="assets/svg/telegram-amarelo.svg" alt="Telegram">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="location">
-            <h1>R. Helvécio Schiavinato, 281 - Vigilato Pereira, Uberlândia - MG, 38408-608</h1>
-        </div>
-        <div class="terms">
-            <a href="#">Termos de uso</a>
-            <a href="#">Política de privacidade</a>
-            <a href="#">Segurança no Uso da Internet</a>
-        </div>
-        <div class="rights">
-            <div class="container">
-                <p>TODOS OS DIREITOS RESERVADOS. Todo o conteúdo do site, todas as fotos, imagens, logotipos, marcas,
-                    dizeres, som, software, conjunto imagem, layout, trade dress, aqui veiculados são de propriedade
-                    exclusiva da Sthefano Cruvinel. ou de seus parceiros. É vedada qualquer reprodução, total ou
-                    parcial, de
-                    qualquer elemento de identidade, sem expressa autorização. A violação de qualquer direito mencionado
-                    implicará na responsabilização cível e criminal nos termos da Lei.</p>
-                <span>© 2024 EvidJuri Desenvolvido por: WMB Marketing Digital</span>
-            </div>
-        </div>
-    </footer>
+    <?php cFooter(); ?>
+    <?php elementosGerais(); ?>
+    <?php scriptBody(); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>

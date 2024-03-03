@@ -42,7 +42,7 @@ echo ''
                                 <input type="hidden" class="form-control" name="idConteudo" id="idConteudo" value="">
                                 <input type="hidden" class="form-control" name="numeroConteudo" id="numeroConteudo" value="1">
                                 
-                                <div class="col-12">
+                                <div class="col-12 hidden">
                                     <div class="form-group">    
                                         <label>Titulo</label>
                                         <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">
@@ -106,7 +106,7 @@ echo ''
                                         <input type="text" class="form-control" id="linkVideoConteudo" name="linkVideoConteudo">
                                     </div>
                                 </div>
-                                <div class="col-12 hidden">
+                                <div class="col-12">
                                     <div class="form-group"> 
                                         <label>Texto</label>
                                         <textarea class="form-control" id="textoConteudo1" name="textoConteudo1" rows="10"></textarea>
@@ -596,7 +596,6 @@ echo ''
                                         <tr>
                                             <th>Titulo</th>
                                             <th>Imagem</th>
-                                            <th>Imagem</th>
                                             <th>Texto</th>
                                             <th>Ações</th>
                                         </tr>
@@ -604,7 +603,6 @@ echo ''
                                     <tfoot>
                                         <tr>
                                             <th>Titulo</th>
-                                            <th>Imagem</th>
                                             <th>Imagem</th>
                                             <th>Texto</th>
                                             <th>Ações</th>
@@ -761,7 +759,6 @@ echo ''
                                         <tr>
                                             <th>Titulo</th>
                                             <th>Imagem</th>
-                                            <th>Imagem</th>
                                             <th>Texto</th>
                                             <th>Ações</th>
                                         </tr>
@@ -769,7 +766,6 @@ echo ''
                                     <tfoot>
                                         <tr>
                                             <th>Titulo</th>
-                                            <th>Imagem</th>
                                             <th>Imagem</th>
                                             <th>Texto</th>
                                             <th>Ações</th>
@@ -859,7 +855,7 @@ echo ''
                                         <input type="text" class="form-control" id="linkVideoConteudo" name="linkVideoConteudo">
                                     </div>
                                 </div>
-                                <div class="col-12 v">
+                                <div class="col-12 hidden">
                                     <div class="form-group"> 
                                         <label>Texto</label>
                                         <textarea class="form-control" id="textoConteudo6" name="textoConteudo6" rows="10"></textarea>
@@ -948,7 +944,7 @@ echo ''
                                         <img class="img-fluid wauto h200 objContain" id="imagem2Conteudo" src="null" alt="">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Legenda da imagem</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem1Conteudo" name="legendaImagem1Conteudo">

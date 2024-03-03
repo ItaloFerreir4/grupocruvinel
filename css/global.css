@@ -212,8 +212,17 @@ header .menu img {
 }
 
 @media (max-width: 992px) {
-  header a {
+  header .logo{
+    width: 110px;
+  }
+  
+  header nav a {
     display: none;
+  }
+
+  header .menu img{
+    width: 30px;
+    height: auto;
   }
 }
 
@@ -419,7 +428,7 @@ footer .rights span {
 
 .banner {
   position: relative;
-  padding: 150px 0;
+  padding: 150px 0 100px;
   margin-top: 115px;
 }
 
@@ -459,6 +468,12 @@ footer .rights span {
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+}
+
+@media(max-width: 1200px){
+  .banner {
+    margin-top: 95px;
+  }
 }
 
 /* banner-thin */
@@ -942,6 +957,7 @@ input[type="text"].parsley-error::placeholder {
   color: var(--marrom);
   font-family: "OpenSans Bold";
   font-size: 33px;
+  margin: 0;
 }
 
 @media (max-width: 992px) {
@@ -1163,6 +1179,7 @@ input[type="text"].parsley-error::placeholder {
 .business {
   position: relative;
   background-color: #e2ded5;
+  padding: 0 100px 200px;
 }
 
 .business > h1 {
@@ -1185,10 +1202,14 @@ input[type="text"].parsley-error::placeholder {
 .business::after {
   content: url(../assets/svg/hexagono-amarelo.svg);
   position: absolute;
-  right: 30px;
-  bottom: 70px;
+  right: 125px;
+  bottom: 45px;
   display: block;
   width: 500px;
+}
+
+.business .row{
+  gap: 0;
 }
 
 .swiper-business {
@@ -1196,7 +1217,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business .slick-prev {
-  top: 700px;
+  top: 600px;
   left: 430px;
   z-index: 1;
 }
@@ -1205,7 +1226,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business .slick-next {
-  top: 700px;
+  top: 600px;
   left: 500px;
   z-index: 1;
 }
@@ -1216,7 +1237,6 @@ input[type="text"].parsley-error::placeholder {
 
 .business-card {
   position: relative;
-  margin: 90px 100px 120px;
   clip-path: polygon(
     15% calc(100% - 70px),
     0 calc(100% - 70px),
@@ -1229,7 +1249,7 @@ input[type="text"].parsley-error::placeholder {
     55% calc(100% - 50px),
     15% calc(100% - 50px)
   );
-  height: 700px;
+  min-height: 700px;
 }
 
 .business-card > .row {
@@ -1270,7 +1290,7 @@ input[type="text"].parsley-error::placeholder {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 40px;
+  margin: 40px 0;
   -webkit-line-clamp: 6;
 }
 
@@ -1304,26 +1324,41 @@ input[type="text"].parsley-error::placeholder {
 }
 
 @media (max-width: 992px) {
+
+  .business{
+    padding: 0;
+  }
+
   .business > h1 {
     margin-bottom: 45px;
   }
 
   .business-card {
-    margin: 0px 10px 50px;
-    height: 850px;
+    margin: 0px 10px 0px;
     clip-path: none;
+    min-height: auto;
   }
 
   .swiper-business .slick-prev {
-    top: 535px;
+    top: 38%;
     left: 30%;
     transform: translateX(-50%);
   }
 
   .swiper-business .slick-next {
-    top: 535px;
+    top: 38%;
     left: 65%;
     transform: translateX(-50%);
+  }
+
+  .business .business-video{
+    margin: 0 0 50px;
+    padding: 0 10px;
+    background-color: transparent;
+  }
+
+  .business::after{
+    bottom: -20px;
   }
 
   .business .business-video .video-bg {
