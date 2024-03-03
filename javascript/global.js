@@ -238,42 +238,6 @@ function setTabsBackground() {
     greyBackgroundTabs.offsetHeight - 40 + "px"; //pegar a altura da div .content e do padding bottom do elemento .tabs
 }
 
-function addTabsFunctionality() {
-  const tabButtons = document.querySelectorAll(".tabs .tab-buttons button");
-  tabButtons.forEach((element) => {
-    element.addEventListener("click", () => {
-      const activeButtonDataContent = element.dataset.content;
-      tabButtons.forEach((e) => {
-        e.classList.remove("active");
-      });
-      element.classList.add("active");
-
-      setContentVisibility(activeButtonDataContent);
-    });
-
-    //Initial setup
-    const activeButtonDataContent = document.querySelector(
-      ".tabs .tab-buttons button.active"
-    ).dataset.content;
-    setContentVisibility(activeButtonDataContent);
-
-    function setContentVisibility(dataContent) {
-      const tabContentsList = document.querySelectorAll(".tabs-content > div");
-      tabContentsList.forEach((element) => {
-        if (element.dataset.content === dataContent) {
-          element.style.visibility = "visible";
-          element.style.height = "100%";
-          element.children[0].style.height = "100%";
-        } else {
-          element.style.visibility = "hidden";
-          element.style.height = "0";
-          element.children[0].style.height = "0";
-        }
-      });
-    }
-  });
-}
-
 const acc = document.querySelectorAll(".accordion");
 acc.forEach((element) => {
   element.children[0].addEventListener("click", function () {
@@ -340,13 +304,13 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const isMobile = window.innerWidth < 992;
-  // const buttonMenu = document.querySelector("nav button.menu");
+  const buttonMenu = document.querySelector("header button.menu");
   // const mapMobileButton = document.querySelector(".map.mobile > button");
 
   if (isMobile) {
-    // buttonMenu.addEventListener("click", () => {
-    //   navIsOpen = !navIsOpen;
-    // });
+    buttonMenu.addEventListener("click", () => {
+      navIsOpen = !navIsOpen;
+    });
     // mapMobileButton.addEventListener("click", () => {
     //   footerIsOpen = !footerIsOpen;
     //   handleFooterMapOnMobile(footerIsOpen);

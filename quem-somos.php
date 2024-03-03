@@ -19,6 +19,20 @@ include_once("./assets/componentes.php");
 </head>
 
 <body>
+    <header>
+        <img src="assets/svg/logo-cruvinel-dourado.svg" alt="Logo" class="logo">
+        <nav>
+            <a href="quem-somos.php">QUEM SOMOS</a>
+            <a href="empresas.php">EMPRESAS</a>
+            <a href="servicos.php">SERVICOS</a>
+            <a href="clientes.php">CLIENTES</a>
+            <a href="blog.php">BLOG</a>
+            <a href="fale-conosco.php">FALE CONOSCO</a>
+            <button class="menu">
+                <img src="assets/svg/menu.svg" alt="Menu">
+            </button>
+        </nav>
+    </header>
     <?php banner(
         "QUEM SOMOS",
         "QUEM SOMOS",
@@ -243,6 +257,63 @@ include_once("./assets/componentes.php");
             </div>
         </div>
     </section>
+    <footer>
+        <div class="links">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-3"><img class="logo" src="assets/svg/logo-cruvinel-dourado.svg"
+                            alt="Logo"></div>
+                    <div class="col-12 col-lg-6 pages">
+                        <a href="quem-somos.php">QUEM SOMOS</a>
+                        <a href="empresas.php">NOSSAS EMPRESAS</a>
+                        <a href="servicos.php">SERVIÇOS</a>
+                        <a href="depoimentos">DEPOIMENTOS</a>
+                        <a href="clientes.php">NOSSOS CLIENTES</a>
+                        <a href="blog.php">BLOG</a>
+                        <a href="fale-conosco.php">FALE CONOSCO</a>
+                        <a href="https://google.com">STHEFANO CRUVINEL CEO E FUNDADOR</a>
+                    </div>
+                    <div class="col-12 col-lg-3 contact">
+                        <span>(34) 3221-4716</span>
+                        <span>(34) 98435-9365</span>
+                        <span class="email">contato@grupocruvinel.com.br</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-3"></div>
+                    <div class="col-12 col-lg-6">
+                        <span class="label-social-media">Siga meus canais</span>
+                        <div class="social-media">
+                            <img src="assets/svg/instagram-amarelo.svg" alt="Instagram">
+                            <img src="assets/svg/facebook-amarelo.svg" alt="Facebook">
+                            <img src="assets/svg/linkedin-amarelo.svg" alt="LinkedIn">
+                            <img src="assets/svg/x-amarelo.svg" alt="X">
+                            <img src="assets/svg/telegram-amarelo.svg" alt="Telegram">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="location">
+            <h1>R. Helvécio Schiavinato, 281 - Vigilato Pereira, Uberlândia - MG, 38408-608</h1>
+        </div>
+        <div class="terms">
+            <a href="#">Termos de uso</a>
+            <a href="#">Política de privacidade</a>
+            <a href="#">Segurança no Uso da Internet</a>
+        </div>
+        <div class="rights">
+            <div class="container">
+                <p>TODOS OS DIREITOS RESERVADOS. Todo o conteúdo do site, todas as fotos, imagens, logotipos, marcas,
+                    dizeres, som, software, conjunto imagem, layout, trade dress, aqui veiculados são de propriedade
+                    exclusiva da Sthefano Cruvinel. ou de seus parceiros. É vedada qualquer reprodução, total ou
+                    parcial, de
+                    qualquer elemento de identidade, sem expressa autorização. A violação de qualquer direito mencionado
+                    implicará na responsabilização cível e criminal nos termos da Lei.</p>
+                <span>© 2024 EvidJuri Desenvolvido por: WMB Marketing Digital</span>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
