@@ -430,6 +430,7 @@ footer .rights span {
   position: relative;
   padding: 150px 0 100px;
   margin-top: 115px;
+  z-index: 1;
 }
 
 .banner .img-background {
@@ -1192,7 +1193,7 @@ input[type="text"].parsley-error::placeholder {
   text-align: center;
   display: inline-block;
   width: 100%;
-  margin-top: 90px;
+  margin: 90px 0 70px;
 }
 
 .business > h1 strong {

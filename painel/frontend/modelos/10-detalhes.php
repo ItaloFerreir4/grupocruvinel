@@ -57,7 +57,7 @@ else{
 }
 
 ob_start();
-redesSociaisCompartilhar("branco");
+redesSociaisCompartilhar("marrom");
 $redes = ob_get_clean();
 
 ?>
@@ -132,10 +132,7 @@ $redes = ob_get_clean();
                 <div class="col-12">
                     <img src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>" alt="<?php echo $blog['legendaImagemBlog']; ?>">
                     <div class="social-media">
-                        <img src="../assets/svg/instagram-marrom.svg" alt="Instagram"><img
-                            src="../assets/svg/facebook-marrom.svg" alt="Facebook"><img
-                            src="../assets/svg/linkedin-marrom.svg" alt="LinkedIn"><img src="../assets/svg/x-marrom.svg"
-                            alt="X"><img src="../assets/svg/telegram-marrom.svg" alt="Telegram">
+                        <?php echo $redes; ?>
                     </div>
                     <?php echo $blog['textoBlog']; ?>
                 </div>
@@ -204,6 +201,8 @@ $redes = ob_get_clean();
         </div>
     </section>
     <?php cFooter(); ?>
+    <?php elementosGerais(); ?>
+    <?php scriptBody(); ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>

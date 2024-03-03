@@ -74,6 +74,11 @@
 }
 /* company-description */
 
+.company-description{
+  display: flex;
+  flex-direction: column;
+}
+
 .company-description h1 {
   color: var(--preto);
   font-family: "OpenSans Bold";
@@ -123,6 +128,7 @@
 
 .field {
   position: relative;
+  padding: 0 0 100px;
 }
 
 .field > .container {
