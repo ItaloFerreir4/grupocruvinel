@@ -29,9 +29,10 @@ $sqlConteudos->execute();
 $conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
 $conteudosArray = json_decode(json_encode($conteudosArray));
 
-ob_start();
-redesSociaisCompartilhar("branco");
-$redes = ob_get_clean();
+$sqlServicos = $con->prepare("SELECT * FROM servicos WHERE status = 1");
+$sqlServicos->execute();
+$servicosArray = $sqlServicos->fetchAll(PDO::FETCH_ASSOC);
+$servicosArray = json_decode(json_encode($servicosArray));
 
 ?>
 
@@ -41,11 +42,11 @@ $redes = ob_get_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
     <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
@@ -54,159 +55,173 @@ $redes = ob_get_clean();
     <meta name="robots" content="index,follow">
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
-    <title>
-        <?php echo $conteudoSeo["tituloPagina"] ?>
-    </title>
+    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
 
     <?php linksHead(); ?>
 
-    <link rel="icon" type="image/svg" href="../assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" href="../css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/business-detalhes.css" />
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/empresa-detalhes.css">
 </head>
 
 <body>
-    <?php cHeader(); ?>
-    <main>
-        <div class="banner">
-            <?php
-            foreach ($conteudosArray as $conteudo) {
-                if ($conteudo->numeroConteudo == 1) {
-                    echo <<<HTML
-                        <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}" />
-                        <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}" />
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 bloco-1">
-                                    <div class="title">
-                                        <div class="pages">
-                                            <a href="../">Home</a>
-                                            <a href="../business">Business</a>
-                                        </div>
-                                        <p>{$business["nomeBusiness"]}</p>
-                                        <div class="bottom">
-                                            <a href="#textoBusiness">Ler mais</a>
-                                            <div class="caption-social-media">
-                                                <span>Compartilhar: </span>
-                                                <div class="social-media">
-                                                    {$redes}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+    <section class="banner">
+        <?php
+        foreach ($conteudosArray as $conteudo) {
+            if($conteudo->numeroConteudo == 1){
+                echo <<<HTML
+                <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 bloco-1">
+                            <div class="title">
+                                <p>{$business['nomeBusiness']}</p>
                             </div>
                         </div>
-                        HTML;
-                }
-            }
-            ?>
-        </div>
-        <section class="content" id="textoBusiness">
-            <section class="white-bg">
-                <img loading="lazy" src="../assets/png/logo-munra-dourado.png" alt="Munrá semijoias" />
-                <?php echo $business['textoBusiness']; ?>
-            </section>
-        </section>
-        <div class="watch-video-background">
-            <?php
-            foreach ($conteudosArray as $conteudo) {
-                if ($conteudo->numeroConteudo == 2) {
-                    $linkVideo = $conteudo->linkVideoConteudo;
-
-                    if ($linkVideo) {
-                        if (strpos($linkVideo, "shorts") !== false) {
-                            $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
-                        }
-                        $parts = parse_url($linkVideo);
-                        $videoId = "";
-
-                        parse_str($parts['query'], $query);
-
-                        if (isset($query['v'])) {
-                            $videoId = $query['v'];
-                        }
-                    } else {
-                        $videoId = "";
-                    }
-                    
-                    echo <<<HTML
-                        <img loading="lazy" class="desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}" />
-                        <img loading="lazy" class="mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}" />
-                        <div class="watch-button cursor-pointer" onClick="PopUpVideo('{$videoId}')">
-                            <img loading="lazy" src="../assets/svg/play.svg" alt="Assistir" />
-                            <div class="limit-text">{$conteudo->textoConteudo}</div>
-                        </div>
-                        HTML;
-                }
-            }
-            ?>
-        </div>
-        <section class="be-a-reseller">
-            <div>
-                <div class="row">
-                    <div class="col-12 col-lg-6 carousel">
-                        <div class="resell-swiper">
-                            <?php 
-                                $idPagina = $business["idPagina"];
-                                foreach ($businessArray as $business) {
-                                    if($business->idPagina != $idPagina){
-                                        echo <<<HTML
-                                        <a href="../business-detalhes/{$business->nomePagina}" class="business-card-wrapper">
-                                            <img loading="lazy" src="../assets/uploads/{$business->imagemBusiness}" alt="{$business->legendaImagemBusiness}" />
-                                        </a>
-                                        HTML;
-                                    }
-                                }
-                            ?>
+                        <div class="col-12 col-lg-6 bloco-2">
+                            <img src="../assets/uploads/{$business['imagemBusiness']}" alt="{$business['legendaImagemBusiness']}">
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 logo">
+                </div>
+                HTML;
+            }
+        }
+        ?>
+        
+    </section>
+    <section class="about">
+        <div class="shaped-content container">
+            <div class="row">
+                <div class="col-12 col-lg-6 company-image">
+                    <div class="img-wrapper">
                         <?php
-                            foreach ($conteudosArray as $conteudo) {
-                                if ($conteudo->numeroConteudo == 3) {
-                                    echo <<<HTML
-                                        <img src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}" />
-                                        <a class="blue-btn" href="{$conteudo->linkBotao1}" title="{$conteudo->nomeBotao1}" target="{$conteudo->targetBotao1}">{$conteudo->nomeBotao1}</a>
-                                        HTML;
-                                }
+                        foreach ($conteudosArray as $conteudo) {
+                            if($conteudo->numeroConteudo == 4){
+                                echo <<<HTML
+                                <img src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                                HTML;
                             }
+                        }
                         ?>
                     </div>
                 </div>
+                <div class="col-12 col-lg-6 company-description">
+                    <h1><?php echo $business['tituloBusiness']; ?></h1>
+                    <div class="social-media">
+                        <img src="../assets/svg/instagram-marrom.svg" alt="Instagram">
+                        <img src="../assets/svg/facebook-marrom.svg" alt="Facebook">
+                        <img src="../assets/svg/linkedin-marrom.svg" alt="LinkedIn">
+                        <img src="../assets/svg/x-marrom.svg" alt="X">
+                        <img src="../assets/svg/telegram-marrom.svg" alt="Telegram">
+                    </div>
+                    <?php echo $business['textoBusiness']; ?>
+                    <a href="https://google.com" class="outline-button">
+                        Saiba Mais
+                        <img src="../assets/svg/seta-dir-marrom.svg" alt="Saiba Mais">
+                    </a>
+                </div>
             </div>
-        </section>
-        <?php echo formEmailNewsletter(); ?>
-    </main>
-    <?php cFooter(); ?>
-    <?php elementosGerais(); ?>
-    <?php scriptBody(); ?>
+        </div>
+    </section>
+    <section class="field">
+        <img src="../assets/png/fundo-area-de-atuacao.png" alt="Fundo">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-9 field-details">
+                    <h1>Área de atuação</h1>
+                    <p>Lista das áreas de atuação:</p>
+                    <ul>
+                        <?php
+                        foreach ($conteudosArray as $conteudo) {
+                            if($conteudo->numeroConteudo == 2){
+                                echo <<<HTML
+                                <li>$conteudo->tituloConteudo</li>
+                                HTML;
+                            }
+                        }
+                        ?>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-3 customer-service">
+                    <h1>Fale com o nosso atendimento agora mesmo!</h1>
+                    <form>
+                        <input name="contatoNome" id="contatoNome" type="text" placeholder="Nome" />
+                        <input name="contatoEmail" id="contatoEmail" type="text" placeholder="E-mail" />
+                        <input name="contatoTelefone" id="contatoTelefone" type="text" placeholder="WhatsApp"
+                            onkeyup="mascaraTel(this);" maxlength="15" />
+                        <label for="contact-checkbox">
+                            <input id="contact-checkbox" type="checkbox" name="contatoTermo" id="contatoTermo" />
+                            Concordo com os Termos Gerais da Lei Geral de Proteção de Dados.</label>
+                        <button type="button" class="send botao-enviar" onClick="EnviarFormulario(1)">
+                            Enviar
+                            <img loading="lazy" src="../assets/svg/seta-dir-amarela.svg" alt="Seta" />
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="services">
+        <div class="container">
+
+            <h1>Serviços</h1>
+            <div class="social-media">
+                <img src="../assets/svg/instagram-marrom.svg" alt="Instagram">
+                <img src="../assets/svg/facebook-marrom.svg" alt="Facebook">
+                <img src="../assets/svg/linkedin-marrom.svg" alt="LinkedIn">
+                <img src="../assets/svg/x-marrom.svg" alt="X">
+                <img src="../assets/svg/telegram-marrom.svg" alt="Telegram">
+            </div>
+            <div class="swiper-services">
+                <?php
+                    $numColumns = 3;
+                    $totalServices = count($servicosArray);
+                    
+                    for ($i = 0; $i < $totalServices; $i += $numColumns) {
+                        echo '<div class="services-column">';
+                        
+                        for ($j = 0; $j < $numColumns && ($i + $j) < $totalServices; $j++) {
+                            $servico = $servicosArray[$i + $j];
+                            echo <<<HTML
+                            <div class="service">
+                                <p>{$servico->tituloServico}</p>
+                            </div>
+                            HTML;
+                        }
+                        
+                        echo '</div>';
+                    }
+                ?>
+            </div>
+        </div>
+    </section>
+
+    <!-- -------------------------------- -->
+    <!-- ADICIONAR COMPONENTE DE BUSINESS -->
+    <!-- -------------------------------- -->
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="../javascript/global.js"></script>
     <script>
-        const whiteBg = document.querySelector(".white-bg");
-        const resellerContainer = document.querySelector(".be-a-reseller > div");
-        window.addEventListener("DOMContentLoaded", () => {
-        addContainerClassToDesktop(whiteBg);
-        addContainerClassToDesktop(resellerContainer);
-        });
-
-        window.addEventListener("resize", () => {
-        addContainerClassToDesktop(whiteBg);
-        addContainerClassToDesktop(resellerContainer);
+        $(document).ready(function () {
+            $(".swiper-services").slick({
+                infinite: true,
+                dots: true,
+                slidesToShow: 3,
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 1,
+                        },
+                    },
+                ],
+            });
         });
     </script>
-    <script>
-        $(".resell-swiper").slick({
-        infinite: true,
-        slidesToShow: 1,
-        dots: true,
-        });
-    </script>
-
 </body>
 
 </html>

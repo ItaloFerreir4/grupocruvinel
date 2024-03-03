@@ -35,6 +35,27 @@ $sqlConteudos->execute();
 $conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
 $conteudosArray = json_decode(json_encode($conteudosArray));
 
+$dataBlogSel = $blog['dataBlog'];
+$categoriasId = $blog['categoriasId'];
+
+$dataBlogSel = new DateTime($dataBlogSel);
+$dataBlogSel = $dataBlogSel->format('d/m/Y');
+
+$primeiraCategoriaBlog = json_decode($categoriasId);
+if($primeiraCategoriaBlog){
+    $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+
+    foreach ($categoriasArray as $rowCat) {
+        if($rowCat->idCategoria == $primeiraCategoriaBlog){
+            $nomeCategoriaBlogSel = $rowCat->nomeCategoria;
+        }
+    }
+
+}
+else{
+    $nomeCategoriaBlogSel = "";
+}
+
 ob_start();
 redesSociaisCompartilhar("branco");
 $redes = ob_get_clean();
@@ -47,11 +68,11 @@ $redes = ob_get_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
     <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
@@ -60,89 +81,80 @@ $redes = ob_get_clean();
     <meta name="robots" content="index,follow">
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
-    <title>
-        <?php echo $conteudoSeo["tituloPagina"] ?>
-    </title>
+    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
 
     <?php linksHead(); ?>
 
-    <link rel="icon" type="image/svg" href="../assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" href="../css/bootstrap.css" />
-    <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/blog-detalhes.css" />
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/blog-detalhes.css">
 </head>
 
 <body>
-    <?php cHeader(); ?>
-    <main>
-        <div class="banner">
-            <?php
-            foreach ($conteudosArray as $conteudo) {
-                if ($conteudo->numeroConteudo == 1) {
-                    echo <<<HTML
-                        <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}" />
-                        <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}" />
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 bloco-1">
-                                    <div class="title">
-                                        <div class="pages">
-                                            <a href="../">Home</a>
-                                            <a href="../blog">Blogs</a>
-                                        </div>
-                                        <p>{$blog["tituloBlog"]}</p>
-                                        <div class="bottom">
-                                            <a class="btn-mais" href="#textoBlog">Ler mais</a>
-                                            <div class="caption-social-media">
-                                                <span>Compartilhar: </span>
-                                                <div class="social-media">
-                                                    {$redes}
-                                                </div>
-                                            </div>
-                                            <div class="date">
-                                                <h2>{$blog["dataBlog"]}</h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        HTML;
-                }
+    <header class="banner">
+        <?php
+        foreach ($conteudosArray as $conteudo) {
+            if($conteudo->numeroConteudo == 1){
+                echo <<<HTML
+                <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}">
+                HTML;
             }
-            ?>
-        </div>
-        <section class="content" id="textoBlog">
-            <section class="white-bg row">
-                <div class="col-12 col-lg-5 media-img">
-                    <img loading="lazy" src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>" alt="<?php echo $blog['legendaImagemBlog']; ?>" />
+        }
+        ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 bloco-1">
+                    <div class="title">
+                        <p>BLOG</p>
+                    </div>
+                    <h1><?php echo $blog['tituloBlog']; ?></h1>
+                    <div class="bottom">
+                        <div class="tag"><span><?php echo $nomeCategoriaBlogSel; ?></span></div>
+                        <div class="date">
+                            <span><?php echo $dataBlogSel; ?></span>
+                        </div>
+                    </div>
+                    <div class="outline-button white">
+                        Ler mais
+                        <img src="../assets/svg/seta-dir-branca.svg" alt="Ler Mais">
+                    </div>
                 </div>
-                <div class="col-12 col-lg-7 media-content">
+            </div>
+        </div>
+    </header>
+    <section class="post">
+        <div class="shaped-content container">
+            <div class="row">
+                <div class="col-12">
+                    <img src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>" alt="<?php echo $blog['legendaImagemBlog']; ?>">
+                    <div class="social-media">
+                        <img src="../assets/svg/instagram-marrom.svg" alt="Instagram"><img
+                            src="../assets/svg/facebook-marrom.svg" alt="Facebook"><img
+                            src="../assets/svg/linkedin-marrom.svg" alt="LinkedIn"><img src="../assets/svg/x-marrom.svg"
+                            alt="X"><img src="../assets/svg/telegram-marrom.svg" alt="Telegram">
+                    </div>
                     <?php echo $blog['textoBlog']; ?>
                 </div>
-            </section>
-        </section>
-        <section class="more-content">
-            <h1>Veja mais conteúdos</h1>
-            <div class="other-blogs-swiper">
-                <?php 
-                    $idPagina = $blog["idPagina"];
+            </div>
+        </div>
+    </section>
+    <section class="other-blogs">
+        <h1>Blog do Grupo</h1>
+        <div class="container">
+            <div class="swiper-other-blogs">
+                <?php
+                    $paginaId = $conteudoSeo['idPagina'];
+
                     foreach ($blogsArray as $blog) {
-                        if($blog->idPagina != $idPagina){
+                        if($paginaId != $blog->paginaId){
                             $dataBlog = $blog->dataBlog;
                             $categoriasId = $blog->categoriasId;
     
-                            $mesesEmPortugues = array(
-                                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-                                "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
-                            );
-    
-                            $diaDataBlog = date("d", strtotime($dataBlog));
-                            $mesDataBlog = date("m", strtotime($dataBlog));
-                            $anoDataBlog = date("y", strtotime($dataBlog));
-                            $mesPtDataBlog = $mesesEmPortugues[(int)date("m", strtotime($dataBlog)) - 1];
+                            $dataBlog = new DateTime($dataBlog);
+                            $dataBlog = $dataBlog->format('d/m/Y');
     
                             $primeiraCategoriaBlog = json_decode($categoriasId);
                             if($primeiraCategoriaBlog){
@@ -169,25 +181,18 @@ $redes = ob_get_clean();
                             $categoriasBlog = implode(',', $categoriasBlog);
                             
                             echo <<<HTML
-                            <a href="../blog-detalhes/{$blog->nomePagina}">
-                                <div class="blog-card">
-                                    <img loading="lazy" src="../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}" />
-                                    <div class="card-content">
-                                        <span>{$diaDataBlog} de {$mesPtDataBlog} de {$anoDataBlog}</span>
-                                        <h1>{$blog->tituloBlog}</h1>
-                                        <p>{$blog->subTituloBlog}</p>
-                                        <div class="actions">
-                                            <span>{$nomeCategoriaBlog}</span>
-                                            <div class="author">
-                                                <img loading="lazy" src="../assets/uploads/{$blog->imagemAutorBlog}" alt="{$blog->nomeAutorBlog}" />
-                                                <span>{$blog->nomeAutorBlog}</span>
-                                            </div>
-                                            <button class="blue-btn small">
-                                                Veja mais
-                                            </button>
-                                        </div>
+                            <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href="../blog-detalhes/{$blog->nomePagina}" class="col-12
+                                col-lg-6 card-blog-wrapper">
+                                <div class="card-blog">
+                                    <img src="../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                    <div>
+                                        <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                     </div>
-                                    <hr />
+                                    <h1>{$blog->tituloBlog}</h1>
+                                    <div class="outline-button">
+                                        Ler mais
+                                        <img src="../assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                    </div>
                                 </div>
                             </a>
                             HTML;
@@ -195,44 +200,28 @@ $redes = ob_get_clean();
                     }
                 ?>
             </div>
-            <a href="../blog" class="blue-btn center small">Abrir mais</a>
-        </section>
-        <?php echo formEmailNewsletter(); ?>
-    </main>
-    <?php cFooter(); ?>
-    <?php elementosGerais(); ?>
-    <?php scriptBody(); ?>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="../javascript/global.js"></script>
-    <script>
-        const whiteBg = document.querySelector(".white-bg");
-        const otherBlogsSwiper = document.querySelector(".other-blogs-swiper");
-        window.addEventListener("DOMContentLoaded", () => {
-        addContainerClassToDesktop(whiteBg);
-        addContainerClassToDesktop(otherBlogsSwiper);
-        });
-
-        window.addEventListener("resize", () => {
-        addContainerClassToDesktop(whiteBg);
-        addContainerClassToDesktop(otherBlogsSwiper);
-        });
-    </script>
     <script>
         $(document).ready(function () {
-        $(".other-blogs-swiper").slick({
-            infinite: true,
-            slidesToShow: 3,
-            responsive: [
-            {
-                breakpoint: 992,
-                settings: {
-                slidesToShow: 1,
-                },
-            },
-            ],
-        });
+            $(".swiper-other-blogs").slick({
+                infinite: true,
+                dots: true,
+                slidesToShow: 3,
+                responsive: [
+                    {
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 1,
+                        },
+                    },
+                ],
+            });
         });
     </script>
+    <script src="../javascript/global.js"></script>
 </body>
 
 </html>

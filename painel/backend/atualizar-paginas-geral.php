@@ -16,7 +16,7 @@ if(isset($_POST['origem']) && $_POST['origem'] == "atualizarGeral"){
 
             // Mapeia a categoriaId para o diretório correspondente
             $mapeamentoDiretorio = [
-                '3' => 'business-detalhes',
+                '3' => 'empresa-detalhes',
                 '4' => 'workshop-detalhes',
                 '6' => 'mentoria-detalhes',
                 '8' => 'consultoria-detalhes',

@@ -33,7 +33,23 @@ $categoriasArray = json_decode(json_encode($categoriasArray));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
+    
+    <!-- Tags Open Graph -->
+    <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
+    <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
+    <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
+    <meta name="description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
+    <meta name="keywords" content="<?php echo $conteudoSeo["palavrasChavesPagina"] ?>">
+    <meta name="robots" content="index,follow">
+    <meta name="rating" content="General">
+    <meta name="revisit-after" content="7 days">
+    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
+
+    <?php linksHead(); ?>
+
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/blog.css">

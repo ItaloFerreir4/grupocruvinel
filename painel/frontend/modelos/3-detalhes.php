@@ -73,7 +73,7 @@ $servicosArray = json_decode(json_encode($servicosArray));
             if($conteudo->numeroConteudo == 1){
                 echo <<<HTML
                 <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
-                <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagemwConteudo}">
+                <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-6 bloco-1">
@@ -96,28 +96,38 @@ $servicosArray = json_decode(json_encode($servicosArray));
         <div class="shaped-content container">
             <div class="row">
                 <div class="col-12 col-lg-6 company-image">
-                    <div class="img-wrapper"><img src="assets/uploads/<?php echo $business['imagemBusiness']; ?>" alt="<?php echo $business['legendaImagemBusiness']; ?>"></div>
+                    <div class="img-wrapper">
+                        <?php
+                        foreach ($conteudosArray as $conteudo) {
+                            if($conteudo->numeroConteudo == 4){
+                                echo <<<HTML
+                                <img src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                                HTML;
+                            }
+                        }
+                        ?>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-6 company-description">
                     <h1><?php echo $business['tituloBusiness']; ?></h1>
                     <div class="social-media">
-                        <img src="assets/svg/instagram-marrom.svg" alt="Instagram">
-                        <img src="assets/svg/facebook-marrom.svg" alt="Facebook">
-                        <img src="assets/svg/linkedin-marrom.svg" alt="LinkedIn">
-                        <img src="assets/svg/x-marrom.svg" alt="X">
-                        <img src="assets/svg/telegram-marrom.svg" alt="Telegram">
+                        <img src="../assets/svg/instagram-marrom.svg" alt="Instagram">
+                        <img src="../assets/svg/facebook-marrom.svg" alt="Facebook">
+                        <img src="../assets/svg/linkedin-marrom.svg" alt="LinkedIn">
+                        <img src="../assets/svg/x-marrom.svg" alt="X">
+                        <img src="../assets/svg/telegram-marrom.svg" alt="Telegram">
                     </div>
                     <?php echo $business['textoBusiness']; ?>
                     <a href="https://google.com" class="outline-button">
                         Saiba Mais
-                        <img src="assets/svg/seta-dir-marrom.svg" alt="Saiba Mais">
+                        <img src="../assets/svg/seta-dir-marrom.svg" alt="Saiba Mais">
                     </a>
                 </div>
             </div>
         </div>
     </section>
     <section class="field">
-        <img src="assets/png/fundo-area-de-atuacao.png" alt="Fundo">
+        <img src="../assets/png/fundo-area-de-atuacao.png" alt="Fundo">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-9 field-details">
@@ -147,7 +157,7 @@ $servicosArray = json_decode(json_encode($servicosArray));
                             Concordo com os Termos Gerais da Lei Geral de Proteção de Dados.</label>
                         <button type="button" class="send botao-enviar" onClick="EnviarFormulario(1)">
                             Enviar
-                            <img loading="lazy" src="assets/svg/seta-dir-amarela.svg" alt="Seta" />
+                            <img loading="lazy" src="../assets/svg/seta-dir-amarela.svg" alt="Seta" />
                         </button>
                     </form>
                 </div>
@@ -159,58 +169,32 @@ $servicosArray = json_decode(json_encode($servicosArray));
 
             <h1>Serviços</h1>
             <div class="social-media">
-                <img src="assets/svg/instagram-marrom.svg" alt="Instagram">
-                <img src="assets/svg/facebook-marrom.svg" alt="Facebook">
-                <img src="assets/svg/linkedin-marrom.svg" alt="LinkedIn">
-                <img src="assets/svg/x-marrom.svg" alt="X">
-                <img src="assets/svg/telegram-marrom.svg" alt="Telegram">
+                <img src="../assets/svg/instagram-marrom.svg" alt="Instagram">
+                <img src="../assets/svg/facebook-marrom.svg" alt="Facebook">
+                <img src="../assets/svg/linkedin-marrom.svg" alt="LinkedIn">
+                <img src="../assets/svg/x-marrom.svg" alt="X">
+                <img src="../assets/svg/telegram-marrom.svg" alt="Telegram">
             </div>
             <div class="swiper-services">
-                <div class="services-column">
-                    <?php
-                        foreach ($servicosArray as $servico) {
+                <?php
+                    $numColumns = 3;
+                    $totalServices = count($servicosArray);
+                    
+                    for ($i = 0; $i < $totalServices; $i += $numColumns) {
+                        echo '<div class="services-column">';
+                        
+                        for ($j = 0; $j < $numColumns && ($i + $j) < $totalServices; $j++) {
+                            $servico = $servicosArray[$i + $j];
                             echo <<<HTML
                             <div class="service">
                                 <p>{$servico->tituloServico}</p>
                             </div>
                             HTML;
                         }
-                    ?>
-                    
-                </div>
-                <div class="services-column">
-                    <div class="service">
-                        <p>Produção de Provas Técnicas para Processos Judiciais</p>
-                    </div>
-                    <div class="service">
-                        <p>Reversão Técnica de Sentença Desfavorável</p>
-                    </div>
-                    <div class="service">
-                        <p>Impugnação Técnica de Litígios Judiciais Desfavoráveis</p>
-                    </div>
-                </div>
-                <div class="services-column">
-                    <div class="service">
-                        <p>Produção de Provas Técnicas para Processos Judiciais</p>
-                    </div>
-                    <div class="service">
-                        <p>Reversão Técnica de Sentença Desfavorável</p>
-                    </div>
-                    <div class="service">
-                        <p>Impugnação Técnica de Litígios Judiciais Desfavoráveis</p>
-                    </div>
-                </div>
-                <div class="services-column">
-                    <div class="service">
-                        <p>Produção de Provas Técnicas para Processos Judiciais</p>
-                    </div>
-                    <div class="service">
-                        <p>Reversão Técnica de Sentença Desfavorável</p>
-                    </div>
-                    <div class="service">
-                        <p>Impugnação Técnica de Litígios Judiciais Desfavoráveis</p>
-                    </div>
-                </div>
+                        
+                        echo '</div>';
+                    }
+                ?>
             </div>
         </div>
     </section>
