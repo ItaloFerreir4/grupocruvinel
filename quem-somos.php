@@ -264,6 +264,23 @@ include_once("./assets/componentes.php");
                     <div class="col-12 col-lg-3"><img class="logo" src="assets/svg/logo-cruvinel-dourado.svg"
                             alt="Logo"></div>
                     <div class="col-12 col-lg-6 pages">
+                        <div class="accordion">
+                            <div class="title">
+                                <div>
+                                    <span class="limit-text">MENU NAVEGAÇÃO</span>
+                                </div>
+                            </div>
+                            <div class="panel">
+                                <a href="quem-somos.php">QUEM SOMOS</a>
+                                <a href="empresas.php">NOSSAS EMPRESAS</a>
+                                <a href="servicos.php">SERVIÇOS</a>
+                                <a href="depoimentos">DEPOIMENTOS</a>
+                                <a href="clientes.php">NOSSOS CLIENTES</a>
+                                <a href="blog.php">BLOG</a>
+                                <a href="fale-conosco.php">FALE CONOSCO</a>
+                                <a href="https://google.com">STHEFANO CRUVINEL CEO E FUNDADOR</a>
+                            </div>
+                        </div>
                         <a href="quem-somos.php">QUEM SOMOS</a>
                         <a href="empresas.php">NOSSAS EMPRESAS</a>
                         <a href="servicos.php">SERVIÇOS</a>

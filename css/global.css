@@ -249,6 +249,33 @@ footer .links .label-social-media {
   margin-right: 60px;
 }
 
+footer .links .accordion .title {
+  background-color: #191919;
+  border: 1px solid #2b2b2b;
+}
+
+footer .links .accordion .title::after {
+  content: url(../assets/svg/seta-menu-navegacao.svg);
+}
+
+footer .links .accordion.active .title::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+footer .links .accordion .title span {
+  color: var(--branco);
+  font-family: "OpenSans Bold";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+footer .links .accordion .panel {
+  background-color: #141414;
+  display: grid;
+}
+
 footer .location {
   background-color: var(--amarelo);
 }
@@ -328,9 +355,12 @@ footer .rights span {
     grid-auto-flow: row;
   }
 
-  footer .links .pages a {
+  footer .links .accordion .panel a {
     text-align: center;
-    margin-bottom: 10px;
+  }
+
+  footer .links .pages > a {
+    display: none;
   }
 
   footer .links .contact {
