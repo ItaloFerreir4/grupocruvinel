@@ -218,6 +218,11 @@
 }
 
 @media (max-width: 992px) {
+
+  .about {
+    margin-top: 5px;
+  }
+
   .about::before {
     content: "";
     display: block;
@@ -226,7 +231,7 @@
     background-color: var(--bege-3);
     position: absolute;
     left: 5%;
-    top: -64px;
+    top: -34px;
   }
 
   .about .text h1 {
