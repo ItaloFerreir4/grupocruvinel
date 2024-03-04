@@ -15,6 +15,11 @@
   z-index: 3;
 }
 
+.video-fundo{
+  width: 100%;
+  height: 100%;
+}
+
 .banner-slide {
   position: relative;
   height: 800px;
@@ -405,7 +410,7 @@
   margin-bottom: 20px;
 }
 
-.testimonials .white-box .testimonial a {
+.testimonials .white-box .testimonial .read-more {
   color: var(--bege-2);
   font-family: "OpenSans Bold";
   font-size: 20px;
@@ -425,6 +430,10 @@
 }
 
 /* newsletter */
+
+.newsletter{
+  margin: 70px 0;
+}
 
 .newsletter form {
   display: grid;
