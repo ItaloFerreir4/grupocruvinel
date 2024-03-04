@@ -51,11 +51,11 @@ $redes = ob_get_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
     <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
@@ -64,7 +64,9 @@ $redes = ob_get_clean();
     <meta name="robots" content="index,follow">
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
-    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
+    <title>
+        <?php echo $conteudoSeo["tituloPagina"] ?>
+    </title>
 
     <?php linksHead(); ?>
 
@@ -80,7 +82,7 @@ $redes = ob_get_clean();
     <section class="banner">
         <?php
         foreach ($conteudosArray as $conteudo) {
-            if($conteudo->numeroConteudo == 1){
+            if ($conteudo->numeroConteudo == 1) {
                 echo <<<HTML
                 <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                 <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}">
@@ -100,7 +102,7 @@ $redes = ob_get_clean();
             }
         }
         ?>
-        
+
     </section>
     <section class="about">
         <div class="shaped-content container">
@@ -109,7 +111,7 @@ $redes = ob_get_clean();
                     <div class="img-wrapper">
                         <?php
                         foreach ($conteudosArray as $conteudo) {
-                            if($conteudo->numeroConteudo == 4){
+                            if ($conteudo->numeroConteudo == 4) {
                                 echo <<<HTML
                                 <img src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                                 HTML;
@@ -119,15 +121,17 @@ $redes = ob_get_clean();
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 company-description">
-                    <h1><?php echo $business['tituloBusiness']; ?></h1>
+                    <h1>
+                        <?php echo $business['tituloBusiness']; ?>
+                    </h1>
                     <div class="social-media">
                         <?php echo $redes; ?>
                     </div>
                     <?php echo $business['textoBusiness']; ?>
-                    <a href="https://google.com" class="outline-button">
+                    <button onclick="scrollElemento('.field')" class="outline-button">
                         Saiba Mais
                         <img src="../assets/svg/seta-dir-marrom.svg" alt="Saiba Mais">
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -142,7 +146,7 @@ $redes = ob_get_clean();
                     <ul>
                         <?php
                         foreach ($conteudosArray as $conteudo) {
-                            if($conteudo->numeroConteudo == 2){
+                            if ($conteudo->numeroConteudo == 2) {
                                 echo <<<HTML
                                 <li>$conteudo->tituloConteudo</li>
                                 HTML;
@@ -179,23 +183,23 @@ $redes = ob_get_clean();
             </div>
             <div class="swiper-services">
                 <?php
-                    $numColumns = 3;
-                    $totalServices = count($servicosArray);
-                    
-                    for ($i = 0; $i < $totalServices; $i += $numColumns) {
-                        echo '<div class="services-column">';
-                        
-                        for ($j = 0; $j < $numColumns && ($i + $j) < $totalServices; $j++) {
-                            $servico = $servicosArray[$i + $j];
-                            echo <<<HTML
+                $numColumns = 3;
+                $totalServices = count($servicosArray);
+
+                for ($i = 0; $i < $totalServices; $i += $numColumns) {
+                    echo '<div class="services-column">';
+
+                    for ($j = 0; $j < $numColumns && ($i + $j) < $totalServices; $j++) {
+                        $servico = $servicosArray[$i + $j];
+                        echo <<<HTML
                             <div class="service">
                                 <p>{$servico->tituloServico}</p>
                             </div>
                             HTML;
-                        }
-                        
-                        echo '</div>';
                     }
+
+                    echo '</div>';
+                }
                 ?>
             </div>
         </div>
@@ -207,8 +211,8 @@ $redes = ob_get_clean();
             <div class="col-12 col-lg-6">
                 <div class="swiper-business">
                     <?php
-                        foreach ($empresasArray as $empresa) {
-                            echo <<<HTML
+                    foreach ($empresasArray as $empresa) {
+                        echo <<<HTML
                             <div class="business-card">
                                 <div class="business-info">
                                     <div class="info-content">
@@ -231,14 +235,14 @@ $redes = ob_get_clean();
                                 </div>
                             </div>
                             HTML;
-                        }
+                    }
                     ?>
                 </div>
             </div>
             <div class="col-12 col-lg-6 business-video">
                 <?php
                 foreach ($conteudosArray as $conteudo) {
-                    if($conteudo->numeroConteudo == 3){
+                    if ($conteudo->numeroConteudo == 3) {
                         $linkVideo = $conteudo->linkVideoConteudo;
 
                         if ($linkVideo) {
@@ -256,7 +260,7 @@ $redes = ob_get_clean();
                         } else {
                             $videoId = "";
                         }
-                        
+
                         echo <<<HTML
                             <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                         HTML;
@@ -266,7 +270,7 @@ $redes = ob_get_clean();
             </div>
         </div>
     </section>
-    
+
     <?php cFooter(); ?>
     <?php elementosGerais(); ?>
     <?php scriptBody(); ?>
