@@ -2,7 +2,8 @@
 
 define('BASE_URL', 'http://localhost/grupocruvinel');
 
-function cHeader(){
+function cHeader()
+{
     $baseURL = BASE_URL;
 
     echo <<<HTML
@@ -23,12 +24,12 @@ function cHeader(){
     HTML;
 }
 
-function cFooter(){
-    try{
+function cFooter()
+{
+    try {
         $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
-    }
-    catch (PDOException $ex){
-        echo 'Erro: '.$ex->getMessage();
+    } catch (PDOException $ex) {
+        echo 'Erro: ' . $ex->getMessage();
     }
 
     $sqlContatos = $con->prepare("SELECT * FROM contatos WHERE idContato = :idContato");
@@ -97,9 +98,9 @@ function cFooter(){
             <h1>{$conteudoContatos['enderecoContato']}</h1>
         </div>
         <div class="terms">
-            <a href="#">Termos de uso</a>
-            <a href="#">Política de privacidade</a>
-            <a href="#">Segurança no Uso da Internet</a>
+            <a href="{$urlBase}/termos-de-uso">Termos de uso</a>
+            <a href="{$urlBase}/politica-de-privacidade">Política de privacidade</a>
+            <a href="{$urlBase}/seguranca-no-uso">Segurança no Uso da Internet</a>
         </div>
         <div class="rights">
             <div class="container">
@@ -113,10 +114,11 @@ function cFooter(){
             </div>
         </div>
     </footer>
-    HTML;
+HTML;
 }
 
-function redesSociaisCompartilhar($cor){
+function redesSociaisCompartilhar($cor)
+{
 
     echo '
         <a href="javascript:" onClick="Compartilhar(this)" title="facebook"><img loading="lazy" src="' . BASE_URL . '/assets/svg/facebook-' . $cor . '.svg" alt="facebook"></a> 
@@ -127,12 +129,12 @@ function redesSociaisCompartilhar($cor){
     ';
 }
 
-function redesSociais($cor) {
-    try{
+function redesSociais($cor)
+{
+    try {
         $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
-    }
-    catch (PDOException $ex){
-        echo 'Erro: '.$ex->getMessage();
+    } catch (PDOException $ex) {
+        echo 'Erro: ' . $ex->getMessage();
     }
 
     $sqlRedes = $con->prepare("SELECT * FROM redes WHERE idRede = :idRede");
@@ -166,7 +168,8 @@ function redesSociais($cor) {
     }
 }
 
-function elementosGerais(){
+function elementosGerais()
+{
     echo <<<HTML
         <div class="popup-video" id="popupVideo">
             <span class="fecha-popup" id="fechaPopup" onClick="PopUpVideo('Fechando')"></span>
@@ -182,26 +185,28 @@ function elementosGerais(){
     HTML;
 }
 
-function linksHead(){
+function linksHead()
+{
     echo '
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.min.css">
     ';
 }
 
-function scriptBody(){
+function scriptBody()
+{
     echo '
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.js"></script>
     ';
 }
 
-function formEmailNewsletter(){
-    try{
+function formEmailNewsletter()
+{
+    try {
         $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
-    }
-    catch (PDOException $ex){
-        echo 'Erro: '.$ex->getMessage();
+    } catch (PDOException $ex) {
+        echo 'Erro: ' . $ex->getMessage();
     }
 
     $sqlFormulario = $con->prepare("SELECT * FROM formularios WHERE descricaoFormulario = :descricaoFormulario");
@@ -246,7 +251,8 @@ function formEmailNewsletter(){
         HTML;
 }
 
-function banner($titulo, $altDesktop, $altMobile, $srcDesktop, $srcMobile){
+function banner($titulo, $altDesktop, $altMobile, $srcDesktop, $srcMobile)
+{
 
     echo <<<HTML
     <div class="banner">

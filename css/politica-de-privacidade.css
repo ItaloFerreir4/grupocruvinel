@@ -1,0 +1,32 @@
+.shaped-content > * {
+  padding: 0 30px;
+}
+
+.shaped-content > *:first-child {
+  padding-top: 50px;
+}
+
+.shaped-content > *:last-child {
+  padding-bottom: 50px;
+}
+
+.shaped-content h1 {
+  color: var(--branco);
+  font-family: "OpenSans Bold";
+  font-size: 33px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.shaped-content p {
+  color: var(--preto);
+  font-family: "OpenSans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 28px;
+}

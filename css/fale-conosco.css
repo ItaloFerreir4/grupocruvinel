@@ -54,7 +54,7 @@
 
 .contact-us .contact-info > div span {
   color: var(--marrom);
-  font-family: "Open Sans";
+  font-family: "OpenSans";
   font-size: 19px;
   font-style: normal;
   font-weight: 600;
@@ -63,7 +63,7 @@
 
 .contact-us .contact-info > div strong {
   color: var(--marrom);
-  font-family: "Open Sans";
+  font-family: "OpenSans";
   font-size: 19px;
   font-style: normal;
   font-weight: 800;
@@ -80,7 +80,7 @@
 
 .map h2 {
   color: var(--marrom);
-  font-family: "Open Sans";
+  font-family: "OpenSans";
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
