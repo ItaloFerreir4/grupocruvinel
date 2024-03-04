@@ -81,9 +81,30 @@ $redes = ob_get_clean();
             <?php
             foreach ($conteudosArray as $conteudo) {
                 if($conteudo->numeroConteudo == 1){
+
+                    $url_base = BASE_URL;
+                    $linkVideo = $conteudo->linkVideoConteudo;
+
+                    if ($linkVideo) {
+                        if (strpos($linkVideo, "shorts") !== false) {
+                            $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
+                        }
+                        $parts = parse_url($linkVideo);
+                        $videoId = "";
+
+                        parse_str($parts['query'], $query);
+
+                        if (isset($query['v'])) {
+                            $videoId = $query['v'];
+                            $iframe = '<iframe class="video-fundo" src="'.$url_base.'/assets/video-fundo-home.html?idVideo='.$videoId.'"></iframe>';
+                        }
+                    } else {
+                        $iframe = '<img src="assets/uploads/'.$conteudo->imagem1Conteudo.'" alt="'.$conteudo->legendaImagem1Conteudo.'">';
+                    }
+                    
                     echo <<<HTML
                     <div class="banner-slide">
-                        <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                        {$iframe}
                         <div class="content">
                             {$conteudo->textoConteudo}
                             <a href="{$conteudo->linkBotao1}" title="{$conteudo->nomeBotao1}" target="{$conteudo->targetBotao1}">
@@ -171,8 +192,27 @@ $redes = ob_get_clean();
                     <?php
                     foreach ($conteudosArray as $conteudo) {
                         if($conteudo->numeroConteudo == 5){
+
+                            $linkVideo = $conteudo->linkVideoConteudo;
+
+                            if ($linkVideo) {
+                                if (strpos($linkVideo, "shorts") !== false) {
+                                    $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
+                                }
+                                $parts = parse_url($linkVideo);
+                                $videoId = "";
+
+                                parse_str($parts['query'], $query);
+
+                                if (isset($query['v'])) {
+                                    $videoId = $query['v'];
+                                }
+                            } else {
+                                $videoId = "";
+                            }
+                            
                             echo <<<HTML
-                            <div class="slide-testimonial">
+                            <div class="slide-testimonial cursor-pointer"  onClick="PopUpVideo('{$videoId}')">
                                 <div class="row">
                                     <div class="col-12 col-lg-3 company">
                                         <img src="./assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
@@ -181,8 +221,10 @@ $redes = ob_get_clean();
                                     </div>
                                     <div class="col-12 col-lg-9 testimonial">
                                         {$conteudo->textoConteudo}
-                                        <a href="{$conteudo->linkBotao1}" class="read-more" target="{$conteudo->targetBotao1}">Ler mais <img src="./assets/svg/play-ler-mais.svg"
-                                                alt="Ler Mais"></a>
+                                        <span class="read-more" target="{$conteudo->targetBotao1}">
+                                            Ler mais 
+                                            <img src="./assets/svg/play-ler-mais.svg" alt="Ler Mais">
+                                        </span>
                                     </div>
                                 </div>
                             </div>

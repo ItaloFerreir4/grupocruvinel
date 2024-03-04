@@ -196,6 +196,13 @@ header a {
   line-height: normal;
   padding: 15px;
   border: 1px solid transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+header nav a:hover{
+  border: 1px solid var(--amarelo);
+  color: var(--amarelo);
 }
 
 header .content-buttons {
@@ -244,7 +251,12 @@ footer .links a {
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: normal;  
+  transition: all 0.3s ease-in-out;
+}
+
+footer .links a:hover{
+  color: var(--amarelo);
 }
 
 footer .links .pages {
@@ -298,6 +310,7 @@ footer .location h1 {
   line-height: normal;
   text-align: center;
   padding: 30px 0;
+  margin: 0;
 }
 
 footer .terms {
@@ -318,6 +331,10 @@ footer .terms a {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+footer .rights{
+  background-color: var(--bege-3);
 }
 
 footer .rights p,

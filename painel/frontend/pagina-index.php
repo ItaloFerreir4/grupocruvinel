@@ -100,7 +100,7 @@ echo ''
                                         <input type="text" class="form-control" id="legendaImagem4Conteudo" name="legendaImagem4Conteudo">
                                     </div>
                                 </div>
-                                <div class="col-12 hidden">
+                                <div class="col-12">
                                     <div class="form-group">  
                                         <label>Link Video</label>                                            
                                         <input type="text" class="form-control" id="linkVideoConteudo" name="linkVideoConteudo">

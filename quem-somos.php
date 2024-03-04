@@ -115,9 +115,28 @@ $redes = ob_get_clean();
                             <?php
                             foreach ($conteudosArray as $conteudo) {
                                 if($conteudo->numeroConteudo == 4){
+
+                                    $linkVideo = $conteudo->linkVideoConteudo;
+
+                                    if ($linkVideo) {
+                                        if (strpos($linkVideo, "shorts") !== false) {
+                                            $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
+                                        }
+                                        $parts = parse_url($linkVideo);
+                                        $videoId = "";
+
+                                        parse_str($parts['query'], $query);
+
+                                        if (isset($query['v'])) {
+                                            $videoId = $query['v'];
+                                        }
+                                    } else {
+                                        $videoId = "";
+                                    }
+                                    
                                     echo <<<HTML
                                     <div class="col-12 col-lg-4 video">
-                                        <div class="watch-video">
+                                        <div class="watch-video cursor-pointer"  onClick="PopUpVideo('{$videoId}')">
                                             <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}" class="video-bg">
                                         </div>
                                     </div>
@@ -189,6 +208,38 @@ $redes = ob_get_clean();
             }
             ?>
         </div>
+    </section>
+    <section class="background-video">
+        <?php
+        foreach ($conteudosArray as $conteudo) {
+            if($conteudo->numeroConteudo == 8){
+
+                $linkVideo = $conteudo->linkVideoConteudo;
+
+                if ($linkVideo) {
+                    if (strpos($linkVideo, "shorts") !== false) {
+                        $linkVideo = str_replace("shorts/", "watch?v=", $linkVideo);
+                    }
+                    $parts = parse_url($linkVideo);
+                    $videoId = "";
+
+                    parse_str($parts['query'], $query);
+
+                    if (isset($query['v'])) {
+                        $videoId = $query['v'];
+                    }
+                } else {
+                    $videoId = "";
+                }
+
+                $url_base = BASE_URL;
+
+                echo <<<HTML
+                <iframe loading="lazy" src="{$url_base}/assets/video-fundo-home.html?idVideo={$videoId}"></iframe>
+                HTML;
+            }
+        }
+        ?>
     </section>
     <section class="other-blogs">
         <h1>Blog do Grupo</h1>
