@@ -56,6 +56,7 @@ $redes = ob_get_clean();
 
     <?php linksHead(); ?>
 
+    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/politica-de-privacidade.css">

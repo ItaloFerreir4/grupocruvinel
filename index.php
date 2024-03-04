@@ -35,9 +35,18 @@ $sqlEmpresas->execute();
 $empresasArray = $sqlEmpresas->fetchAll(PDO::FETCH_ASSOC);
 $empresasArray = json_decode(json_encode($empresasArray));
 
+$sqlFormulario = $con->prepare("SELECT * FROM formularios WHERE descricaoFormulario = :descricaoFormulario");
+$sqlFormulario->bindValue(":descricaoFormulario", 'newsletter');
+$sqlFormulario->execute();
+$formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
+
 ob_start();
 redesSociais("marrom");
-$redes = ob_get_clean();
+$redesMarrom = ob_get_clean();
+
+ob_start();
+redesSociais("amarelo");
+$redesAmarelo = ob_get_clean();
 
 ?>
 
@@ -66,7 +75,7 @@ $redes = ob_get_clean();
 
     <?php linksHead(); ?>
 
-
+    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -129,7 +138,7 @@ $redes = ob_get_clean();
                             if ($conteudo->numeroConteudo == 2) {
                                 echo <<<HTML
                                 <div class="social-media">
-                                    {$redes}
+                                    {$redesMarrom}
                                 </div>
                                 <h1>{$conteudo->tituloConteudo}</h1>
                                 {$conteudo->textoConteudo}
@@ -181,7 +190,7 @@ $redes = ob_get_clean();
                     ?>
                 </div>
                 <div class="social-media">
-                    <?php echo $redes; ?>
+                    <?php echo $redesAmarelo; ?>
                 </div>
             </div>
         </section>
@@ -245,7 +254,11 @@ $redes = ob_get_clean();
                         <p>Receba meus lançamentos e novidades na sua caixa de mensagens ou WhatsApp.</p>
                     </div>
                     <div class="col-12 col-lg-6">
-                        <form>
+                        <form id="formulario-1">
+                            <input type="hidden" name="origem" id="origem" value="formulario">
+                            <input type="hidden" name="newsLetter" id="newsLetter" value="sim">
+                            <input type="hidden" name="quemRecebe" id="quemRecebe" value="<?php echo $formulario['emailFormulario']; ?>">
+                            <input type="hidden" name="tituloPagina" id="tituloPagina" value="">
                             <input name="contatoNome" id="contatoNome" type="text" placeholder="Nome" />
                             <input name="contatoEmail" id="contatoEmail" type="text" placeholder="E-mail" />
                             <input name="contatoTelefone" id="contatoTelefone" type="text" placeholder="WhatsApp"
@@ -282,7 +295,7 @@ $redes = ob_get_clean();
                                                 <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
                                             </div>
                                             <div class="social-media">
-                                                {$redes}
+                                                {$redesMarrom}
                                             </div>
                                             <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
                                                 <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
@@ -437,11 +450,16 @@ $redes = ob_get_clean();
                 infinite: true,
                 dots: true,
                 slidesToShow: 1,
+                autoplay: true,
+                autoplaySpeed: 4000,
             });
             $(".swiper-financial").slick({
                 infinite: true,
                 dots: true,
                 slidesToShow: 5,
+                slidesToScroll: 3,
+                autoplay: true,
+                autoplaySpeed: 4000,
                 responsive: [
                     {
                         breakpoint: 992,
@@ -455,7 +473,7 @@ $redes = ob_get_clean();
                 infinite: true,
                 dots: true,
                 autoplay: true,
-                autoplaySpeed: 7000,
+                autoplaySpeed: 6000,
                 slidesToShow: 1,
             });
             $(".swiper-clients").slick({

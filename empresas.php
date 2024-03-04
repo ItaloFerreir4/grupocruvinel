@@ -43,6 +43,8 @@ $empresasArray = json_decode(json_encode($empresasArray));
     <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
 
     <?php linksHead(); ?>
+    
+    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/empresas.css">

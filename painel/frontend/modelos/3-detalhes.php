@@ -39,6 +39,11 @@ $sqlEmpresas->execute();
 $empresasArray = $sqlEmpresas->fetchAll(PDO::FETCH_ASSOC);
 $empresasArray = json_decode(json_encode($empresasArray));
 
+$sqlFormulario = $con->prepare("SELECT * FROM formularios WHERE paginaId = :paginaId");
+$sqlFormulario->bindValue(":paginaId", $conteudoSeo["idPagina"]);
+$sqlFormulario->execute();
+$formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
+
 ob_start();
 redesSociais("marrom");
 $redes = ob_get_clean();
@@ -70,6 +75,7 @@ $redes = ob_get_clean();
 
     <?php linksHead(); ?>
 
+    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="../css/bootstrap.css">
@@ -157,7 +163,10 @@ $redes = ob_get_clean();
                 </div>
                 <div class="col-12 col-lg-3 customer-service">
                     <h1>Fale com o nosso atendimento agora mesmo!</h1>
-                    <form>
+                    <form id="formulario-1">
+                        <input type="hidden" name="origem" id="origem" value="formulario">
+                        <input type="hidden" name="quemRecebe" id="quemRecebe" value="<?php echo $formulario['emailFormulario']; ?>">
+                        <input type="hidden" name="tituloPagina" id="tituloPagina" value="">
                         <input name="contatoNome" id="contatoNome" type="text" placeholder="Nome" />
                         <input name="contatoEmail" id="contatoEmail" type="text" placeholder="E-mail" />
                         <input name="contatoTelefone" id="contatoTelefone" type="text" placeholder="WhatsApp"

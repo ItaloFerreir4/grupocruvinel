@@ -73,6 +73,14 @@ if (isset($_POST['origem'])) {
                                             echo false;
                                         }
                                     }
+
+                                    $sql = $con->prepare('INSERT INTO formularios(paginaId) VALUES(:paginaId)');
+                                    $sql->bindValue(":paginaId", $conteudoPagina['idPagina']);
+                                    if ($sql->execute()) {
+                                        // echo true;
+                                    } else {
+                                        echo false;
+                                    }
                                     break;
 
                                 case 4:

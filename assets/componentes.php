@@ -2,8 +2,7 @@
 
 define('BASE_URL', 'http://localhost/grupocruvinel');
 
-function cHeader()
-{
+function cHeader(){
     $baseURL = BASE_URL;
 
     echo <<<HTML
@@ -32,8 +31,7 @@ function cHeader()
 HTML;
 }
 
-function cFooter()
-{
+function cFooter(){
     try {
         $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
     } catch (PDOException $ex) {
@@ -93,7 +91,7 @@ function cFooter()
                 </div>
                 <div class="row">
                     <div class="col-12 col-lg-3"></div>
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12 col-lg-9">
                         <span class="label-social-media">Siga meus canais</span>
                         <div class="social-media">
                             {$redes}
@@ -125,8 +123,7 @@ function cFooter()
 HTML;
 }
 
-function redesSociaisCompartilhar($cor)
-{
+function redesSociaisCompartilhar($cor){
 
     echo '
         <a href="javascript:" onClick="Compartilhar(this)" title="facebook"><img loading="lazy" src="' . BASE_URL . '/assets/svg/facebook-' . $cor . '.svg" alt="facebook"></a> 
@@ -137,8 +134,7 @@ function redesSociaisCompartilhar($cor)
     ';
 }
 
-function redesSociais($cor)
-{
+function redesSociais($cor){
     try {
         $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
     } catch (PDOException $ex) {
@@ -176,8 +172,7 @@ function redesSociais($cor)
     }
 }
 
-function elementosGerais()
-{
+function elementosGerais(){
     echo <<<HTML
         <div class="popup-video" id="popupVideo">
             <span class="fecha-popup" id="fechaPopup" onClick="PopUpVideo('Fechando')"></span>
@@ -193,24 +188,21 @@ function elementosGerais()
     HTML;
 }
 
-function linksHead()
-{
+function linksHead(){
     echo '
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.min.css">
     ';
 }
 
-function scriptBody()
-{
+function scriptBody(){
     echo '
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.js"></script>
     ';
 }
 
-function formEmailNewsletter()
-{
+function formEmailNewsletter(){
     try {
         $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
     } catch (PDOException $ex) {
@@ -259,8 +251,7 @@ function formEmailNewsletter()
         HTML;
 }
 
-function banner($titulo, $altDesktop, $altMobile, $srcDesktop, $srcMobile)
-{
+function banner($titulo, $altDesktop, $altMobile, $srcDesktop, $srcMobile){
 
     echo <<<HTML
     <div class="banner">

@@ -60,6 +60,7 @@ $categoriasArray = json_decode(json_encode($categoriasArray));
 
     <?php linksHead(); ?>
 
+    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="css/bootstrap.css">
@@ -228,6 +229,7 @@ $categoriasArray = json_decode(json_encode($categoriasArray));
             });
         });
     </script>
+    <script src="javascript/global.js"></script>
 </body>
 
 </html>

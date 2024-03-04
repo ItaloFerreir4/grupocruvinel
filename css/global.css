@@ -185,6 +185,13 @@ header a {
   line-height: normal;
   padding: 15px;
   border: 1px solid transparent;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+header nav a:hover{
+  border-color: var(--amarelo);
+  color: var(--amarelo);
 }
 
 header .logo {
@@ -254,6 +261,11 @@ footer .links a {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  transition: all 0.3s ease-in-out;
+}
+
+footer .links a:hover{
+  color: var(--amarelo);
 }
 
 footer .links .pages {
@@ -313,6 +325,7 @@ footer .location h1 {
   line-height: normal;
   text-align: center;
   padding: 30px 0;
+  margin: 0;
 }
 
 footer .terms {
@@ -333,6 +346,10 @@ footer .terms a {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+footer .rights{
+  background-color: #FFF;
 }
 
 footer .rights p,
@@ -1224,6 +1241,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business {
+  position: relative;
   z-index: 1;
 }
 

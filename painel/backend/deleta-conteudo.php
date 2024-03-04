@@ -53,6 +53,18 @@ if (isset($_POST['origem'])) {
                                 // echo "Erro: " . $e->getMessage();
                                 echo false;
                             }
+                            try {
+                                $sql = $con->prepare('DELETE FROM formularios WHERE paginaId = :idPagina');
+                                $sql->bindValue(":idPagina", $_POST['idPagina']);
+                                if ($sql->execute()) {
+                                    // echo true;
+                                } else {
+                                    echo false;
+                                }
+                            } catch (PDOException $e) {
+                                // echo "Erro: " . $e->getMessage();
+                                echo false;
+                            }
                             break;
 
                         case 4:
