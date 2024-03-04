@@ -80,7 +80,7 @@ $redes = ob_get_clean();
         <div class="swiper-banner">
             <?php
             foreach ($conteudosArray as $conteudo) {
-                if($conteudo->numeroConteudo == 1){
+                if ($conteudo->numeroConteudo == 1) {
 
                     $url_base = BASE_URL;
                     $linkVideo = $conteudo->linkVideoConteudo;
@@ -96,12 +96,12 @@ $redes = ob_get_clean();
 
                         if (isset($query['v'])) {
                             $videoId = $query['v'];
-                            $iframe = '<iframe class="video-fundo" src="'.$url_base.'/assets/video-fundo-home.html?idVideo='.$videoId.'"></iframe>';
+                            $iframe = '<iframe class="video-fundo" src="' . $url_base . '/assets/video-fundo-home.html?idVideo=' . $videoId . '"></iframe>';
                         }
                     } else {
-                        $iframe = '<img src="assets/uploads/'.$conteudo->imagem1Conteudo.'" alt="'.$conteudo->legendaImagem1Conteudo.'">';
+                        $iframe = '<img src="assets/uploads/' . $conteudo->imagem1Conteudo . '" alt="' . $conteudo->legendaImagem1Conteudo . '">';
                     }
-                    
+
                     echo <<<HTML
                     <div class="banner-slide">
                         {$iframe}
@@ -126,7 +126,7 @@ $redes = ob_get_clean();
                     <div class="col-12 col-lg-6 text">
                         <?php
                         foreach ($conteudosArray as $conteudo) {
-                            if($conteudo->numeroConteudo == 2){
+                            if ($conteudo->numeroConteudo == 2) {
                                 echo <<<HTML
                                 <div class="social-media">
                                     {$redes}
@@ -147,7 +147,7 @@ $redes = ob_get_clean();
                     <div class="col-12 col-lg-6 image">
                         <?php
                         foreach ($conteudosArray as $conteudo) {
-                            if($conteudo->numeroConteudo == 3){
+                            if ($conteudo->numeroConteudo == 3) {
                                 echo <<<HTML
                                 <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                                 <div class="brown-box">
@@ -168,7 +168,7 @@ $redes = ob_get_clean();
                 <div class="swiper-financial">
                     <?php
                     foreach ($conteudosArray as $conteudo) {
-                        if($conteudo->numeroConteudo == 4){
+                        if ($conteudo->numeroConteudo == 4) {
                             echo <<<HTML
                             <div class="financial-card">
                                 <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
@@ -191,7 +191,7 @@ $redes = ob_get_clean();
                 <div class="swiper-testimonials">
                     <?php
                     foreach ($conteudosArray as $conteudo) {
-                        if($conteudo->numeroConteudo == 5){
+                        if ($conteudo->numeroConteudo == 5) {
 
                             $linkVideo = $conteudo->linkVideoConteudo;
 
@@ -210,7 +210,7 @@ $redes = ob_get_clean();
                             } else {
                                 $videoId = "";
                             }
-                            
+
                             echo <<<HTML
                             <div class="slide-testimonial cursor-pointer"  onClick="PopUpVideo('{$videoId}')">
                                 <div class="row">
@@ -269,8 +269,8 @@ $redes = ob_get_clean();
                 <div class="col-12 col-lg-6">
                     <div class="swiper-business">
                         <?php
-                            foreach ($empresasArray as $empresa) {
-                                echo <<<HTML
+                        foreach ($empresasArray as $empresa) {
+                            echo <<<HTML
                                 <div class="business-card">
                                     <div class="business-info">
                                         <div class="info-content">
@@ -293,14 +293,14 @@ $redes = ob_get_clean();
                                     </div>
                                 </div>
                                 HTML;
-                            }
+                        }
                         ?>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 business-video">
                     <?php
                     foreach ($conteudosArray as $conteudo) {
-                        if($conteudo->numeroConteudo == 6){
+                        if ($conteudo->numeroConteudo == 6) {
                             $linkVideo = $conteudo->linkVideoConteudo;
 
                             if ($linkVideo) {
@@ -318,7 +318,7 @@ $redes = ob_get_clean();
                             } else {
                                 $videoId = "";
                             }
-                            
+
                             echo <<<HTML
                                 <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                             HTML;
@@ -337,7 +337,7 @@ $redes = ob_get_clean();
                         <h1>O que fazemos?</h1>
                         <?php
                         foreach ($conteudosArray as $conteudo) {
-                            if($conteudo->numeroConteudo == 7){
+                            if ($conteudo->numeroConteudo == 7) {
                                 echo <<<HTML
                                 {$conteudo->textoConteudo}
                                 <a href="{$conteudo->linkBotao1}" titlle="{$conteudo->nomeBotao1}" target="{$conteudo->targetBotao1}">
@@ -354,7 +354,7 @@ $redes = ob_get_clean();
                     <div class="col-12 col-lg-8">
                         <?php
                         foreach ($conteudosArray as $conteudo) {
-                            if($conteudo->numeroConteudo == 8){
+                            if ($conteudo->numeroConteudo == 8) {
                                 echo <<<HTML
                                 <div class="card"><span>{$conteudo->tituloConteudo}</span></div>
                                 HTML;
@@ -388,25 +388,24 @@ $redes = ob_get_clean();
             <div class="container">
                 <div class="swiper-other-blogs">
                     <?php
-                        foreach ($blogsArray as $blog) {
-                            $dataBlog = $blog->dataBlog;
-                            $categoriasId = $blog->categoriasId;
-                            $dataBlog = new DateTime($dataBlog);
-                            $dataBlog = $dataBlog->format('d/m/Y');
-                            $primeiraCategoriaBlog = json_decode($categoriasId);
-                            if($primeiraCategoriaBlog){
-                                $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
-                                foreach ($categoriasArray as $rowCat) {
-                                    if($rowCat->idCategoria == $primeiraCategoriaBlog){
-                                        $nomeCategoriaBlog = $rowCat->nomeCategoria;
-                                    }
+                    foreach ($blogsArray as $blog) {
+                        $dataBlog = $blog->dataBlog;
+                        $categoriasId = $blog->categoriasId;
+                        $dataBlog = new DateTime($dataBlog);
+                        $dataBlog = $dataBlog->format('d/m/Y');
+                        $primeiraCategoriaBlog = json_decode($categoriasId);
+                        if ($primeiraCategoriaBlog) {
+                            $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+                            foreach ($categoriasArray as $rowCat) {
+                                if ($rowCat->idCategoria == $primeiraCategoriaBlog) {
+                                    $nomeCategoriaBlog = $rowCat->nomeCategoria;
                                 }
                             }
-                            else{
-                                $nomeCategoriaBlog = "";
-                            }
-                
-                            echo <<<HTML
+                        } else {
+                            $nomeCategoriaBlog = "";
+                        }
+
+                        echo <<<HTML
                             <a href="./blog-detalhes/{$blog->nomePagina}">
                                 <div class="card-blog">
                                     <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
@@ -421,7 +420,7 @@ $redes = ob_get_clean();
                                 </div>
                             </a>
                             HTML;
-                        }
+                    }
                     ?>
                 </div>
             </div>
@@ -455,7 +454,6 @@ $redes = ob_get_clean();
             $(".swiper-testimonials").slick({
                 infinite: true,
                 dots: true,
-                arrows: false,
                 autoplay: true,
                 autoplaySpeed: 7000,
                 slidesToShow: 1,
