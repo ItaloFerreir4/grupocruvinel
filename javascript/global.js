@@ -308,14 +308,20 @@ window.addEventListener("DOMContentLoaded", () => {
   // const mapMobileButton = document.querySelector(".map.mobile > button");
 
   if (isMobile) {
+    handleNavButtonsSizeOnMobile(navIsOpen);
+
     buttonMenu.addEventListener("click", () => {
       navIsOpen = !navIsOpen;
+      handleNavButtonsSizeOnMobile(navIsOpen);
     });
-    // mapMobileButton.addEventListener("click", () => {
-    //   footerIsOpen = !footerIsOpen;
-    //   handleFooterMapOnMobile(footerIsOpen);
-    // });
-    // handleFooterMapOnMobile(footerIsOpen);
+
+    function handleNavButtonsSizeOnMobile(navIsOpen) {
+      console.log("chamou");
+      const expand = document.querySelector("nav .expand");
+      navIsOpen
+        ? (expand.style.maxHeight = "calc(100vh - 115px)")
+        : (expand.style.maxHeight = "0");
+    }
   }
 
   if (instagram) {

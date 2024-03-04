@@ -160,6 +160,7 @@ header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  height: 115px;
   z-index: 100;
   top: 0;
   left: 0;
@@ -176,18 +177,6 @@ header nav {
 }
 
 header a {
-  /* position: absolute;
-  display: flex;
-  flex-direction: column;
-  left: 0;
-  top: 100px;
-  background-color: var(--azul-escuro);
-  z-index: 100;
-  width: 100%;
-  overflow-y: scroll;
-  z-index: 100;
-  transition: max-height 0.3s ease-out;
-  height: calc(100vh - 100px); */
   color: var(--branco, #fff);
   font-family: "OpenSans Bold";
   font-size: 18px;
@@ -196,6 +185,10 @@ header a {
   line-height: normal;
   padding: 15px;
   border: 1px solid transparent;
+}
+
+header .logo {
+  height: 85px;
 }
 
 header .content-buttons {
@@ -212,12 +205,23 @@ header .menu img {
   height: 20px;
 }
 
-@media (max-width: 992px) {
-  header .logo {
-    width: 110px;
-  }
+header .expand {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  overflow-y: scroll;
+  transition: max-height 0.3s ease-out;
+  background-color: var(--cinza);
+  height: calc(100vh - 115px);
+  width: 100%;
+  left: 0;
+  top: 114px;
+  max-height: 0px;
+}
 
-  header nav a {
+@media (max-width: 992px) {
+  header nav > a {
     display: none;
   }
 
@@ -444,7 +448,7 @@ footer .rights span {
 .banner {
   position: relative;
   padding: 150px 0 100px;
-  margin-top: 115px;
+  margin-top: 114px;
   z-index: 1;
 }
 
@@ -491,23 +495,6 @@ footer .rights span {
   .banner {
     margin-top: 95px;
   }
-}
-
-/* banner-thin */
-
-.banner-thin {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 240px;
-  width: 100%;
-  z-index: -1;
-}
-
-.banner-thin img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
 }
 
 /* white-bg */

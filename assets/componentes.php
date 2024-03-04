@@ -19,9 +19,17 @@ function cHeader()
             <button class="menu">
                 <img src="{$baseURL}/assets/svg/menu.svg" alt="Menu">
             </button>
+            <div class="expand">
+                <a href="{$baseURL}/quem-somos">QUEM SOMOS</a>
+                <a href="{$baseURL}/empresas">EMPRESAS</a>
+                <a href="{$baseURL}/servicos">SERVICOS</a>
+                <a href="{$baseURL}/clientes">CLIENTES</a>
+                <a href="{$baseURL}/blog">BLOG</a>
+                <a href="{$baseURL}/fale-conosco">FALE CONOSCO</a>
+            </div>
         </nav>
     </header>
-    HTML;
+HTML;
 }
 
 function cFooter()
