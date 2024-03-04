@@ -10,7 +10,7 @@
   padding-bottom: 50px;
 }
 
-h1 {
+.shaped-conent h1 {
   color: var(--branco);
   font-family: "OpenSans Bold";
   font-size: 33px;
@@ -21,7 +21,7 @@ h1 {
   text-align: center;
 }
 
-p {
+.shaped-conent p {
   color: var(--preto);
   font-family: "OpenSans";
   font-size: 14px;
