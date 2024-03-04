@@ -203,6 +203,7 @@ header .content-buttons {
 }
 
 header .menu {
+  display: none;
   background-color: transparent;
   padding: 10px;
 }
@@ -212,15 +213,19 @@ header .menu img {
 }
 
 @media (max-width: 992px) {
-  header .logo{
+  header .logo {
     width: 110px;
   }
-  
+
   header nav a {
     display: none;
   }
 
-  header .menu img{
+  header .menu {
+    display: block;
+  }
+
+  header .menu img {
     width: 30px;
     height: auto;
   }
@@ -255,7 +260,13 @@ footer .links .pages {
 }
 
 footer .links .label-social-media {
+  display: inline-block;
+  margin-top: 20px;
   margin-right: 60px;
+}
+
+footer .links .accordion {
+  display: none;
 }
 
 footer .links .accordion .title {
@@ -387,6 +398,10 @@ footer .rights span {
     margin-top: 15px;
   }
 
+  footer .links .accordion {
+    display: block;
+  }
+
   footer .links .label-social-media {
     display: block;
     margin-right: 0;
@@ -471,7 +486,7 @@ footer .rights span {
   line-height: normal;
 }
 
-@media(max-width: 1200px){
+@media (max-width: 1200px) {
   .banner {
     margin-top: 95px;
   }
@@ -1209,7 +1224,7 @@ input[type="text"].parsley-error::placeholder {
   width: 500px;
 }
 
-.business .row{
+.business .row {
   gap: 0;
 }
 
@@ -1325,8 +1340,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 @media (max-width: 992px) {
-
-  .business{
+  .business {
     padding: 0;
   }
 
@@ -1352,13 +1366,13 @@ input[type="text"].parsley-error::placeholder {
     transform: translateX(-50%);
   }
 
-  .business .business-video{
+  .business .business-video {
     margin: 0 0 50px;
     padding: 0 10px;
     background-color: transparent;
   }
 
-  .business::after{
+  .business::after {
     bottom: -20px;
   }
 
@@ -1428,7 +1442,7 @@ input[type="text"].parsley-error::placeholder {
 
 .contact-form h1 {
   color: var(--bege-2);
-  font-family: "Open Sans";
+  font-family: "OpenSans";
   font-size: 34px;
   font-style: normal;
   font-weight: 800;
