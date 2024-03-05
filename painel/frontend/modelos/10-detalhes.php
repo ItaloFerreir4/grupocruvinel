@@ -42,17 +42,16 @@ $dataBlogSel = new DateTime($dataBlogSel);
 $dataBlogSel = $dataBlogSel->format('d/m/Y');
 
 $primeiraCategoriaBlog = json_decode($categoriasId);
-if($primeiraCategoriaBlog){
+if ($primeiraCategoriaBlog) {
     $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
 
     foreach ($categoriasArray as $rowCat) {
-        if($rowCat->idCategoria == $primeiraCategoriaBlog){
+        if ($rowCat->idCategoria == $primeiraCategoriaBlog) {
             $nomeCategoriaBlogSel = $rowCat->nomeCategoria;
         }
     }
 
-}
-else{
+} else {
     $nomeCategoriaBlogSel = "";
 }
 
@@ -68,11 +67,11 @@ $redes = ob_get_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
     <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
@@ -81,7 +80,9 @@ $redes = ob_get_clean();
     <meta name="robots" content="index,follow">
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
-    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
+    <title>
+        <?php echo $conteudoSeo["tituloPagina"] ?>
+    </title>
 
     <?php linksHead(); ?>
 
@@ -95,10 +96,10 @@ $redes = ob_get_clean();
 
 <body>
     <?php cHeader(); ?>
-    <header class="banner">
+    <div class="banner">
         <?php
         foreach ($conteudosArray as $conteudo) {
-            if($conteudo->numeroConteudo == 1){
+            if ($conteudo->numeroConteudo == 1) {
                 echo <<<HTML
                 <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                 <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}">
@@ -112,11 +113,17 @@ $redes = ob_get_clean();
                     <div class="title">
                         <p>BLOG</p>
                     </div>
-                    <h1><?php echo $blog['tituloBlog']; ?></h1>
+                    <h1>
+                        <?php echo $blog['tituloBlog']; ?>
+                    </h1>
                     <div class="bottom">
-                        <div class="tag"><span><?php echo $nomeCategoriaBlogSel; ?></span></div>
+                        <div class="tag"><span>
+                                <?php echo $nomeCategoriaBlogSel; ?>
+                            </span></div>
                         <div class="date">
-                            <span><?php echo $dataBlogSel; ?></span>
+                            <span>
+                                <?php echo $dataBlogSel; ?>
+                            </span>
                         </div>
                     </div>
                     <div class="outline-button white">
@@ -126,12 +133,13 @@ $redes = ob_get_clean();
                 </div>
             </div>
         </div>
-    </header>
+    </div>
     <section class="post">
         <div class="shaped-content container">
             <div class="row">
                 <div class="col-12">
-                    <img src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>" alt="<?php echo $blog['legendaImagemBlog']; ?>">
+                    <img src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>"
+                        alt="<?php echo $blog['legendaImagemBlog']; ?>">
                     <div class="social-media">
                         <?php echo $redes; ?>
                     </div>
@@ -145,41 +153,40 @@ $redes = ob_get_clean();
         <div class="container">
             <div class="swiper-other-blogs">
                 <?php
-                    $paginaId = $conteudoSeo['idPagina'];
+                $paginaId = $conteudoSeo['idPagina'];
 
-                    foreach ($blogsArray as $blog) {
-                        if($paginaId != $blog->paginaId){
-                            $dataBlog = $blog->dataBlog;
-                            $categoriasId = $blog->categoriasId;
-    
-                            $dataBlog = new DateTime($dataBlog);
-                            $dataBlog = $dataBlog->format('d/m/Y');
-    
-                            $primeiraCategoriaBlog = json_decode($categoriasId);
-                            if($primeiraCategoriaBlog){
-                                $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
-    
-                                foreach ($categoriasArray as $rowCat) {
-                                    if($rowCat->idCategoria == $primeiraCategoriaBlog){
-                                        $nomeCategoriaBlog = $rowCat->nomeCategoria;
-                                    }
+                foreach ($blogsArray as $blog) {
+                    if ($paginaId != $blog->paginaId) {
+                        $dataBlog = $blog->dataBlog;
+                        $categoriasId = $blog->categoriasId;
+
+                        $dataBlog = new DateTime($dataBlog);
+                        $dataBlog = $dataBlog->format('d/m/Y');
+
+                        $primeiraCategoriaBlog = json_decode($categoriasId);
+                        if ($primeiraCategoriaBlog) {
+                            $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+
+                            foreach ($categoriasArray as $rowCat) {
+                                if ($rowCat->idCategoria == $primeiraCategoriaBlog) {
+                                    $nomeCategoriaBlog = $rowCat->nomeCategoria;
                                 }
-    
                             }
-                            else{
-                                $nomeCategoriaBlog = "";
-                            }
-    
-                            // Remove colchetes e aspas de cada parte entre vírgulas
-                            $categoriasBlog = preg_replace('/\["(.*?)"]/', '$1', $categoriasId);
-    
-                            // Divide a string em um array usando "," como delimitador
-                            $categoriasBlog = explode(',', $categoriasBlog);
-    
-                            // Transforma o array em uma string separada por ","
-                            $categoriasBlog = implode(',', $categoriasBlog);
-                            
-                            echo <<<HTML
+
+                        } else {
+                            $nomeCategoriaBlog = "";
+                        }
+
+                        // Remove colchetes e aspas de cada parte entre vírgulas
+                        $categoriasBlog = preg_replace('/\["(.*?)"]/', '$1', $categoriasId);
+
+                        // Divide a string em um array usando "," como delimitador
+                        $categoriasBlog = explode(',', $categoriasBlog);
+
+                        // Transforma o array em uma string separada por ","
+                        $categoriasBlog = implode(',', $categoriasBlog);
+
+                        echo <<<HTML
                             <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href="../blog-detalhes/{$blog->nomePagina}" class="col-12
                                 col-lg-6 card-blog-wrapper">
                                 <div class="card-blog">
@@ -195,8 +202,8 @@ $redes = ob_get_clean();
                                 </div>
                             </a>
                             HTML;
-                        }
                     }
+                }
                 ?>
             </div>
         </div>

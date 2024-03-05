@@ -15,7 +15,7 @@
   z-index: 3;
 }
 
-.swiper-banner.slick-dotted.slick-slider{
+.swiper-banner.slick-dotted.slick-slider {
   margin-bottom: 0;
 }
 
@@ -55,7 +55,7 @@
   text-align: center;
 }
 
-.banner-slide a{
+.banner-slide a {
   display: inline-block;
 }
 
@@ -63,12 +63,12 @@
   border: 2px solid var(--amarelo);
 }
 
-.swiper-banner .slick-prev{
+.swiper-banner .slick-prev {
   left: 25px;
   z-index: 1;
 }
 
-.swiper-banner .slick-next{
+.swiper-banner .slick-next {
   right: 25px;
   z-index: 1;
 }
@@ -117,6 +117,9 @@
   background-color: var(--bege-3);
 }
 
+.about h1 {
+  -webkit-line-clamp: 4;
+}
 .about::before {
   content: "";
   display: block;
@@ -162,6 +165,12 @@
   font-weight: 400;
   line-height: normal;
   margin-bottom: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .about .image {
@@ -215,10 +224,15 @@
   font-weight: 400;
   line-height: 150%;
   text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 992px) {
-
   .about {
     margin-top: 5px;
   }
@@ -256,9 +270,10 @@
     left: auto;
     right: 0;
     transform: translateY(-50%);
-    width: 150px;
+    width: 120px;
     height: fit-content;
     aspect-ratio: auto;
+    padding: 20px 10px;
   }
 
   .about .image::before {
@@ -288,10 +303,10 @@
   border-radius: 20px;
 }
 
-.financial::before{
+.financial::before {
   position: absolute;
   z-index: -1;
-  content: '';
+  content: "";
   top: 0;
   left: 0;
   width: 100%;
@@ -319,10 +334,14 @@
   font-style: normal;
   font-weight: 800;
   line-height: normal;
-  display: block;
-  width: 500px;
   text-align: center;
   margin: 0 auto 50px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  max-width: 700px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .swiper-financial .financial-card {
@@ -357,6 +376,12 @@
   font-weight: 400;
   line-height: normal;
   text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .swiper-financial .slick-dots {
@@ -403,6 +428,7 @@
   background-color: var(--branco);
   padding: 60px 100px 80px;
   box-shadow: 25px 20px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }
 
 .testimonials .white-box h1 {
@@ -414,6 +440,11 @@
   line-height: normal;
   text-align: center;
   margin-bottom: 50px;
+}
+
+.testimonials .white-box .company {
+  display: flex;
+  align-items: center;
 }
 
 .testimonials .white-box .company > img {
@@ -451,7 +482,6 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-bottom: 20px;
 }
 
 .testimonials .white-box .testimonial .read-more {
@@ -464,6 +494,7 @@
   display: inline-flex;
   align-items: center;
   gap: 25px;
+  margin-top: 20px;
 }
 
 .swiper-testimonials .slick-prev:before,
@@ -659,7 +690,8 @@
 }
 
 .client img {
-  height: 100%;
+  max-height: 90px;
+  max-width: 180px;
 }
 
 @media (max-width: 992px) {

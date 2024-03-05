@@ -36,11 +36,11 @@ $redes = ob_get_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
     <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
@@ -49,7 +49,9 @@ $redes = ob_get_clean();
     <meta name="robots" content="index,follow">
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
-    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
+    <title>
+        <?php echo $conteudoSeo["tituloPagina"] ?>
+    </title>
 
     <?php linksHead(); ?>
 
@@ -63,14 +65,14 @@ $redes = ob_get_clean();
     <?php cHeader(); ?>
     <?php
     foreach ($conteudosArray as $conteudo) {
-        if($conteudo->numeroConteudo == 1){
+        if ($conteudo->numeroConteudo == 1) {
             banner(
                 "CLIENTES",
                 "{$conteudo->legendaImagem1Conteudo}",
                 "{$conteudo->legendaImagem2Conteudo}",
                 "./assets/uploads/{$conteudo->imagem1Conteudo}",
                 "./assets/uploads/{$conteudo->imagem2Conteudo}"
-            ); 
+            );
         }
     }
     ?>
@@ -103,8 +105,8 @@ $redes = ob_get_clean();
             <div class="col-12 col-lg-6">
                 <div class="swiper-business">
                     <?php
-                        foreach ($empresasArray as $empresa) {
-                            echo <<<HTML
+                    foreach ($empresasArray as $empresa) {
+                        echo <<<HTML
                             <div class="business-card">
                                 <div class="business-info">
                                     <div class="info-content">
@@ -127,14 +129,14 @@ $redes = ob_get_clean();
                                 </div>
                             </div>
                             HTML;
-                        }
+                    }
                     ?>
                 </div>
             </div>
             <div class="col-12 col-lg-6 business-video">
                 <?php
                 foreach ($conteudosArray as $conteudo) {
-                    if($conteudo->numeroConteudo == 2){
+                    if ($conteudo->numeroConteudo == 2) {
                         $linkVideo = $conteudo->linkVideoConteudo;
 
                         if ($linkVideo) {
@@ -152,7 +154,7 @@ $redes = ob_get_clean();
                         } else {
                             $videoId = "";
                         }
-                        
+
                         echo <<<HTML
                             <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                         HTML;
@@ -166,6 +168,14 @@ $redes = ob_get_clean();
     <?php cFooter(); ?>
     <?php elementosGerais(); ?>
     <?php scriptBody(); ?>
+    <script>
+        $(document).ready(function () {
+            $(".swiper-business").slick({
+                infinite: true,
+                slidesToShow: 1,
+            });
+        });
+    </script>
     <script>
         let maxVisibleElements = 12;
         const listElements = document.querySelectorAll(".client-wrapper");

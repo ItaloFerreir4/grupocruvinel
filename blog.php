@@ -250,6 +250,14 @@ $redes = ob_get_clean();
     <?php elementosGerais(); ?>
     <?php scriptBody(); ?>
     <script>
+        $(document).ready(function () {
+            $(".swiper-business").slick({
+                infinite: true,
+                slidesToShow: 1,
+            });
+        });
+    </script>
+    <script>
         let maxVisibleElements = 6;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
 

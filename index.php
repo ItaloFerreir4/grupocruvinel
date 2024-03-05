@@ -140,7 +140,7 @@ $redesAmarelo = ob_get_clean();
                                 <div class="social-media">
                                     {$redesMarrom}
                                 </div>
-                                <h1>{$conteudo->tituloConteudo}</h1>
+                                <h1 class="limit-text">{$conteudo->tituloConteudo}</h1>
                                 {$conteudo->textoConteudo}
                                 <a href="{$conteudo->linkBotao1}" title="Saiba Mais"  target="{$conteudo->targetBotao1}">
                                     <div class="outline-button">
@@ -181,7 +181,7 @@ $redesAmarelo = ob_get_clean();
                             echo <<<HTML
                             <div class="financial-card">
                                 <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
-                                <h1>{$conteudo->tituloConteudo}</h1>
+                                <h1 class="limit-text">{$conteudo->tituloConteudo}</h1>
                                 {$conteudo->textoConteudo}
                             </div>
                             HTML;
@@ -225,8 +225,8 @@ $redesAmarelo = ob_get_clean();
                                 <div class="row">
                                     <div class="col-12 col-lg-3 company">
                                         <img src="./assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
-                                        <span class="person">{$conteudo->legendaImagem2Conteudo}</span>
-                                        <span class="position">{$conteudo->legendaImagem3Conteudo}</span>
+                                        <span class="person limit-text">{$conteudo->legendaImagem2Conteudo}</span>
+                                        <span class="position limit-text">{$conteudo->legendaImagem3Conteudo}</span>
                                     </div>
                                     <div class="col-12 col-lg-9 testimonial">
                                         {$conteudo->textoConteudo}
@@ -257,7 +257,8 @@ $redesAmarelo = ob_get_clean();
                         <form id="formulario-1">
                             <input type="hidden" name="origem" id="origem" value="formulario">
                             <input type="hidden" name="newsLetter" id="newsLetter" value="sim">
-                            <input type="hidden" name="quemRecebe" id="quemRecebe" value="<?php echo $formulario['emailFormulario']; ?>">
+                            <input type="hidden" name="quemRecebe" id="quemRecebe"
+                                value="<?php echo $formulario['emailFormulario']; ?>">
                             <input type="hidden" name="tituloPagina" id="tituloPagina" value="">
                             <input name="contatoNome" id="contatoNome" type="text" placeholder="Nome" />
                             <input name="contatoEmail" id="contatoEmail" type="text" placeholder="E-mail" />
@@ -468,6 +469,10 @@ $redesAmarelo = ob_get_clean();
                         },
                     },
                 ],
+            });
+            $(".swiper-business").slick({
+                infinite: true,
+                slidesToShow: 1,
             });
             $(".swiper-testimonials").slick({
                 infinite: true,
