@@ -248,7 +248,7 @@ $redesAmarelo = ob_get_clean();
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-2">
-                        <img class="whatsapp-icon" src="assets/svg/botao-whatsapp-verde.svg" alt="Whatsapp">
+                        <img class="whatsapp-icon desktop" src="assets/svg/botao-whatsapp-verde.svg" alt="Whatsapp">
                     </div>
                     <div class="col-12 col-lg-4">
                         <p>Receba meus lançamentos e novidades na sua caixa de mensagens ou WhatsApp.</p>
