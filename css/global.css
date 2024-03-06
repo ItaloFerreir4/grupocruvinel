@@ -580,7 +580,6 @@ input[type="text"].parsley-error::placeholder {
 /* social-media */
 
 .social-media {
-  height: 100%;
   display: inline-flex;
   flex-wrap: wrap;
   gap: 10px 30px;
