@@ -16,10 +16,17 @@
 
 .client {
   background-color: var(--branco);
-  aspect-ratio: 2 / 1;
+  max-height: 140px;
+  max-width: 280px;
   padding: 25px 50px;
   gap: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.client > img {
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
 }

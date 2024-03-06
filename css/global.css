@@ -353,6 +353,10 @@ footer .terms a {
   line-height: normal;
 }
 
+footer .rights {
+  background-color: var(--bege-3);
+}
+
 footer .rights p,
 footer .rights span {
   color: #443327;

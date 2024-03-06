@@ -56,6 +56,8 @@ $redes = ob_get_clean();
     <?php linksHead(); ?>
 
     <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/clientes.css">
@@ -168,6 +170,8 @@ $redes = ob_get_clean();
     <?php cFooter(); ?>
     <?php elementosGerais(); ?>
     <?php scriptBody(); ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
         $(document).ready(function () {
             $(".swiper-business").slick({
