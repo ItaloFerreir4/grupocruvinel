@@ -1308,6 +1308,7 @@ input[type="text"].parsley-error::placeholder {
 
 .business .business-info .info-content {
   padding: 80px 100px 120px 80px;
+  height: 700px;
 }
 
 .business .business-info .info-content .yellow-highlight {
@@ -1392,7 +1393,8 @@ input[type="text"].parsley-error::placeholder {
 
   .swiper-business .slick-next {
     top: 82.5%;
-    left: 65%;
+    right: 30%;
+    left: auto;
     transform: translateX(-50%);
   }
 
@@ -1426,11 +1428,12 @@ input[type="text"].parsley-error::placeholder {
   }
 
   .business .business-info .yellow-highlight > p {
-    -webkit-line-clamp: 15;
+    -webkit-line-clamp: 8;
   }
 
   .business .business-info .info-content {
     padding: 50px 30px;
+    height: 650px;
   }
 
   .business .business-info .social-media {
