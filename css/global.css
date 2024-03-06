@@ -580,16 +580,16 @@ input[type="text"].parsley-error::placeholder {
 /* social-media */
 
 .social-media {
-  height: 20px;
+  height: 100%;
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 10px 30px;
   align-items: center;
   width: fit-content;
 }
 
 .social-media a {
-  height: 100%;
+  height: 20px;
   transition: all ease-in-out 0.3s;
 }
 
@@ -1260,7 +1260,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business .slick-prev {
-  top: 600px;
+  top: 75%;
   left: 60%;
   z-index: 1;
 }
@@ -1269,7 +1269,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business .slick-next {
-  top: 600px;
+  top: 75%;
   left: 70%;
   z-index: 1;
 }
@@ -1333,7 +1333,7 @@ input[type="text"].parsley-error::placeholder {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 40px 0;
+  margin: 40px 0 60px;
   -webkit-line-clamp: 6;
 }
 
@@ -1382,13 +1382,13 @@ input[type="text"].parsley-error::placeholder {
   }
 
   .swiper-business .slick-prev {
-    top: 92.5%;
+    top: 82.5%;
     left: 30%;
     transform: translateX(-50%);
   }
 
   .swiper-business .slick-next {
-    top: 92.5%;
+    top: 82.5%;
     left: 65%;
     transform: translateX(-50%);
   }
@@ -1431,13 +1431,13 @@ input[type="text"].parsley-error::placeholder {
   }
 
   .business .business-info .social-media {
-    gap: 15px;
+    gap: 10px 15px;
     display: flex;
     margin: 0 auto;
   }
 
   .business .business-info .outline-button {
-    margin: 30px auto;
+    margin: 50px auto;
   }
 }
 

@@ -442,11 +442,6 @@
   margin-bottom: 50px;
 }
 
-.testimonials .white-box .company {
-  display: flex;
-  align-items: center;
-}
-
 .testimonials .white-box .company > img {
   width: 100%;
   max-height: 100px;
