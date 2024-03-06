@@ -81,23 +81,40 @@ $redes = ob_get_clean();
 
     <section class="clients">
         <div class="shaped-content container">
-            <div class="grid-content">
-                <?php
-                foreach ($clientesArray as $cliente) {
-                    echo <<<HTML
-                    <a href="{$cliente->linkCliente}" class="client-wrapper">
-                        <div class="client">
-                            <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
-                        </div>
-                    </a>
-                    HTML;
-                }
-                ?>
+            <div class="desktop">
+                <div class="grid-content">
+                    <?php
+                    foreach ($clientesArray as $cliente) {
+                        echo <<<HTML
+                        <a href="{$cliente->linkCliente}" class="client-wrapper">
+                            <div class="client">
+                                <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
+                            </div>
+                        </a>
+                        HTML;
+                    }
+                    ?>
+                </div>
+                <button class="outline-button load-more" onclick="loadMore(listElements)">
+                    Carregar Mais
+                    <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
+                </button>
             </div>
-            <button class="outline-button load-more" onclick="loadMore(listElements)">
-                Carregar Mais
-                <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
-            </button>
+            <div class="mobile">
+                <div class="swiper-clients">
+                    <?php
+                    foreach ($clientesArray as $cliente) {
+                        echo <<<HTML
+                        <a href="{$cliente->linkCliente}" class="client-wrapper">
+                            <div class="client">
+                                <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
+                            </div>
+                        </a>
+                        HTML;
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -178,11 +195,15 @@ $redes = ob_get_clean();
                 infinite: true,
                 slidesToShow: 1,
             });
+            $(".swiper-clients").slick({
+                infinite: true,
+                slidesToShow: 1,
+            });
         });
     </script>
     <script>
         let maxVisibleElements = 12;
-        const listElements = document.querySelectorAll(".client-wrapper");
+        const listElements = document.querySelectorAll(".desktop .client-wrapper");
 
         sessionStorage.setItem("t", "");
         sessionStorage.setItem("y", new Date().getFullYear().toString().substring(2, 2));

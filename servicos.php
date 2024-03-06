@@ -35,11 +35,11 @@ $redes = ob_get_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
     <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
@@ -48,7 +48,9 @@ $redes = ob_get_clean();
     <meta name="robots" content="index,follow">
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
-    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
+    <title>
+        <?php echo $conteudoSeo["tituloPagina"] ?>
+    </title>
 
     <?php linksHead(); ?>
 
@@ -64,36 +66,52 @@ $redes = ob_get_clean();
     <?php cHeader(); ?>
     <?php
     foreach ($conteudosArray as $conteudo) {
-        if($conteudo->numeroConteudo == 1){
+        if ($conteudo->numeroConteudo == 1) {
             banner(
                 "SERVIÇOS",
                 "{$conteudo->legendaImagem1Conteudo}",
                 "{$conteudo->legendaImagem2Conteudo}",
                 "./assets/uploads/{$conteudo->imagem1Conteudo}",
                 "./assets/uploads/{$conteudo->imagem2Conteudo}"
-            ); 
+            );
         }
     }
     ?>
 
     <section class="services">
         <div class="shaped-content container">
-            <div class="grid-content">
-                <?php
-                foreach ($servicosArray as $servico) {
-                    echo <<<HTML
+            <div class="desktop">
+                <div class="grid-content">
+                    <?php
+                    foreach ($servicosArray as $servico) {
+                        echo <<<HTML
                     <div class="card-service">
                         <img src="assets/uploads/{$servico->imagemServico}" alt="{$servico->legendaImagemServico}">
                         <h1>$servico->tituloServico</h1>
                     </div>
                     HTML;
-                }
-                ?>
+                    }
+                    ?>
+                </div>
+                <button class="outline-button load-more" onclick="loadMore(listElements)">
+                    Carregar Mais
+                    <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
+                </button>
             </div>
-            <button class="outline-button load-more" onclick="loadMore(listElements)">
-                Carregar Mais
-                <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
-            </button>
+            <div class="mobile">
+                <div class="swiper-services">
+                    <?php
+                    foreach ($servicosArray as $servico) {
+                        echo <<<HTML
+                    <div class="card-service">
+                        <img src="assets/uploads/{$servico->imagemServico}" alt="{$servico->legendaImagemServico}">
+                        <h1>$servico->tituloServico</h1>
+                    </div>
+                    HTML;
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </section>
     <section class="business">
@@ -102,8 +120,8 @@ $redes = ob_get_clean();
             <div class="col-12 col-lg-6">
                 <div class="swiper-business">
                     <?php
-                        foreach ($empresasArray as $empresa) {
-                            echo <<<HTML
+                    foreach ($empresasArray as $empresa) {
+                        echo <<<HTML
                             <div class="business-card">
                                 <div class="business-info">
                                     <div class="info-content">
@@ -126,14 +144,14 @@ $redes = ob_get_clean();
                                 </div>
                             </div>
                             HTML;
-                        }
+                    }
                     ?>
                 </div>
             </div>
             <div class="col-12 col-lg-6 business-video">
                 <?php
                 foreach ($conteudosArray as $conteudo) {
-                    if($conteudo->numeroConteudo == 2){
+                    if ($conteudo->numeroConteudo == 2) {
                         $linkVideo = $conteudo->linkVideoConteudo;
 
                         if ($linkVideo) {
@@ -151,7 +169,7 @@ $redes = ob_get_clean();
                         } else {
                             $videoId = "";
                         }
-                        
+
                         echo <<<HTML
                             <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                         HTML;
@@ -172,11 +190,15 @@ $redes = ob_get_clean();
                 infinite: true,
                 slidesToShow: 1,
             });
+            $(".swiper-services").slick({
+                infinite: true,
+                slidesToShow: 1,
+            });
         });
     </script>
     <script>
         let maxVisibleElements = 6;
-        const listElements = document.querySelectorAll(".card-service");
+        const listElements = document.querySelectorAll(".desktop .card-service");
 
         sessionStorage.setItem("t", "");
         sessionStorage.setItem("y", new Date().getFullYear().toString().substring(2, 2));
