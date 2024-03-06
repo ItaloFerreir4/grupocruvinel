@@ -791,7 +791,7 @@ input[type="text"].parsley-error::placeholder {
 
 @media (max-width: 992px) {
   .accordion .title span {
-    margin-right: 10px;
+    margin-right: 20px;
     -webkit-line-clamp: 5;
   }
 }

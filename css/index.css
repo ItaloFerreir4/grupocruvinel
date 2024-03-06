@@ -676,7 +676,8 @@
 
 .client {
   background-color: var(--branco);
-  aspect-ratio: 2 / 1;
+  height: 140px;
+  width: 280px;
   padding: 25px 50px;
   gap: 30px;
   display: flex;
