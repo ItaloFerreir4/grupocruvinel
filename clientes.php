@@ -86,7 +86,7 @@ $redes = ob_get_clean();
                     <?php
                     foreach ($clientesArray as $cliente) {
                         echo <<<HTML
-                        <a href="{$cliente->linkCliente}" class="client-wrapper">
+                        <a href="{$cliente->linkCliente}" class="client-wrapper" target="_blank">
                             <div class="client">
                                 <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
                             </div>
