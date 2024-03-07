@@ -181,6 +181,9 @@ $redes = ob_get_clean();
                 }
                 ?>
             </div>
+            <button onclick="scrollElemento('footer')" class="scroll-down">
+                <img src="assets/svg/seta-baixo-marrom.svg" alt="Seta">
+            </button>
         </div>
     </section>
 

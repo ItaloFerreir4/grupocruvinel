@@ -41,11 +41,11 @@ $redes = ob_get_clean();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL.'/'. $conteudoSeo["nomePagina"] ?>">
+    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
     <meta property="og:image:alt" content="<?php echo $conteudoSeo["legendaImagemPagina"] ?>">
@@ -54,7 +54,9 @@ $redes = ob_get_clean();
     <meta name="robots" content="index,follow">
     <meta name="rating" content="General">
     <meta name="revisit-after" content="7 days">
-    <title><?php echo $conteudoSeo["tituloPagina"] ?></title>
+    <title>
+        <?php echo $conteudoSeo["tituloPagina"] ?>
+    </title>
 
     <?php linksHead(); ?>
 
@@ -70,14 +72,14 @@ $redes = ob_get_clean();
     <?php cHeader(); ?>
     <?php
     foreach ($conteudosArray as $conteudo) {
-        if($conteudo->numeroConteudo == 1){
+        if ($conteudo->numeroConteudo == 1) {
             banner(
                 "BLOG",
                 "{$conteudo->legendaImagem1Conteudo}",
                 "{$conteudo->legendaImagem2Conteudo}",
                 "./assets/uploads/{$conteudo->imagem1Conteudo}",
                 "./assets/uploads/{$conteudo->imagem2Conteudo}"
-            ); 
+            );
         }
     }
     ?>
@@ -91,28 +93,28 @@ $redes = ob_get_clean();
                             <h1>Categorias</h1>
                             <button class="active" data-category="" data-url="/blog">Todas as Categorias</button>
                             <?php
-                                foreach ($categoriasArray as $categoria) {
-                                    echo <<<HTML
+                            foreach ($categoriasArray as $categoria) {
+                                echo <<<HTML
                                     <button data-url="./blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
                                     HTML;
-                                }
+                            }
                             ?>
                         </div>
                         <div class=" tag-filter">
                             <h1>Tags</h1>
                             <div class="buttons">
                                 <?php
-                                    foreach ($blogsArray as $row) {
-                                        $tagsBlog = $row->tagsBlog;
+                                foreach ($blogsArray as $row) {
+                                    $tagsBlog = $row->tagsBlog;
 
-                                        $tags = explode(",", $tagsBlog);
+                                    $tags = explode(",", $tagsBlog);
 
-                                        foreach ($tags as &$tag) {
-                                            echo <<<HTML
+                                    foreach ($tags as &$tag) {
+                                        echo <<<HTML
                                             <button data-tag="{$tag}">{$tag}</button>
                                             HTML;
-                                        }
                                     }
+                                }
                                 ?>
                             </div>
                         </div>
@@ -121,39 +123,38 @@ $redes = ob_get_clean();
                 <div class="col-12 col-lg-8">
                     <div class="row">
                         <?php
-                            foreach ($blogsArray as $blog) {
+                        foreach ($blogsArray as $blog) {
 
-                                $dataBlog = $blog->dataBlog;
-                                $categoriasId = $blog->categoriasId;
+                            $dataBlog = $blog->dataBlog;
+                            $categoriasId = $blog->categoriasId;
 
-                                $dataBlog = new DateTime($dataBlog);
-                                $dataBlog = $dataBlog->format('d/m/Y');
+                            $dataBlog = new DateTime($dataBlog);
+                            $dataBlog = $dataBlog->format('d/m/Y');
 
-                                $primeiraCategoriaBlog = json_decode($categoriasId);
-                                if($primeiraCategoriaBlog){
-                                    $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
+                            $primeiraCategoriaBlog = json_decode($categoriasId);
+                            if ($primeiraCategoriaBlog) {
+                                $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
 
-                                    foreach ($categoriasArray as $rowCat) {
-                                        if($rowCat->idCategoria == $primeiraCategoriaBlog){
-                                            $nomeCategoriaBlog = $rowCat->nomeCategoria;
-                                        }
+                                foreach ($categoriasArray as $rowCat) {
+                                    if ($rowCat->idCategoria == $primeiraCategoriaBlog) {
+                                        $nomeCategoriaBlog = $rowCat->nomeCategoria;
                                     }
-
-                                }
-                                else{
-                                    $nomeCategoriaBlog = "";
                                 }
 
-                                // Remove colchetes e aspas de cada parte entre vírgulas
-                                $categoriasBlog = preg_replace('/\["(.*?)"]/', '$1', $categoriasId);
+                            } else {
+                                $nomeCategoriaBlog = "";
+                            }
 
-                                // Divide a string em um array usando "," como delimitador
-                                $categoriasBlog = explode(',', $categoriasBlog);
+                            // Remove colchetes e aspas de cada parte entre vírgulas
+                            $categoriasBlog = preg_replace('/\["(.*?)"]/', '$1', $categoriasId);
 
-                                // Transforma o array em uma string separada por ","
-                                $categoriasBlog = implode(',', $categoriasBlog);
-                                
-                                echo <<<HTML
+                            // Divide a string em um array usando "," como delimitador
+                            $categoriasBlog = explode(',', $categoriasBlog);
+
+                            // Transforma o array em uma string separada por ","
+                            $categoriasBlog = implode(',', $categoriasBlog);
+
+                            echo <<<HTML
                                 <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href=" ./blog-detalhes/{$blog->nomePagina}" class="col-12
                                     col-lg-6 card-blog-wrapper">
                                     <div class="card-blog">
@@ -169,9 +170,9 @@ $redes = ob_get_clean();
                                     </div>
                                 </a>
                                 HTML;
-                            }
+                        }
                         ?>
-                        
+
                     </div>
                     <button class="outline-button load-more" onclick="loadMore(listElements)">
                         Carregar Mais
@@ -188,8 +189,8 @@ $redes = ob_get_clean();
             <div class="col-12 col-lg-6">
                 <div class="swiper-business">
                     <?php
-                        foreach ($empresasArray as $empresa) {
-                            echo <<<HTML
+                    foreach ($empresasArray as $empresa) {
+                        echo <<<HTML
                             <div class="business-card">
                                 <div class="business-info">
                                     <div class="info-content">
@@ -212,14 +213,14 @@ $redes = ob_get_clean();
                                 </div>
                             </div>
                             HTML;
-                        }
+                    }
                     ?>
                 </div>
             </div>
             <div class="col-12 col-lg-6 business-video">
                 <?php
                 foreach ($conteudosArray as $conteudo) {
-                    if($conteudo->numeroConteudo == 2){
+                    if ($conteudo->numeroConteudo == 2) {
                         $linkVideo = $conteudo->linkVideoConteudo;
 
                         if ($linkVideo) {
@@ -237,7 +238,7 @@ $redes = ob_get_clean();
                         } else {
                             $videoId = "";
                         }
-                        
+
                         echo <<<HTML
                             <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                         HTML;
@@ -245,6 +246,9 @@ $redes = ob_get_clean();
                 }
                 ?>
             </div>
+            <button onclick="scrollElemento('footer')" class="scroll-down">
+                <img src="assets/svg/seta-baixo-marrom.svg" alt="Seta">
+            </button>
         </div>
     </section>
 

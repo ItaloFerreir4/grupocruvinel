@@ -285,28 +285,28 @@ $redesAmarelo = ob_get_clean();
                         <?php
                         foreach ($empresasArray as $empresa) {
                             echo <<<HTML
-                                <div class="business-card">
-                                    <div class="business-info">
-                                        <div class="info-content">
-                                            <div class="yellow-highlight">
-                                                <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
-                                                <p class="limit-text">
-                                                    {$empresa->tituloBusiness}
-                                                </p>
-                                                <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
-                                            </div>
-                                            <div class="social-media">
-                                                {$redesMarrom}
-                                            </div>
-                                            <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
-                                                <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
-                                                        alt="Saiba Mais">
-                                                </div>
-                                            </a>
+                            <div class="business-card">
+                                <div class="business-info">
+                                    <div class="info-content">
+                                        <div class="yellow-highlight">
+                                            <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                            <p class="limit-text">
+                                                {$empresa->tituloBusiness}
+                                            </p>
+                                            <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
                                         </div>
+                                        <div class="social-media">
+                                            {$redes}
+                                        </div>
+                                        <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
+                                            <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
+                                                    alt="Saiba Mais">
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
-                                HTML;
+                            </div>
+                            HTML;
                         }
                         ?>
                     </div>
@@ -314,7 +314,7 @@ $redesAmarelo = ob_get_clean();
                 <div class="col-12 col-lg-6 business-video">
                     <?php
                     foreach ($conteudosArray as $conteudo) {
-                        if ($conteudo->numeroConteudo == 6) {
+                        if ($conteudo->numeroConteudo == 2) {
                             $linkVideo = $conteudo->linkVideoConteudo;
 
                             if ($linkVideo) {
@@ -334,12 +334,15 @@ $redesAmarelo = ob_get_clean();
                             }
 
                             echo <<<HTML
-                                <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
-                            HTML;
+                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                        HTML;
                         }
                     }
                     ?>
                 </div>
+                <button onclick="scrollElemento('.what-we-do')" class="scroll-down">
+                    <img src="assets/svg/seta-baixo-marrom.svg" alt="Seta">
+                </button>
             </div>
         </section>
 

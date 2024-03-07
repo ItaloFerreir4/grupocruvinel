@@ -1253,8 +1253,22 @@ input[type="text"].parsley-error::placeholder {
   width: 500px;
 }
 
-.business .row {
+.business > .row {
+  position: relative;
   gap: 0;
+}
+
+.business > .row .scroll-down {
+  height: 50px;
+  width: 50px;
+  background-color: var(--amarelo);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  border-radius: 50%;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.3);
 }
 
 .swiper-business {
@@ -1453,6 +1467,10 @@ input[type="text"].parsley-error::placeholder {
 
   .business .business-info .outline-button {
     margin: 50px auto;
+  }
+
+  .business > .row .scroll-down {
+    bottom: 25px;
   }
 }
 
