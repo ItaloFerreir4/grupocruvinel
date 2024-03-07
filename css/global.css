@@ -1358,6 +1358,14 @@ input[type="text"].parsley-error::placeholder {
   top: 70px;
   right: 70px;
   z-index: 2;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    35% 100%,
+    35% calc(100% - 70px),
+    0 calc(100% - 70px)
+  );
 }
 
 .business .business-video .play-video {
@@ -1411,6 +1419,7 @@ input[type="text"].parsley-error::placeholder {
   .business .business-video .video-bg {
     top: 0px;
     right: 0px;
+    clip-path: none;
   }
 
   .business .business-video .play-video {
