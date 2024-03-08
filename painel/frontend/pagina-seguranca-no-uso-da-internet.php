@@ -36,7 +36,7 @@ echo ''
                                 <input type="hidden" class="form-control" name="idConteudo" id="idConteudo" value="">
                                 <input type="hidden" class="form-control" name="numeroConteudo" id="numeroConteudo" value="1">
                         
-                                <div class="col-12">
+                                <div class="col-12 hidden">
                                     <div class="form-group">    
                                         <label>Titulo</label>
                                         <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">
@@ -68,7 +68,7 @@ echo ''
                                         <input type="text" class="form-control" id="legendaImagem2Conteudo" name="legendaImagem2Conteudo">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12 hidden">
                                     <div class="form-group">    
                                         <label>Imagem Autor</label>
                                         <button class="btn btn-default selecionarImagem" formConteudo="1" imagem="imagem3Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
@@ -82,7 +82,7 @@ echo ''
                                         <img class="img-fluid" id="imagem4Conteudo" src="null" alt="">
                                     </div>
                                 </div>                                
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-6 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Nome Autor</label>                                            
                                         <input type="text" class="form-control" id="legendaImagem3Conteudo" name="legendaImagem3Conteudo">

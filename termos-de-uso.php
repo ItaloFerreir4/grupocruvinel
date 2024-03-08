@@ -4,7 +4,7 @@ include_once "assets/componentes.php";
 include_once "painel/backend/conexao-banco.php";
 
 $sqlSeo = $con->prepare("SELECT * FROM paginas WHERE idPagina = :idPagina");
-$sqlSeo->bindValue(":idPagina", 2);
+$sqlSeo->bindValue(":idPagina", 17);
 $sqlSeo->execute();
 $conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
 
@@ -13,17 +13,6 @@ $sqlConteudos->bindValue(":idPagina", $conteudoSeo["idPagina"]);
 $sqlConteudos->execute();
 $conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
 $conteudosArray = json_decode(json_encode($conteudosArray));
-
-$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = p.idPagina AND c.status = 1");
-$sqlBlogs->execute();
-$blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
-$blogsArray = json_decode(json_encode($blogsArray));
-
-$sqlCategorias = $con->prepare("SELECT * FROM categorias c, paginas p WHERE c.paginaId = p.idPagina AND c.tipoCategoria = :tipoCategoria");
-$sqlCategorias->bindValue(":tipoCategoria", 1);
-$sqlCategorias->execute();
-$categoriasArray = $sqlCategorias->fetchAll(PDO::FETCH_ASSOC);
-$categoriasArray = json_decode(json_encode($categoriasArray));
 
 ob_start();
 redesSociais("marrom");
@@ -79,24 +68,13 @@ $redes = ob_get_clean();
     ?>
     <div class="terms">
         <div class="container shaped-content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti possimus ipsa repellendus reiciendis.
-                Distinctio, quidem dignissimos mollitia recusandae id dolor eaque ipsam doloribus eius unde a
-                necessitatibus natus quam expedita consequuntur commodi cum iure adipisci assumenda voluptatem explicabo
-                molestiae sapiente provident exercitationem! Obcaecati dicta quam eius adipisci odit rerum magni!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus ipsa unde vero asperiores eum optio.
-                Officia perferendis deserunt atque. Excepturi doloremque unde animi vitae adipisci, at explicabo tempora
-                quasi laborum!</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, quam?</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta incidunt quis a, saepe est nihil obcaecati
-                commodi. Incidunt blanditiis labore tenetur quos itaque eaque et deleniti recusandae similique. Velit
-                quibusdam minus ab expedita perferendis necessitatibus aspernatur cum nobis possimus inventore labore,
-                distinctio nihil, eos repellendus autem modi? Aliquid accusamus error dolor libero, beatae vitae,
-                aperiam corporis atque expedita culpa recusandae? Tenetur eius nisi beatae aliquam optio ipsum,
-                praesentium atque explicabo fugit a reiciendis enim iure doloremque doloribus iste fuga officiis.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, molestias, deleniti tenetur temporibus
-                consectetur reprehenderit illo accusamus, fuga tempora omnis rerum quisquam ea! Ratione obcaecati esse
-                ex unde, commodi repellendus accusamus beatae culpa voluptatum id pariatur animi nemo aliquid.
-                Reiciendis qui voluptatum facilis quam ipsam?</p>
+            <?php
+                foreach ($conteudosArray as $conteudo) {
+                    if ($conteudo->numeroConteudo == 2) {
+                        echo $conteudo->textoConteudo;
+                    }
+                }
+            ?>
         </div>
     </div>
 

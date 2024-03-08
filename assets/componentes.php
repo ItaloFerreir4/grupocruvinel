@@ -106,7 +106,7 @@ function cFooter(){
         <div class="terms">
             <a href="{$urlBase}/termos-de-uso">Termos de uso</a>
             <a href="{$urlBase}/politica-de-privacidade">Política de privacidade</a>
-            <a href="{$urlBase}/seguranca-no-uso">Segurança no Uso da Internet</a>
+            <a href="{$urlBase}/seguranca-no-uso-da-internet">Segurança no Uso da Internet</a>
         </div>
         <div class="rights">
             <div class="container">
