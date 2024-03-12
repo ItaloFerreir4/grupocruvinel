@@ -455,15 +455,15 @@ $redesAmarelo = ob_get_clean();
                 dots: true,
                 slidesToShow: 1,
                 autoplay: true,
-                autoplaySpeed: 4000,
+                autoplaySpeed: 3000,
             });
             $(".swiper-financial").slick({
                 infinite: true,
                 dots: true,
-                slidesToShow: 5,
-                slidesToScroll: 3,
+                slidesToShow: 4,
+                slidesToScroll: 1,
                 autoplay: true,
-                autoplaySpeed: 4000,
+                autoplaySpeed: 2500,
                 responsive: [
                     {
                         breakpoint: 992,
@@ -476,18 +476,22 @@ $redesAmarelo = ob_get_clean();
             $(".swiper-business").slick({
                 infinite: true,
                 slidesToShow: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
             });
             $(".swiper-testimonials").slick({
                 infinite: true,
                 dots: true,
                 autoplay: true,
-                autoplaySpeed: 6000,
+                autoplaySpeed: 2500,
                 slidesToShow: 1,
             });
             $(".swiper-clients").slick({
                 infinite: true,
                 dots: true,
                 slidesToShow: 4,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [
                     {
                         breakpoint: 992,
@@ -502,6 +506,8 @@ $redesAmarelo = ob_get_clean();
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [
                     {
                         breakpoint: 992,

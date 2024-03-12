@@ -958,7 +958,7 @@ input[type="text"].parsley-error::placeholder {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  padding: 10px 15px;
+  padding: 8px 15px;
   max-width: 200px;
   width: fit-content;
   border: 1px solid var(--dourado);
