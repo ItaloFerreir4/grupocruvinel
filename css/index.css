@@ -118,6 +118,10 @@
   background-color: var(--bege-3);
 }
 
+.about .container{
+  width: 900px;
+}
+
 .about h1 {
   -webkit-line-clamp: 4;
 }
@@ -529,6 +533,14 @@
   margin: 70px 0;
 }
 
+.newsletter .container > .row{
+  align-items: center;
+}
+
+.newsletter .whatsapp-icon{
+  width: 130px;
+}
+
 .newsletter form {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -544,14 +556,14 @@
 .newsletter p {
   color: var(--cinza);
   font-family: "OpenSans Bold";
-  font-size: 26px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   display: block;
-  width: 280px;
-  margin: 0 auto;
-  text-align: center;
+  width: 200px;
+  margin: 0 auto 0 0;
+  text-align: left;
 }
 
 @media (max-width: 992px) {

@@ -1311,7 +1311,7 @@ input[type="text"].parsley-error::placeholder {
     55% calc(100% - 50px),
     15% calc(100% - 50px)
   );
-  min-height: 700px;
+  min-height: 500px;
 }
 
 .business-card > .row {
@@ -1324,11 +1324,12 @@ input[type="text"].parsley-error::placeholder {
 
 .business .business-info .info-content {
   padding: 80px 100px 120px 80px;
-  height: 700px;
+  height: 500px;
 }
 
 .business .business-info .info-content .yellow-highlight {
   position: relative;
+  margin: 0 0 30px;
 }
 
 .business .business-info .info-content .yellow-highlight::before {
@@ -1343,22 +1344,23 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .business .business-info .yellow-highlight > img {
-  width: 300px;
+  width: 200px;
+  margin: 0 0 25px;
 }
 
 .business .business-info .yellow-highlight > p {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 40px 0 60px;
+  margin: 0 0 15px;
   -webkit-line-clamp: 6;
 }
 
 .business .business-info .social-media {
-  margin-bottom: 45px;
+  margin-bottom: 15px;
 }
 
 .business .business-video {
@@ -1516,14 +1518,14 @@ input[type="text"],
 textarea,
 select {
   position: relative;
-  border-radius: 10px;
+  border-radius: 5px;
   color: var(--bege);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  padding: 16px 20px;
+  padding: 10px 20px;
   width: 100%;
   background-color: var(--bege-3);
   border: 1px solid var(--bege);
@@ -1557,12 +1559,12 @@ button.send {
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 10px 20px;
   border-radius: 10px;
   background-color: var(--marrom);
   color: var(--amarelo);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
