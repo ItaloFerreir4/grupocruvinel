@@ -475,7 +475,7 @@ footer .rights span {
 }
 
 .banner .container{
-  max-width: 800px;
+  max-width: 850px;
 }
 
 .banner .img-background {
@@ -490,7 +490,7 @@ footer .rights span {
 }
 
 .banner .title {
-  margin: 0 0 130px 40px;
+  margin: 0 0 130px 0;
   position: relative;
   padding-left: 40px;
 }
@@ -1518,7 +1518,7 @@ input[type="text"].parsley-error::placeholder {
 .contact-form h1 {
   color: var(--bege-2);
   font-family: "OpenSans";
-  font-size: 34px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -1531,11 +1531,11 @@ select {
   position: relative;
   border-radius: 5px;
   color: var(--bege);
-  font-family: "OpenSans";
-  font-size: 16px;
+  font-family: "OpenSans"!important;
+  font-size: 16px!important;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: normal!important;
   padding: 10px 20px;
   width: 100%;
   background-color: var(--bege-3);

@@ -783,3 +783,9 @@
 .business::after{
   bottom: -140px;
 }
+
+@media(max-width: 1200px){
+  .business{
+    padding: 0;
+  }
+}
