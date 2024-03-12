@@ -474,7 +474,7 @@ footer .rights span {
   z-index: 1;
 }
 
-.banner .container{
+.banner .container {
   max-width: 800px;
 }
 
@@ -517,8 +517,8 @@ footer .rights span {
   text-transform: uppercase;
 }
 
-@media(max-width: 1200px){
-  .banner{
+@media (max-width: 1200px) {
+  .banner {
     padding: 230px 0 0px;
   }
 }
@@ -1009,7 +1009,7 @@ input[type="text"].parsley-error::placeholder {
   margin: 0;
 }
 
-.other-blogs .slick-dots{
+.other-blogs .slick-dots {
   bottom: -40px;
 }
 
@@ -1255,10 +1255,10 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .business::after {
-  content: url(../assets/svg/hexagono-amarelo.svg);
+  content: url(../assets/svg/hexagono-amarelo-mobile.svg);
   position: absolute;
-  right: 10%;
-  bottom: 45px;
+  right: 3%;
+  bottom: 95px;
   display: block;
   width: 400px;
 }
@@ -1333,7 +1333,7 @@ input[type="text"].parsley-error::placeholder {
 
 .business .business-info .info-content {
   padding: 80px 100px 120px 80px;
-  height: 450px;
+  height: 500px;
 }
 
 .business .business-info .info-content .yellow-highlight {
@@ -1425,11 +1425,13 @@ input[type="text"].parsley-error::placeholder {
   }
 
   .swiper-business .slick-prev {
+    top: 85%;
     left: 30%;
     transform: translateX(-50%);
   }
-
+  
   .swiper-business .slick-next {
+    top: 85%;
     right: 30%;
     left: auto;
     transform: translateX(-50%);
@@ -1471,7 +1473,7 @@ input[type="text"].parsley-error::placeholder {
 
   .business .business-info .info-content {
     padding: 50px 30px;
-    height: 600px;
+    height: 500px;
   }
 
   .business .business-info .social-media {
