@@ -296,7 +296,7 @@ $redesAmarelo = ob_get_clean();
                                             <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
                                         </div>
                                         <div class="social-media">
-                                            {$redes}
+                                            {$redesMarrom}
                                         </div>
                                         <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
                                             <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"

@@ -48,11 +48,12 @@
 .banner-slide h1 {
   color: var(--branco);
   font-family: "OpenSans Bold";
-  font-size: 79px;
+  font-size: 55px;
   font-style: normal;
   font-weight: 800;
-  line-height: normal;
+  line-height: 1.1;
   text-align: center;
+  margin: 0 0 15px;
 }
 
 .banner-slide a {

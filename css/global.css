@@ -953,9 +953,9 @@ input[type="text"].parsley-error::placeholder {
 .outline-button {
   color: var(--marrom);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   line-height: normal;
   padding: 10px 15px;
   max-width: 200px;
@@ -1256,6 +1256,8 @@ input[type="text"].parsley-error::placeholder {
 .business > .row {
   position: relative;
   gap: 0;
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .business > .row .scroll-down {
