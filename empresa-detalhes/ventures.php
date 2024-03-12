@@ -76,6 +76,7 @@ $redes = ob_get_clean();
     <?php linksHead(); ?>
 
     <link rel="icon" type="image/svg" href="../assets/svg/favicon.svg">
+    <link rel="icon" type="image/svg" href="../assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="../css/bootstrap.css">
@@ -273,10 +274,15 @@ $redes = ob_get_clean();
                         echo <<<HTML
                         <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                     HTML;
+                        <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                    HTML;
                     }
                 }
                 ?>
             </div>
+            <button onclick="scrollElemento('.links')" class="scroll-down">
+                <img src="../assets/svg/seta-baixo-marrom.svg" alt="Seta">
+            </button>
             <button onclick="scrollElemento('.links')" class="scroll-down">
                 <img src="../assets/svg/seta-baixo-marrom.svg" alt="Seta">
             </button>

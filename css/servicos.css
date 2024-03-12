@@ -56,3 +56,9 @@
 .services .load-more {
   margin: 0px auto 80px;
 }
+
+@media (min-width: 1200px) {
+  .services .container {
+    max-width: 1200px;
+  }
+}

@@ -263,6 +263,7 @@ footer .links a {
   line-height: normal;
   transition: all 0.3s ease-in-out;
   display: block;
+  max-width: 200px;
 }
 
 footer .links a:hover {
@@ -485,11 +486,11 @@ footer .rights span {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 63% 0%;
+  object-position: center;
 }
 
 .banner .title {
-  margin: 0 0 130px 0;
+  margin: 0 0 130px 40px;
   position: relative;
   padding-left: 40px;
 }
@@ -1263,8 +1264,8 @@ input[type="text"].parsley-error::placeholder {
 .business > .row {
   position: relative;
   gap: 0;
-  max-width: 1200px;
-  margin: 0 auto;
+  /* max-width: 1200px;
+  margin: 0 auto; */
 }
 
 .business > .row .scroll-down {
@@ -1283,10 +1284,11 @@ input[type="text"].parsley-error::placeholder {
 .swiper-business {
   position: relative;
   z-index: 1;
+  height: 100%;
 }
 
 .swiper-business .slick-prev {
-  top: 75%;
+  top: 90%;
   left: 60%;
   z-index: 1;
 }
@@ -1295,7 +1297,7 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business .slick-next {
-  top: 75%;
+  top: 90%;
   left: 70%;
   z-index: 1;
 }
@@ -1319,15 +1321,15 @@ input[type="text"].parsley-error::placeholder {
     0 0,
     100% 0,
     100% 100%,
-    calc(100% - 320px) 100%,
-    calc(100% - 320px) calc(100% - 20px),
+    30% 100%,
+    30% calc(100% - 20px),
     0 calc(100% - 20px)
   );
 }
 
 .business .business-info .info-content {
   padding: 80px 100px 120px 80px;
-  height: 500px;
+  height: 600px;
 }
 
 .business .business-info .info-content .yellow-highlight {
@@ -1339,7 +1341,7 @@ input[type="text"].parsley-error::placeholder {
   content: "";
   position: absolute;
   height: 100%;
-  width: 20px;
+  width: 15px;
   left: -80px;
   top: 0;
   background-color: var(--amarelo);
@@ -1351,7 +1353,7 @@ input[type="text"].parsley-error::placeholder {
   margin: 0 0 25px;
 }
 
-.business .business-info .yellow-highlight  p {
+.business .business-info .yellow-highlight p {
   color: var(--preto);
   font-family: "OpenSans";
   font-size: 16px;
@@ -1369,6 +1371,7 @@ input[type="text"].parsley-error::placeholder {
 .business .business-video {
   position: relative;
   background-color: var(--bege);
+  height: 600px;
 }
 
 .business .business-video .video-bg {
@@ -1419,13 +1422,11 @@ input[type="text"].parsley-error::placeholder {
   }
 
   .swiper-business .slick-prev {
-    top: 90%;
     left: 30%;
     transform: translateX(-50%);
   }
 
   .swiper-business .slick-next {
-    top: 90%;
     right: 30%;
     left: auto;
     transform: translateX(-50%);
@@ -1661,6 +1662,7 @@ label {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .card-blog span {
