@@ -203,6 +203,8 @@ $redes = ob_get_clean();
             $(".swiper-clients").slick({
                 infinite: true,
                 slidesToShow: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
             });
         });
     </script>
