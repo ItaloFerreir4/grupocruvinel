@@ -28,9 +28,13 @@
   line-height: normal;
 }
 
-@media (max-width: 1200px) {
-  .banner {
-    padding: 230px 0 50px;
+@media(max-width: 1200px){
+  .banner{
+    padding: 180px 0 60px;
+  }
+
+  .banner h1{
+    font-size: 30px;
   }
 }
 

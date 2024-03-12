@@ -174,7 +174,7 @@ $redes = ob_get_clean();
                         ?>
 
                     </div>
-                    <button class="outline-button load-more" onclick="loadMore(listElements, 3)">
+                    <button class="outline-button load-more" onclick="loadMore(listElements, 4)">
                         Carregar Mais
                         <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
                     </button>
@@ -268,7 +268,7 @@ $redes = ob_get_clean();
         });
     </script>
     <script>
-        let maxVisibleElements = 6;
+        let maxVisibleElements = 4;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
 
         sessionStorage.setItem("t", "");
