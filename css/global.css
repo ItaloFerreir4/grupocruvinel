@@ -1398,6 +1398,10 @@ input[type="text"].parsley-error::placeholder {
     margin-bottom: 45px;
   }
 
+  .business > .row {
+    width: auto;
+  }
+
   .business-card {
     margin: 0px 10px 0px;
     clip-path: none;
