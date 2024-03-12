@@ -1409,13 +1409,13 @@ input[type="text"].parsley-error::placeholder {
   }
 
   .swiper-business .slick-prev {
-    top: 82.5%;
+    top: 90%;
     left: 30%;
     transform: translateX(-50%);
   }
 
   .swiper-business .slick-next {
-    top: 82.5%;
+    top: 90%;
     right: 30%;
     left: auto;
     transform: translateX(-50%);
@@ -1457,7 +1457,7 @@ input[type="text"].parsley-error::placeholder {
 
   .business .business-info .info-content {
     padding: 50px 30px;
-    height: 650px;
+    height: 600px;
   }
 
   .business .business-info .social-media {
