@@ -185,15 +185,18 @@
 .about .image img {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 350px;
   float: right;
   aspect-ratio: 8 / 9;
 }
 
 .about .image::before {
-  content: url(../assets/svg/hexagono-amarelo.svg);
+  content: '';
+  background: url(../assets/svg/hexagono-amarelo-mobile.svg) no-repeat;
+  background-size: cover;
   position: absolute;
-  height: 120%;
+  width: 430px;
+  height: 485px;
   top: 50%;
   right: 0;
   transform: translate(10%, -50%);
@@ -204,13 +207,13 @@
   background-image: url(../assets/png/retangulo-marrom.png);
   background-repeat: no-repeat;
   background-size: cover;
-  right: -90px;
+  right: -70px;
   top: 50%;
   transform: translateY(-50%);
   aspect-ratio: 2 / 3;
-  width: 230px;
-  padding: 40px;
+  padding: 30px;
   border-radius: 10px;
+  width: 170px;
 }
 
 .about .image .brown-box > img {
@@ -224,17 +227,12 @@
 .about .image .brown-box > p {
   color: var(--bege);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   text-align: justify;
-  display: -webkit-box;
-  -webkit-line-clamp: 10;
-  -webkit-box-orient: vertical;
   max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 @media (max-width: 992px) {
@@ -282,9 +280,10 @@
   }
 
   .about .image::before {
-    content: url(../assets/svg/hexagono-amarelo-mobile.svg);
-    height: 125%;
+    content: '';
+    background: url(../assets/svg/hexagono-amarelo-mobile.svg) no-repeat;
     width: 100%;
+    height: 125%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -439,7 +438,7 @@
 .testimonials .white-box h1 {
   color: var(--bege-2);
   font-family: "OpenSans Bold";
-  font-size: 34px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -597,6 +596,10 @@
   padding: 110px 0;
 }
 
+.what-we-do .container{
+  max-width: 900px;
+}
+
 .what-we-do > img {
   position: absolute;
   width: 600px;
@@ -609,19 +612,27 @@
 .what-we-do h1 {
   color: var(--marrom);
   font-family: "OpenSans Bold";
-  font-size: 33px;
+  font-size: 25px;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 900;
   line-height: normal;
+}
+
+.what-we-do .texto{
+  margin: 0 30px 0 0;
+}
+
+.what-we-do .itens{
+  margin: 0 0 0 30px;
 }
 
 .what-we-do p {
   color: var(--preto, #000);
   font-family: "OpenSans";
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
-  line-height: 200%;
+  line-height: 1.7;
 }
 
 .what-we-do .card {
@@ -668,7 +679,7 @@
 .what-we-do .card span {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 23px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -701,7 +712,7 @@
 .clients h1 {
   color: var(--marrom);
   font-family: "OpenSans Bold";
-  font-size: 33px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -728,6 +739,10 @@
 .client img {
   max-height: 90px;
   max-width: 180px;
+}
+
+.clients .slick-arrow{
+  display: none!important;
 }
 
 @media (max-width: 992px) {

@@ -992,7 +992,7 @@ input[type="text"].parsley-error::placeholder {
   text-align: center;
   color: var(--marrom);
   font-family: "OpenSans Bold";
-  font-size: 33px;
+  font-size: 30px;
   margin: 0;
 }
 
@@ -1221,7 +1221,7 @@ input[type="text"].parsley-error::placeholder {
 .business > h1 {
   color: var(--marrom);
   font-family: "OpenSans";
-  font-size: 36px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 300;
   line-height: normal;

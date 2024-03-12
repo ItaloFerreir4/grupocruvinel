@@ -350,7 +350,7 @@ $redesAmarelo = ob_get_clean();
             <img src="assets/svg/fundo-mapa.svg" alt="Fundo">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-4 texto">
                         <h1>O que fazemos?</h1>
                         <?php
                         foreach ($conteudosArray as $conteudo) {
@@ -368,7 +368,7 @@ $redesAmarelo = ob_get_clean();
                         }
                         ?>
                     </div>
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-8 itens">
                         <?php
                         foreach ($conteudosArray as $conteudo) {
                             if ($conteudo->numeroConteudo == 8) {
