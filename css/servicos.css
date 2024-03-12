@@ -18,7 +18,7 @@
   margin-top: 10px;
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
@@ -27,7 +27,7 @@
 /* swiper-services */
 
 .swiper-services {
-  padding: 100px 0;
+  padding: 70px 0;
 }
 
 .swiper-services .slick-prev {
