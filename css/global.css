@@ -1292,18 +1292,6 @@ input[type="text"].parsley-error::placeholder {
 
 .business-card {
   position: relative;
-  clip-path: polygon(
-    15% calc(100% - 70px),
-    0 calc(100% - 70px),
-    0 0,
-    100% 0,
-    100% calc(100% - 40px),
-    calc(100% - 70px) calc(100% - 40px),
-    calc(100% - 70px) 100%,
-    55% 100%,
-    55% calc(100% - 50px),
-    15% calc(100% - 50px)
-  );
   min-height: 500px;
 }
 
@@ -1313,6 +1301,14 @@ input[type="text"].parsley-error::placeholder {
 
 .business .business-info {
   background-color: var(--branco);
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    calc(100% - 320px) 100%,
+    calc(100% - 320px) calc(100% - 20px),
+    0 calc(100% - 20px)
+  );
 }
 
 .business .business-info .info-content {
@@ -1398,6 +1394,10 @@ input[type="text"].parsley-error::placeholder {
     margin-bottom: 45px;
   }
 
+  .business > .row {
+    width: auto;
+  }
+
   .business-card {
     margin: 0px 10px 0px;
     clip-path: none;
@@ -1405,13 +1405,13 @@ input[type="text"].parsley-error::placeholder {
   }
 
   .swiper-business .slick-prev {
-    top: 82.5%;
+    top: 90%;
     left: 30%;
     transform: translateX(-50%);
   }
 
   .swiper-business .slick-next {
-    top: 82.5%;
+    top: 90%;
     right: 30%;
     left: auto;
     transform: translateX(-50%);
@@ -1453,7 +1453,7 @@ input[type="text"].parsley-error::placeholder {
 
   .business .business-info .info-content {
     padding: 50px 30px;
-    height: 650px;
+    height: 600px;
   }
 
   .business .business-info .social-media {
