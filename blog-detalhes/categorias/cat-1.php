@@ -49,11 +49,9 @@ $redes = ob_get_clean();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <!-- Tags Open Graph -->
     <meta property="og:title" content="<?php echo $conteudoSeo["tituloPagina"] ?>">
     <meta property="og:description" content="<?php echo $conteudoSeo["descricaoPagina"] ?>">
-    <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
     <meta property="og:url" content="<?php echo BASE_URL . '/' . $conteudoSeo["nomePagina"] ?>">
     <meta property="og:type" content="website">
     <meta property="og:image" content="<?php echo $conteudoSeo["imagemPagina"] ?>">
@@ -66,13 +64,9 @@ $redes = ob_get_clean();
     <title>
         <?php echo $conteudoSeo["tituloPagina"] ?>
     </title>
-    <title>
-        <?php echo $conteudoSeo["tituloPagina"] ?>
-    </title>
 
     <?php linksHead(); ?>
 
-    <link rel="icon" type="image/svg" href="../../assets/svg/favicon.svg">
     <link rel="icon" type="image/svg" href="../../assets/svg/favicon.svg">
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/global.css">
@@ -84,14 +78,12 @@ $redes = ob_get_clean();
     <?php
     foreach ($conteudosArray as $conteudo) {
         if ($conteudo->numeroConteudo == 1) {
-        if ($conteudo->numeroConteudo == 1) {
             banner(
                 "{$conteudoSeo['tituloPagina']}",
                 "{$conteudo->legendaImagem1Conteudo}",
                 "{$conteudo->legendaImagem2Conteudo}",
                 "../../assets/uploads/{$conteudo->imagem1Conteudo}",
                 "../../assets/uploads/{$conteudo->imagem2Conteudo}"
-            );
             );
         }
     }
@@ -108,11 +100,8 @@ $redes = ob_get_clean();
                             <?php
                             foreach ($categoriasArray as $categoria) {
                                 echo <<<HTML
-                            foreach ($categoriasArray as $categoria) {
-                                echo <<<HTML
                                     <button data-url="../../blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
                                     HTML;
-                            }
                             }
                             ?>
                         </div>
@@ -122,20 +111,13 @@ $redes = ob_get_clean();
                                 <?php
                                 foreach ($blogsArray as $row) {
                                     $tagsBlog = $row->tagsBlog;
-                                foreach ($blogsArray as $row) {
-                                    $tagsBlog = $row->tagsBlog;
 
                                     $tags = explode(",", $tagsBlog);
-                                    $tags = explode(",", $tagsBlog);
 
-                                    foreach ($tags as &$tag) {
-                                        echo <<<HTML
                                     foreach ($tags as &$tag) {
                                         echo <<<HTML
                                             <button data-tag="{$tag}">{$tag}</button>
                                             HTML;
-                                    }
-                                }
                                     }
                                 }
                                 ?>
@@ -147,28 +129,17 @@ $redes = ob_get_clean();
                     <div class="row">
                         <?php
                         foreach ($blogsArray as $blog) {
-                        foreach ($blogsArray as $blog) {
 
                             $dataBlog = $blog->dataBlog;
                             $categoriasId = $blog->categoriasId;
-                            $dataBlog = $blog->dataBlog;
-                            $categoriasId = $blog->categoriasId;
 
-                            $dataBlog = new DateTime($dataBlog);
-                            $dataBlog = $dataBlog->format('d/m/Y');
                             $dataBlog = new DateTime($dataBlog);
                             $dataBlog = $dataBlog->format('d/m/Y');
 
                             $primeiraCategoriaBlog = json_decode($categoriasId);
                             if ($primeiraCategoriaBlog) {
                                 $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
-                            $primeiraCategoriaBlog = json_decode($categoriasId);
-                            if ($primeiraCategoriaBlog) {
-                                $primeiraCategoriaBlog = $primeiraCategoriaBlog[0];
 
-                                foreach ($categoriasArray as $rowCat) {
-                                    if ($rowCat->idCategoria == $primeiraCategoriaBlog) {
-                                        $nomeCategoriaBlog = $rowCat->nomeCategoria;
                                 foreach ($categoriasArray as $rowCat) {
                                     if ($rowCat->idCategoria == $primeiraCategoriaBlog) {
                                         $nomeCategoriaBlog = $rowCat->nomeCategoria;
@@ -179,24 +150,12 @@ $redes = ob_get_clean();
                                 $nomeCategoriaBlog = "";
                             }
 
-                            } else {
-                                $nomeCategoriaBlog = "";
-                            }
-
-                            // Remove colchetes e aspas de cada parte entre vírgulas
-                            $categoriasBlog = preg_replace('/\["(.*?)"]/', '$1', $categoriasId);
                             // Remove colchetes e aspas de cada parte entre vírgulas
                             $categoriasBlog = preg_replace('/\["(.*?)"]/', '$1', $categoriasId);
 
                             // Divide a string em um array usando "," como delimitador
                             $categoriasBlog = explode(',', $categoriasBlog);
-                            // Divide a string em um array usando "," como delimitador
-                            $categoriasBlog = explode(',', $categoriasBlog);
 
-                            // Transforma o array em uma string separada por ","
-                            $categoriasBlog = implode(',', $categoriasBlog);
-
-                            echo <<<HTML
                             // Transforma o array em uma string separada por ","
                             $categoriasBlog = implode(',', $categoriasBlog);
 
@@ -217,9 +176,7 @@ $redes = ob_get_clean();
                                 </a>
                                 HTML;
                         }
-                        }
                         ?>
-
 
                     </div>
                     <button class="outline-button load-more" onclick="loadMore(listElements)">
@@ -237,8 +194,6 @@ $redes = ob_get_clean();
             <div class="col-12 col-lg-6">
                 <div class="swiper-business">
                     <?php
-                    foreach ($empresasArray as $empresa) {
-                        echo <<<HTML
                     foreach ($empresasArray as $empresa) {
                         echo <<<HTML
                             <div class="business-card">
@@ -264,14 +219,12 @@ $redes = ob_get_clean();
                             </div>
                             HTML;
                     }
-                    }
                     ?>
                 </div>
             </div>
             <div class="col-12 col-lg-6 business-video">
                 <?php
                 foreach ($conteudosArray as $conteudo) {
-                    if ($conteudo->numeroConteudo == 2) {
                     if ($conteudo->numeroConteudo == 2) {
                         $linkVideo = $conteudo->linkVideoConteudo;
 
@@ -291,7 +244,6 @@ $redes = ob_get_clean();
                             $videoId = "";
                         }
 
-
                         echo <<<HTML
                             <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                         HTML;
@@ -302,12 +254,8 @@ $redes = ob_get_clean();
             <button onclick="scrollElemento('footer')" class="scroll-down">
                 <img src="assets/svg/seta-baixo-marrom.svg" alt="Seta">
             </button>
-            <button onclick="scrollElemento('footer')" class="scroll-down">
-                <img src="assets/svg/seta-baixo-marrom.svg" alt="Seta">
-            </button>
         </div>
     </section>
-
 
     <?php cFooter(); ?>
     <?php elementosGerais(); ?>

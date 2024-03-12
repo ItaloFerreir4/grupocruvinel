@@ -135,7 +135,7 @@ $redes = ob_get_clean();
         </div>
     </div>
     <section class="post">
-        <div class="shaped-content container">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <img src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>"
