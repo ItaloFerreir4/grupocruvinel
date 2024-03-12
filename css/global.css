@@ -257,7 +257,7 @@ footer .links span,
 footer .links a {
   color: var(--branco);
   font-family: "OpenSans";
-  font-size: 15px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -325,7 +325,7 @@ footer .location {
 footer .location h1 {
   color: var(--marrom);
   font-family: "OpenSans Bold";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
