@@ -1257,17 +1257,17 @@ input[type="text"].parsley-error::placeholder {
 .business::after {
   content: url(../assets/svg/hexagono-amarelo.svg);
   position: absolute;
-  right: 125px;
+  right: 10%;
   bottom: 45px;
   display: block;
-  width: 500px;
+  width: 400px;
 }
 
 .business > .row {
   position: relative;
   gap: 0;
-  /* max-width: 1200px;
-  margin: 0 auto; */
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 .business > .row .scroll-down {
@@ -1290,7 +1290,8 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business .slick-prev {
-  top: 90%;
+  top: auto;
+  bottom: 30px;
   left: 60%;
   z-index: 1;
 }
@@ -1299,7 +1300,8 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .swiper-business .slick-next {
-  top: 90%;
+  top: auto;
+  bottom: 30px;
   left: 70%;
   z-index: 1;
 }
@@ -1310,7 +1312,7 @@ input[type="text"].parsley-error::placeholder {
 
 .business-card {
   position: relative;
-  min-height: 500px;
+  min-height: 400px;
 }
 
 .business-card > .row {
@@ -1331,7 +1333,7 @@ input[type="text"].parsley-error::placeholder {
 
 .business .business-info .info-content {
   padding: 80px 100px 120px 80px;
-  height: 600px;
+  height: 450px;
 }
 
 .business .business-info .info-content .yellow-highlight {
@@ -1373,7 +1375,6 @@ input[type="text"].parsley-error::placeholder {
 .business .business-video {
   position: relative;
   background-color: var(--bege);
-  height: 600px;
 }
 
 .business .business-video .video-bg {
