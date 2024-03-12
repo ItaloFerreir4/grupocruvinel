@@ -136,7 +136,7 @@
 .about .text h1 {
   color: var(--preto);
   font-family: "OpenSans Bold";
-  font-size: 37px;
+  font-size: 25px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -161,7 +161,7 @@
 .about .text p {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -312,11 +312,11 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .financial .container {
-  padding-top: 120px;
+  padding-top: 80px;
   padding-bottom: 220px;
 }
 
@@ -331,12 +331,12 @@
 .financial .container > h1 {
   color: var(--bege-2);
   font-family: "OpenSans Bold";
-  font-size: 36px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   text-align: center;
-  margin: 0 auto 50px;
+  margin: 0 auto 70px;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -401,7 +401,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 @media (max-width: 992px) {
@@ -427,7 +427,7 @@
 
 .testimonials .white-box {
   background-color: var(--branco);
-  padding: 60px 100px 80px;
+  padding: 30px 100px 50px;
   box-shadow: 25px 20px 10px 0px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 }
@@ -440,7 +440,11 @@
   font-weight: 800;
   line-height: normal;
   text-align: center;
-  margin-bottom: 50px;
+  margin: 0 0 50px;
+}
+
+.testimonials .white-box .company{
+  width: 175px;
 }
 
 .testimonials .white-box .company > img {
@@ -453,44 +457,49 @@
 .testimonials .white-box .company .person {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   display: block;
-  margin-bottom: 10px;
+  margin: 35px 0 10px;
 }
 
 .testimonials .white-box .company .position {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   display: block;
 }
 
+.testimonials .white-box .testimonial{
+  margin: 0 0 0 20px;
+}
+
 .testimonials .white-box .testimonial p {
   color: var(--preto, #000);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin: 0 0 10px;
 }
 
 .testimonials .white-box .testimonial .read-more {
   color: var(--bege-2);
   font-family: "OpenSans Bold";
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   line-height: normal;
   display: inline-flex;
   align-items: center;
   gap: 25px;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .swiper-testimonials .slick-prev:before,
@@ -501,6 +510,10 @@
 .swiper-testimonials .slide-testimonial {
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.swiper-testimonials .slick-dots{
+  bottom: -50px;
 }
 
 @media (max-width: 992px) {
