@@ -514,12 +514,6 @@ footer .rights span {
   text-transform: uppercase;
 }
 
-@media (max-width: 1200px) {
-  .banner {
-    margin-top: 95px;
-  }
-}
-
 /* white-bg */
 
 .white-bg.container {
