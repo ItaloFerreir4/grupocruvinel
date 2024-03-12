@@ -53,6 +53,7 @@
 
 .swiper-clients .client {
   margin: 0 auto;
+  width: 90%;
 }
 
 .clients .grid-content {
@@ -64,8 +65,8 @@
   margin: 0px auto 40px;
 }
 
-@media(max-width: 1200px){
-  .swiper-clients{
+@media (max-width: 1200px) {
+  .swiper-clients {
     padding: 60px 0 50px;
   }
 }
