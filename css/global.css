@@ -170,7 +170,6 @@ header {
 
 header > img {
   height: 75px;
-  margin: 20px;
 }
 
 header nav {
@@ -179,14 +178,13 @@ header nav {
 
 header a {
   color: var(--branco, #fff);
-  font-family: "OpenSans Bold";
-  font-size: 18px;
+  font-family: "OpenSans";
+  font-size: 12px;
   font-style: normal;
-  font-weight: 600;
   line-height: normal;
-  padding: 15px;
+  padding: 10px 15px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 5px;
   transition: all 0.3s ease-in-out;
 }
 
