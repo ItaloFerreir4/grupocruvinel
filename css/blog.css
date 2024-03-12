@@ -1,6 +1,15 @@
+/* banner */
+.banner {
+  padding: 200px 0 40px;
+}
+
 /* blogs */
 .blogs .shaped-content > .row {
   padding-top: 80px;
+}
+
+.blogs .load-more {
+  margin: 0px auto 100px;
 }
 
 /* card-blog */
