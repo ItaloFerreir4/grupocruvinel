@@ -126,7 +126,7 @@ $redes = ob_get_clean();
                             </span>
                         </div>
                     </div>
-                    <div class="outline-button white">
+                    <div class="outline-button white" onclick="scrollElemento('.post')">
                         Ler mais
                         <img src="../assets/svg/seta-dir-branca.svg" alt="Ler Mais">
                     </div>
