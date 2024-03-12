@@ -118,7 +118,7 @@
   background-color: var(--bege-3);
 }
 
-.about .container{
+.about .container {
   width: 900px;
 }
 
@@ -191,7 +191,7 @@
 }
 
 .about .image::before {
-  content: '';
+  content: "";
   background: url(../assets/svg/hexagono-amarelo-mobile.svg) no-repeat;
   background-size: cover;
   position: absolute;
@@ -252,7 +252,7 @@
     top: -34px;
   }
 
-  .about .container{
+  .about .container {
     width: 100%;
   }
 
@@ -449,7 +449,7 @@
   margin: 0 0 50px;
 }
 
-.testimonials .white-box .company{
+.testimonials .white-box .company {
   width: 175px;
 }
 
@@ -481,7 +481,7 @@
   display: block;
 }
 
-.testimonials .white-box .testimonial{
+.testimonials .white-box .testimonial {
   margin: 0 0 0 20px;
 }
 
@@ -518,7 +518,7 @@
   margin-left: 5px;
 }
 
-.swiper-testimonials .slick-dots{
+.swiper-testimonials .slick-dots {
   bottom: -50px;
 }
 
@@ -528,7 +528,7 @@
     padding: 60px 30px 80px;
   }
 
-  .testimonials .white-box .testimonial{
+  .testimonials .white-box .testimonial {
     margin: 10px 0 0;
   }
 }
@@ -539,11 +539,11 @@
   margin: 70px 0;
 }
 
-.newsletter .container > .row{
+.newsletter .container > .row {
   align-items: center;
 }
 
-.newsletter .whatsapp-icon{
+.newsletter .whatsapp-icon {
   width: 130px;
 }
 
@@ -603,7 +603,7 @@
   padding: 190px 0 100px;
 }
 
-.what-we-do .container{
+.what-we-do .container {
   max-width: 900px;
 }
 
@@ -625,11 +625,11 @@
   line-height: normal;
 }
 
-.what-we-do .texto{
+.what-we-do .texto {
   margin: 0 30px 0 0;
 }
 
-.what-we-do .itens{
+.what-we-do .itens {
   margin: 0 0 0 30px;
 }
 
@@ -693,7 +693,7 @@
 }
 
 @media (max-width: 1200px) {
-  .what-we-do{
+  .what-we-do {
     padding: 100px 0 30px;
   }
 
@@ -704,7 +704,7 @@
     left: 0;
   }
 
-  .what-we-do .itens{
+  .what-we-do .itens {
     margin: 0;
   }
 }
@@ -758,8 +758,8 @@
   max-width: 180px;
 }
 
-.clients .slick-arrow{
-  display: none!important;
+.clients .slick-arrow {
+  display: none !important;
 }
 
 @media (max-width: 992px) {
@@ -776,10 +776,16 @@
 
 /* business */
 
-.business{
+.business {
   padding: 0 100px;
 }
 
-.business::after{
+.business::after {
   bottom: -140px;
+}
+
+@media (max-width: 992px) {
+  .business {
+    padding: 0;
+  }
 }
