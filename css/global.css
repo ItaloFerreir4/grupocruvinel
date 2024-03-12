@@ -1249,7 +1249,7 @@ input[type="text"].parsley-error::placeholder {
 .business > .row {
   position: relative;
   gap: 0;
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -1337,7 +1337,7 @@ input[type="text"].parsley-error::placeholder {
   margin: 0 0 25px;
 }
 
-.business .business-info .yellow-highlight > p {
+.business .business-info .yellow-highlight  p {
   color: var(--preto);
   font-family: "OpenSans";
   font-size: 16px;
