@@ -75,7 +75,7 @@ $redes = ob_get_clean();
 
     <?php linksHead(); ?>
 
-    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
+    <link rel="icon" type="image/svg" href="../assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="../css/bootstrap.css">
@@ -222,28 +222,28 @@ $redes = ob_get_clean();
                     <?php
                     foreach ($empresasArray as $empresa) {
                         echo <<<HTML
-                            <div class="business-card">
-                                <div class="business-info">
-                                    <div class="info-content">
-                                        <div class="yellow-highlight">
-                                            <img src="../assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
-                                            <p class="limit-text">
-                                                {$empresa->tituloBusiness}
-                                            </p>
-                                            <a class="link-completo" href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
-                                        </div>
-                                        <div class="social-media">
-                                            {$redes}
-                                        </div>
-                                        <a href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
-                                            <div class="outline-button">Saiba mais <img src="../assets/svg/seta-dir-marrom.svg"
-                                                    alt="Saiba Mais">
+                        <div class="business-card">
+                            <div class="business-info">
+                                <div class="info-content">
+                                    <div class="yellow-highlight">
+                                        <img src="../assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                        <div class="limit-text">
+                                                {$empresa->textoBusiness}
                                             </div>
-                                        </a>
+                                        <a class="link-completo" href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
                                     </div>
+                                    <div class="social-media">
+                                        {$redes}
+                                    </div>
+                                    <a href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
+                                        <div class="outline-button">Saiba mais <img src="../assets/svg/seta-dir-marrom.svg"
+                                                alt="Saiba Mais">
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
-                            HTML;
+                        </div>
+                        HTML;
                     }
                     ?>
                 </div>
@@ -271,12 +271,15 @@ $redes = ob_get_clean();
                         }
 
                         echo <<<HTML
-                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
-                        HTML;
+                        <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                    HTML;
                     }
                 }
                 ?>
             </div>
+            <button onclick="scrollElemento('.links')" class="scroll-down">
+                <img src="../assets/svg/seta-baixo-marrom.svg" alt="Seta">
+            </button>
         </div>
     </section>
 
@@ -291,6 +294,8 @@ $redes = ob_get_clean();
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [
                     {
                         breakpoint: 992,
@@ -303,6 +308,8 @@ $redes = ob_get_clean();
             $(".swiper-business").slick({
                 infinite: true,
                 slidesToShow: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
             });
         });
     </script>

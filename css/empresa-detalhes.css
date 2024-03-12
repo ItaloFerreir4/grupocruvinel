@@ -7,6 +7,14 @@
 }
 
 @media (max-width: 992px) {
+  .banner{
+    padding: 200px 0 100px;
+  }
+
+  .banner .title{
+    margin: 0 0 50px;
+  }
+
   .banner .bloco-2 img {
     float: left;
   }
@@ -14,8 +22,16 @@
 
 /* shaped-content */
 
+.shaped-content{
+  max-width: 900px;
+}
+
 .shaped-content > .row {
-  padding: 120px 0;
+  padding: 120px 0 50px;
+}
+
+.shaped-content::before{
+  height: calc(100% + 100px);
 }
 
 @media (max-width: 992px) {
@@ -28,6 +44,7 @@
 
 .company-image {
   position: relative;
+  margin: 0 100px 0 0;
 }
 
 .company-image::before {
@@ -56,18 +73,24 @@
 }
 
 .company-image .img-wrapper::after {
-  content: url(../assets/svg/hexagono-amarelo.svg);
+  content: '';
+  background: url(../assets/svg/hexagono-amarelo.svg) no-repeat;
+  background-size: cover;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   display: block;
-  width: 110%;
-  height: 110%;
+  width: 387px;
+  height: 440px;
   z-index: -1;
   position: absolute;
 }
 
 @media (max-width: 992px) {
+  .company-image{
+    margin: 0;
+  }
+
   .company-image .img-wrapper::after {
     display: none;
   }
@@ -82,7 +105,7 @@
 .company-description h1 {
   color: var(--preto);
   font-family: "OpenSans Bold";
-  font-size: 37px;
+  font-size: 30px;
   position: relative;
   padding-left: 40px;
   margin-bottom: 40px;
@@ -107,7 +130,7 @@
 .company-description p {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -128,11 +151,12 @@
 
 .field {
   position: relative;
-  padding: 0 0 100px;
+  padding: 0 0 70px;
 }
 
 .field > .container {
-  padding-top: 110px;
+  padding: 100px 0 0;
+  max-width: 900px;
 }
 
 .field > img {
@@ -146,8 +170,7 @@
 
 @media (max-width: 992px) {
   .field > .container {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px 20px;
   }
 }
 
@@ -156,7 +179,7 @@
 .field-details > h1 {
   color: var(--branco);
   font-family: "OpenSans";
-  font-size: 26px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -166,7 +189,7 @@
 .field-details > p {
   color: var(--bege-3);
   font-family: "OpenSans";
-  font-size: 20px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -182,28 +205,41 @@
 }
 
 .field-details ul > li:before {
-  content: url("../assets/svg/traco-lista-amarelo.svg");
-  margin-right: 25px;
+  content: '';
+  background: url("../assets/svg/traco-lista-amarelo.svg") no-repeat;
+  background-size: cover;
+  display: block;
+  width: 18px;
+  height: 2px;
+  margin-right: 15px;
 }
 
 .field-details li {
   color: var(--bege-3);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin-bottom: 18px;
   display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 992px) {
   .field-details ul > li:before {
     margin-right: 5px;
   }
-  .field-details li {
-    font-size: 16px;
+
+  .field-details ul{
+    grid-auto-flow: row;
   }
+
+  .field-details li {
+    font-size: 14px;
+  }
+  
 }
 
 /* customer-service */
@@ -211,7 +247,7 @@
 .customer-service > h1 {
   color: var(--branco);
   font-family: "OpenSans";
-  font-size: 26px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -236,6 +272,16 @@ select::placeholder {
   color: var(--branco);
 }
 
+#contatoTelefone{
+  border: 1px solid var(--amarelo);
+  color: var(--amarelo);
+  background-color: transparent;
+}
+
+#contatoTelefone::placeholder{
+  color: var(--amarelo);
+}
+
 input[type="checkbox"] {
   color: var(--branco);
   border: 1px solid var(--branco);
@@ -252,7 +298,7 @@ form button.send.botao-enviar {
 /* services */
 
 .services {
-  padding: 100px 0 150px;
+  padding: 70px 0;
 }
 
 .services h1 {
@@ -263,11 +309,12 @@ form button.send.botao-enviar {
   font-weight: 800;
   line-height: normal;
   text-align: center;
+  margin: 0;
 }
 
 .services .social-media {
   width: 100%;
-  margin: 15px auto 75px;
+  margin: 30px auto 40px;
   justify-content: center;
 }
 
@@ -275,13 +322,14 @@ form button.send.botao-enviar {
   display: grid;
   justify-content: center;
   grid-template-rows: repeat(3, 1fr);
-  margin: 0 15px;
+  margin: 0;
   gap: 30px;
 }
 
 .swiper-services .service {
-  width: 350px;
-  height: 150px;
+  width: 300px;
+  height: 100%;
+  min-height: 120px;
   display: flex;
   align-items: center;
   padding: 25px 35px;
@@ -291,7 +339,7 @@ form button.send.botao-enviar {
 .swiper-services .service p {
   color: var(--cinza);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -301,13 +349,17 @@ form button.send.botao-enviar {
   bottom: -50px;
 }
 
-.swiper-services .service {
-  width: 100%;
-}
-
 @media (max-width: 992px) {
   .services .social-media {
-    margin: 15px 0 35px;
+    margin: 25px 0 35px;
+  }
+
+  .swiper-services .service{
+    width: 100%;
+  }
+
+  .swiper-services .slick-list{
+    margin: 0 15px;
   }
 
   .swiper-services .slick-next {

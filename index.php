@@ -40,6 +40,11 @@ $sqlFormulario->bindValue(":descricaoFormulario", 'newsletter');
 $sqlFormulario->execute();
 $formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
 
+$sqlContatos = $con->prepare("SELECT * FROM contatos WHERE idContato = :idContato");
+$sqlContatos->bindValue(":idContato", 1);
+$sqlContatos->execute();
+$conteudoContatos = $sqlContatos->fetch(PDO::FETCH_ASSOC);
+
 ob_start();
 redesSociais("marrom");
 $redesMarrom = ob_get_clean();
@@ -140,7 +145,7 @@ $redesAmarelo = ob_get_clean();
                                 <div class="social-media">
                                     {$redesMarrom}
                                 </div>
-                                <h1 class="limit-text">{$conteudo->tituloConteudo}</h1>
+                                <h1>{$conteudo->tituloConteudo}</h1>
                                 {$conteudo->textoConteudo}
                                 <a href="{$conteudo->linkBotao1}" title="Saiba Mais"  target="{$conteudo->targetBotao1}">
                                     <div class="outline-button">
@@ -248,7 +253,9 @@ $redesAmarelo = ob_get_clean();
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-2">
-                        <img class="whatsapp-icon desktop" src="assets/svg/botao-whatsapp-verde.svg" alt="Whatsapp">
+                        <a href="<?php echo $conteudoContatos['linkWhatsappContato'] ?>" title="Whatsapp" target="_blank">
+                            <img class="whatsapp-icon desktop" src="assets/svg/botao-whatsapp-verde.svg" alt="Whatsapp">
+                        </a>
                     </div>
                     <div class="col-12 col-lg-4">
                         <p>Receba meus lançamentos e novidades na sua caixa de mensagens ou WhatsApp.</p>
