@@ -429,6 +429,11 @@ footer .rights span {
     display: block;
   }
 
+  footer .links span,
+  footer .links a {
+    max-width: none;
+  }
+
   footer .links .label-social-media {
     display: block;
     margin-right: 0;
@@ -474,7 +479,7 @@ footer .rights span {
   z-index: 1;
 }
 
-.banner .container{
+.banner .container {
   max-width: 850px;
 }
 
@@ -1429,7 +1434,7 @@ input[type="text"].parsley-error::placeholder {
     left: 30%;
     transform: translateX(-50%);
   }
-  
+
   .swiper-business .slick-next {
     top: 85%;
     right: 30%;
@@ -1533,11 +1538,11 @@ select {
   position: relative;
   border-radius: 5px;
   color: var(--bege);
-  font-family: "OpenSans"!important;
-  font-size: 16px!important;
+  font-family: "OpenSans" !important;
+  font-size: 16px !important;
   font-style: normal;
   font-weight: 400;
-  line-height: normal!important;
+  line-height: normal !important;
   padding: 10px 20px;
   width: 100%;
   background-color: var(--bege-3);
