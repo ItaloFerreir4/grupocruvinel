@@ -50,6 +50,12 @@ function cFooter(){
     $redes = ob_get_clean();
 
     echo <<<HTML
+    <div class="btn-flutuante">
+        <button type="button" class="btn-sobe-topo" alt="Voltar ao topo da pagina" onClick="SubirTopo()"><i class="fa-solid fa-angle-up" aria-label="Botão flutuante contato" title="Botão flutuante contato"></i></button>
+        <a class="whatsapp" href="{$conteudoContatos['linkWhatsappContato']}" title="Whatsapp" target="_blank">
+            <img loading="lazy" src="{$urlBase}/assets/svg/whatsapp-branco.svg" alt="Imagem Whatsapp">
+        </a>
+    </div>
     <footer>
         <div class="links">
             <div class="container">
@@ -120,6 +126,18 @@ function cFooter(){
             </div>
         </div>
     </footer>
+    <section class="section_cookie hidden">
+        <div class="container">
+            <div class="col-12">
+                <div class="row box">
+                    <div class="col-12 text">
+                        <p>Cookies: a gente guarda estatísticas de visitas para melhorar sua experiência de navegação. Ao continuar, você concorda com nossa <a href="./politica-de-privacidade">Política de Privacidade</a>.</p>
+                        <button type="button" class="close_cookie" onClick="acceptCookies()"> Concordo e fechar </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 HTML;
 }
 

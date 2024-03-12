@@ -729,5 +729,19 @@ if (isset($_POST['origem'])) {
                 echo false;
             }
             break;
+
+        case "deletaServico":
+            try {
+                $sql = $con->prepare('DELETE FROM servicos WHERE idServico = :idServico');
+                $sql->bindValue(":idServico", $_POST['idServico']);
+                if ($sql->execute()) {
+                    echo true;
+                } else {
+                    echo false;
+                }
+            } catch (PDOException $e) {
+                echo false;
+            }
+            break;
     }
 }

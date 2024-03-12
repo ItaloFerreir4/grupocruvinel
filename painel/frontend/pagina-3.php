@@ -350,19 +350,19 @@ echo ''
                                         <textarea class="form-control" id="textoConteudo2" name="textoConteudo2" rows="10"></textarea>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-4 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Nome do botão</label>                                            
                                         <input type="text" class="form-control" id="nomeBotao1" name="nomeBotao1">
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-4 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Link do botão</label>                                            
                                         <input type="text" class="form-control" id="linkBotao1" name="linkBotao1">
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-12">
+                                <div class="col-lg-4 col-md-12 hidden">
                                     <div class="form-group">  
                                         <label>Target do botão</label>                                            
                                         <select class="form-control" name="targetBotao1" id="targetBotao1">
@@ -404,12 +404,14 @@ echo ''
                                     <thead>
                                         <tr>
                                             <th>Titulo</th>
+                                            <th>Texto</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Titulo</th>
+                                            <th>Texto</th>
                                             <th>Ações</th>
                                         </tr>
                                     </tfoot>

@@ -255,28 +255,23 @@ acc.forEach((element) => {
 function handleScroll() {
   const header = document.querySelector("header");
   const logo = document.querySelector("header .logo");
+  const menuMobile = document.querySelector("header .expand");
 
   if (header) {
     if (window.scrollY > 50) {
+
       header.style.backgroundColor = "#141414";
+      logo.style.height = "70px";
+      header.style.height = "90px";
+      menuMobile.style.top = "90px";
 
-      if (window.innerWidth > 1310) {
-        logo.style.height = "70px";
-        header.style.height = "90px";
-      } else {
-        logo.style.height = "70px";
-        header.style.height = "90px";
-      }
     } else {
-      header.style.backgroundColor = "transparent";
 
-      if (window.innerWidth < 1310) {
-        logo.style.height = "85px";
-        header.style.height = "115px";
-      } else {
-        logo.style.height = "85px";
-        header.style.height = "115px";
-      }
+      header.style.backgroundColor = "transparent";
+      logo.style.height = "85px";
+      header.style.height = "115px";
+      menuMobile.style.top = "115px";
+
     }
   }
 }
@@ -324,7 +319,7 @@ window.addEventListener("resize", () => {
 });
 
 window.addEventListener("DOMContentLoaded", () => {
-  // checkCookieConsent();
+  checkCookieConsent();
 
   /* colocar titulo no input do formulário */
   const tituloPaginas = document.querySelectorAll("#tituloPagina");

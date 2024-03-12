@@ -201,9 +201,9 @@ $redes = ob_get_clean();
                                     <div class="info-content">
                                         <div class="yellow-highlight">
                                             <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
-                                            <p class="limit-text">
-                                                {$empresa->tituloBusiness}
-                                            </p>
+                                            <div class="limit-text">
+                                                {$empresa->textoBusiness}
+                                            </div>
                                             <a class="link-completo" href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
                                         </div>
                                         <div class="social-media">
@@ -265,6 +265,8 @@ $redes = ob_get_clean();
             $(".swiper-business").slick({
                 infinite: true,
                 slidesToShow: 1,
+                autoplay: true,
+                autoplaySpeed: 2500,
             });
         });
     </script>

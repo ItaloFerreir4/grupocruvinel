@@ -218,7 +218,7 @@ header .expand {
   flex-direction: column;
   z-index: 100;
   overflow-y: scroll;
-  transition: max-height 0.3s ease-out;
+  transition: all 0.3s ease-in-out;
   background-color: var(--cinza);
   height: calc(100vh - 115px);
   width: 100%;
@@ -257,7 +257,7 @@ footer .links span,
 footer .links a {
   color: var(--branco);
   font-family: "OpenSans";
-  font-size: 18px;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -470,8 +470,12 @@ footer .rights span {
 
 .banner {
   position: relative;
-  padding: 250px 0 100px;
+  padding: 200px 0 60px;
   z-index: 1;
+}
+
+.banner .container{
+  max-width: 800px;
 }
 
 .banner .img-background {
@@ -506,11 +510,17 @@ footer .rights span {
 .banner .title p {
   color: var(--bege-2);
   font-family: "OpenSans Bold";
-  font-size: 32px;
+  font-size: 26px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
   text-transform: uppercase;
+}
+
+@media(max-width: 1200px){
+  .banner{
+    padding: 230px 0 0px;
+  }
 }
 
 /* white-bg */
@@ -747,7 +757,7 @@ input[type="text"].parsley-error::placeholder {
 .accordion .title span {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 22px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -999,6 +1009,10 @@ input[type="text"].parsley-error::placeholder {
   margin: 0;
 }
 
+.other-blogs .slick-dots{
+  bottom: -40px;
+}
+
 @media (max-width: 992px) {
   .contact-us .contact-info > div span,
   .contact-us .contact-info > div strong {
@@ -1040,7 +1054,7 @@ input[type="text"].parsley-error::placeholder {
   width: fit-content;
   transform: translate(-50%, -50%);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: var(--branco);
 }
 
@@ -1096,7 +1110,7 @@ input[type="text"].parsley-error::placeholder {
   width: fit-content;
   transform: translate(-50%, -50%);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: var(--branco);
 }
 
@@ -1556,7 +1570,7 @@ button.send {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: var(--marrom);
   color: var(--amarelo);
   font-family: "OpenSans";

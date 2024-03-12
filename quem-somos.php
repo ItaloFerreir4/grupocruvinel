@@ -179,7 +179,7 @@ $redes = ob_get_clean();
                         if($conteudo->numeroConteudo == 6){
                             echo <<<HTML
                             
-                            <div class="accordion">
+                            <div class="accordion cursor-pointer">
                                 <div class="title">
                                     <div>
                                         <span class="limit-text">{$conteudo->tituloConteudo}</span>
@@ -296,6 +296,8 @@ $redes = ob_get_clean();
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [
                     {
                         breakpoint: 992,
@@ -308,6 +310,8 @@ $redes = ob_get_clean();
             $(".swiper-photos").slick({
                 infinite: true,
                 slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [
                     {
                         breakpoint: 992,
