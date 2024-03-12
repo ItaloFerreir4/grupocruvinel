@@ -178,8 +178,8 @@ function loadContent(listElements) {
   toggleLoadMoreButtonVisibility(listElements, visibleElements);
 }
 
-function loadMore(listElements) {
-  maxVisibleElements += 3;
+function loadMore(listElements, itemsToShow) {
+  maxVisibleElements += itemsToShow;
   loadContent(listElements);
 }
 
@@ -227,7 +227,6 @@ function filterByCategory(filter, redirect) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  console.log(sessionStorage);
   setActiveClasses();
   loadButtonsFunctionality();
   loadContent(listElements);

@@ -215,7 +215,7 @@ $redes = ob_get_clean();
                                     }
                                 ?>
                             </div>
-                            <button class="load-more blue-btn center" onclick="loadMore(listElements)">
+                            <button class="load-more blue-btn center" onclick="loadMore(listElements, 3)">
                                 Carregar Mais
                             </button>
                             <div class="container tag-filter mobile">

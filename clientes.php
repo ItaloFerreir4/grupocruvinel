@@ -95,7 +95,7 @@ $redes = ob_get_clean();
                     }
                     ?>
                 </div>
-                <button class="outline-button load-more" onclick="loadMore(listElements)">
+                <button class="outline-button load-more" onclick="loadMore(listElements, 4)">
                     Carregar Mais
                     <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
                 </button>
