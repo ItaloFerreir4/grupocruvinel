@@ -100,7 +100,7 @@ $redes = ob_get_clean();
                             <?php
                             foreach ($categoriasArray as $categoria) {
                                 echo <<<HTML
-                                    <button data-url="../../blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
+                                    <button data-url="../blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
                                     HTML;
                             }
                             ?>
@@ -179,7 +179,7 @@ $redes = ob_get_clean();
                         ?>
 
                     </div>
-                    <button class="outline-button load-more" onclick="loadMore(listElements)">
+                    <button class="outline-button load-more" onclick="loadMore(listElements, 3)">
                         Carregar Mais
                         <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
                     </button>

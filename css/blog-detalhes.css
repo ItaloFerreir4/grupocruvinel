@@ -28,6 +28,16 @@
   line-height: normal;
 }
 
+@media(max-width: 1200px){
+  .banner{
+    padding: 180px 0 60px;
+  }
+
+  .banner h1{
+    font-size: 30px;
+  }
+}
+
 /* post */
 
 .post {
