@@ -798,12 +798,13 @@ input[type="text"].parsley-error::placeholder {
 
 .filter h1 {
   color: var(--bege-2);
-  font-family: "OpenSans";
-  font-size: 19px;
+  font-family: "Montserrat SemiBold";
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
 .filter button,
@@ -845,12 +846,13 @@ input[type="text"].parsley-error::placeholder {
 
 .tag-filter h1 {
   color: var(--bege-2);
-  font-family: "OpenSans";
-  font-size: 19px;
+  font-family: "Montserrat SemiBold";
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   display: block;
+  text-transform: uppercase;
 }
 
 .tag-filter .buttons {
