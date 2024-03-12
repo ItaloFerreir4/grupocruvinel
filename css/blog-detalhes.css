@@ -28,6 +28,12 @@
   line-height: normal;
 }
 
+@media (max-width: 1200px) {
+  .banner {
+    padding: 230px 0 50px;
+  }
+}
+
 /* post */
 
 .post {
