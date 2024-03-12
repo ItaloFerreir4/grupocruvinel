@@ -251,6 +251,36 @@ acc.forEach((element) => {
   });
 });
 
+// Função para verificar o scroll
+function handleScroll() {
+  const header = document.querySelector("header");
+  const logo = document.querySelector("header .logo");
+
+  if (header) {
+    if (window.scrollY > 50) {
+      header.style.backgroundColor = "#141414";
+
+      if (window.innerWidth > 1310) {
+        logo.style.height = "70px";
+        header.style.height = "90px";
+      } else {
+        logo.style.height = "70px";
+        header.style.height = "90px";
+      }
+    } else {
+      header.style.backgroundColor = "transparent";
+
+      if (window.innerWidth < 1310) {
+        logo.style.height = "85px";
+        header.style.height = "115px";
+      } else {
+        logo.style.height = "85px";
+        header.style.height = "115px";
+      }
+    }
+  }
+}
+
 function handleFooterMapOnMobile(footerIsOpen) {
   const links = document.querySelector(".map.mobile .links");
   footerIsOpen
@@ -279,6 +309,8 @@ const bannerDate = document.querySelector(".date h2");
 console.log(bannerDate);
 let navIsOpen = false;
 let footerIsOpen = false;
+
+window.addEventListener("scroll", handleScroll);
 
 window.addEventListener("resize", () => {
   if (tabs) addContainerClassToDesktop(tabsContent);

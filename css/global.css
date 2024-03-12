@@ -164,7 +164,8 @@ header {
   z-index: 100;
   top: 0;
   left: 0;
-  background-color: #141414;
+  background-color: transparent;
+  transition: all 0.2s ease-in;
 }
 
 header > img {
@@ -196,6 +197,7 @@ header nav a:hover {
 
 header .logo {
   height: 85px;
+  transition: all 0.3s ease-in-out;
 }
 
 header .content-buttons {
@@ -469,8 +471,7 @@ footer .rights span {
 
 .banner {
   position: relative;
-  padding: 150px 0 100px;
-  margin-top: 114px;
+  padding: 250px 0 100px;
   z-index: 1;
 }
 
@@ -511,12 +512,6 @@ footer .rights span {
   font-weight: 800;
   line-height: normal;
   text-transform: uppercase;
-}
-
-@media (max-width: 1200px) {
-  .banner {
-    margin-top: 95px;
-  }
 }
 
 /* white-bg */
