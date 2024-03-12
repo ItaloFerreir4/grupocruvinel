@@ -263,6 +263,7 @@ footer .links a {
   line-height: normal;
   transition: all 0.3s ease-in-out;
   display: block;
+  max-width: 200px;
 }
 
 footer .links a:hover {
