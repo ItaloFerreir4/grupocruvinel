@@ -227,7 +227,7 @@ header .expand {
   max-height: 0px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   header nav > a {
     display: none;
   }
@@ -239,6 +239,18 @@ header .expand {
   header .menu img {
     width: 30px;
     height: auto;
+  }
+
+  header .expand a{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 9px 0;
+    margin: 0 15px;
+    border-bottom: 1px solid var(--amarelo);
+  }
+  
+  header .expand a:nth-child(1){
+    margin-top: 10px;
   }
 }
 
