@@ -145,6 +145,7 @@
 
 .map iframe {
   clip-path: polygon(15% 5%, 100% 5%, 100% 100%, 0 100%, 0 0, 15% 0);
+  width: 100vh !important;
 }
 
 @media (max-width: 992px) {
