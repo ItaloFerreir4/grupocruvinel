@@ -343,6 +343,7 @@ form button.send.botao-enviar {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  -webkit-line-clamp: 5;
 }
 
 .swiper-services .slick-dots {

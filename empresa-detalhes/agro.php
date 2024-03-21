@@ -205,7 +205,7 @@ $redes = ob_get_clean();
                     foreach ($chunk as $conteudo) {
                         echo <<<HTML
                         <div class="service">
-                            <p>{$conteudo->tituloConteudo}</p>
+                            <p class="limit-text">{$conteudo->tituloConteudo}</p>
                         </div>
                         HTML;
                     }
