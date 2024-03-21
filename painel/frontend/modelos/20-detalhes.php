@@ -68,6 +68,8 @@ $redes = ob_get_clean();
     <?php linksHead(); ?>
 
     <link rel="icon" type="image/svg" href="../../assets/svg/favicon.svg">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/global.css">
     <link rel="stylesheet" href="../../css/blog.css">
@@ -91,6 +93,11 @@ $redes = ob_get_clean();
 
     <section class="blogs">
         <div class="shaped-content container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="page-title container">0 blogs</h1>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12 col-lg-4">
                     <div class="container">
@@ -145,7 +152,6 @@ $redes = ob_get_clean();
                                         $nomeCategoriaBlog = $rowCat->nomeCategoria;
                                     }
                                 }
-
                             } else {
                                 $nomeCategoriaBlog = "";
                             }
@@ -200,7 +206,7 @@ $redes = ob_get_clean();
                                 <div class="business-info">
                                     <div class="info-content">
                                         <div class="yellow-highlight">
-                                            <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                            <img src="../../assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
                                             <div class="limit-text">
                                                 {$empresa->textoBusiness}
                                             </div>
@@ -210,7 +216,7 @@ $redes = ob_get_clean();
                                             {$redes}
                                         </div>
                                         <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
-                                            <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
+                                            <div class="outline-button">Saiba mais <img src="../../assets/svg/seta-dir-marrom.svg"
                                                     alt="Saiba Mais">
                                             </div>
                                         </a>
@@ -245,14 +251,14 @@ $redes = ob_get_clean();
                         }
 
                         echo <<<HTML
-                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="../../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                         HTML;
                     }
                 }
                 ?>
             </div>
             <button onclick="scrollElemento('footer')" class="scroll-down">
-                <img src="assets/svg/seta-baixo-marrom.svg" alt="Seta">
+                <img src="../../assets/svg/seta-baixo-marrom.svg" alt="Seta">
             </button>
         </div>
     </section>
@@ -260,8 +266,10 @@ $redes = ob_get_clean();
     <?php cFooter(); ?>
     <?php elementosGerais(); ?>
     <?php scriptBody(); ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".swiper-business").slick({
                 infinite: true,
                 slidesToShow: 1,
@@ -271,7 +279,7 @@ $redes = ob_get_clean();
         });
     </script>
     <script>
-        let maxVisibleElements = 6;
+        let maxVisibleElements = 4;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
 
         sessionStorage.setItem("t", "");
@@ -280,6 +288,14 @@ $redes = ob_get_clean();
     </script>
     <script src="../../javascript/global.js"></script>
     <script src="../../javascript/filter.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const visibleBlogs = document.querySelectorAll(".card-blog-wrapper[style^='display: block']");
+            const pageTitle = document.querySelector('.page-title');
+            pageTitle.textContent = `${visibleBlogs.length} blogs`;
+            console.log(visibleBlogs)
+        })
+    </script>
 </body>
 
 </html>

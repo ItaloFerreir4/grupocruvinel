@@ -87,6 +87,11 @@ $redes = ob_get_clean();
     <section class="blogs">
         <div class="shaped-content container">
             <div class="row">
+                <div class="col-12">
+                    <h1 class="page-title container">0 blogs</h1>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12 col-lg-4">
                     <div class="container">
                         <div class="filter" data-filter="category">
@@ -140,7 +145,6 @@ $redes = ob_get_clean();
                                         $nomeCategoriaBlog = $rowCat->nomeCategoria;
                                     }
                                 }
-
                             } else {
                                 $nomeCategoriaBlog = "";
                             }
@@ -258,7 +262,7 @@ $redes = ob_get_clean();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".swiper-business").slick({
                 infinite: true,
                 slidesToShow: 1,
@@ -277,6 +281,14 @@ $redes = ob_get_clean();
     </script>
     <script src="javascript/global.js"></script>
     <script src="javascript/filter.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const visibleBlogs = document.querySelectorAll(".card-blog-wrapper[style^='display: block']");
+            const pageTitle = document.querySelector('.page-title');
+            pageTitle.textContent = `${visibleBlogs.length} blogs`;
+            console.log(visibleBlogs)
+        })
+    </script>
 </body>
 
 </html>

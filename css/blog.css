@@ -4,8 +4,9 @@
 }
 
 /* blogs */
-.blogs .shaped-content > .row {
+.blogs .shaped-content > .row:first-child {
   padding-top: 80px;
+  padding-bottom: 40px;
 }
 
 .blogs .load-more {
@@ -16,4 +17,18 @@
 
 .card-blog {
   margin-bottom: 60px;
+}
+
+/* page-title */
+
+.page-title {
+  color: var(--marrom);
+  font-family: "Montserrat SemiBold";
+  font-size: 24px;
+  font-style: normal;
+  line-height: normal;
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  z-index: 1;
 }
