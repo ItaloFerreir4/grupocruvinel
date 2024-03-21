@@ -99,9 +99,9 @@ $redes = ob_get_clean();
                                 <p>{$business['nomeBusiness']}</p>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-6 bloco-2">
+                        <!-- <div class="col-12 col-lg-6 bloco-2">
                             <img src="../assets/uploads/{$business['imagemBusiness']}" alt="{$business['legendaImagemBusiness']}">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 HTML;
