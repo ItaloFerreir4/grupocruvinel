@@ -235,10 +235,10 @@ $redesAmarelo = ob_get_clean();
                                     </div>
                                     <div class="col-12 col-lg-9 testimonial">
                                         {$conteudo->textoConteudo}
-                                        <span class="read-more" target="{$conteudo->targetBotao1}">
+                                        <!-- <span class="read-more" target="{$conteudo->targetBotao1}">
                                             Ler mais 
                                             <img src="./assets/svg/play-ler-mais.svg" alt="Ler Mais">
-                                        </span>
+                                        </span> -->
                                     </div>
                                 </div>
                             </div>
