@@ -27,6 +27,7 @@
 .banner-slide {
   position: relative;
   height: 800px;
+  max-height: 100vh;
 }
 
 .banner-slide > img {
