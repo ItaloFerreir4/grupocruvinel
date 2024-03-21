@@ -470,7 +470,7 @@
 }
 
 .testimonials .white-box .company {
-  width: 175px;
+  width: 215px;
 }
 
 .testimonials .white-box .company > img {
@@ -534,8 +534,8 @@
 }
 
 .swiper-testimonials .slide-testimonial {
-  margin-right: 5px;
-  margin-left: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .swiper-testimonials .slick-dots {
