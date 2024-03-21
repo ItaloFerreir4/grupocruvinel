@@ -131,7 +131,7 @@ function cFooter(){
             <div class="col-12">
                 <div class="row box">
                     <div class="col-12 text">
-                        <p>Cookies: a gente guarda estatísticas de visitas para melhorar sua experiência de navegação. Ao continuar, você concorda com nossa <a href="./politica-de-privacidade">Política de Privacidade</a>.</p>
+                        <p>Cookies</p>
                         <button type="button" class="close_cookie" onClick="acceptCookies()"> Concordo e fechar </button>
                     </div>
                 </div>

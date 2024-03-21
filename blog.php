@@ -95,7 +95,7 @@ $redes = ob_get_clean();
                             <?php
                             foreach ($categoriasArray as $categoria) {
                                 echo <<<HTML
-                                    <button data-url="./blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
+                                    <button data-url="/blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
                                     HTML;
                             }
                             ?>

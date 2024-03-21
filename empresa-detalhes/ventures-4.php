@@ -193,22 +193,25 @@ $redes = ob_get_clean();
             <div class="swiper-services">
                 <?php
                 $numColumns = 3;
-                $totalServices = count($servicosArray);
 
-                for ($i = 0; $i < $totalServices; $i += $numColumns) {
+                $conteudosFiltrados = array_filter($conteudosArray, function($conteudo) {
+                    return $conteudo->numeroConteudo == 5;
+                });
+                
+                $totalConteudos = count($conteudosFiltrados);
+
+                foreach (array_chunk($conteudosFiltrados, $numColumns) as $chunk) {
                     echo '<div class="services-column">';
-
-                    for ($j = 0; $j < $numColumns && ($i + $j) < $totalServices; $j++) {
-                        $servico = $servicosArray[$i + $j];
+                    foreach ($chunk as $conteudo) {
                         echo <<<HTML
-                            <div class="service">
-                                <p>{$servico->tituloServico}</p>
-                            </div>
-                            HTML;
+                        <div class="service">
+                            <p>{$conteudo->tituloConteudo}</p>
+                        </div>
+                        HTML;
                     }
-
                     echo '</div>';
                 }
+
                 ?>
             </div>
         </div>
@@ -220,30 +223,34 @@ $redes = ob_get_clean();
             <div class="col-12 col-lg-6">
                 <div class="swiper-business">
                     <?php
+                    $idPagina = $conteudoSeo['idPagina'];
+
                     foreach ($empresasArray as $empresa) {
-                        echo <<<HTML
-                        <div class="business-card">
-                            <div class="business-info">
-                                <div class="info-content">
-                                    <div class="yellow-highlight">
-                                        <img src="../assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
-                                        <div class="limit-text">
-                                                {$empresa->textoBusiness}
-                                            </div>
-                                        <a class="link-completo" href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
-                                    </div>
-                                    <div class="social-media">
-                                        {$redes}
-                                    </div>
-                                    <a href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
-                                        <div class="outline-button">Saiba mais <img src="../assets/svg/seta-dir-marrom.svg"
-                                                alt="Saiba Mais">
+                        if($empresa->idPagina != $idPagina){
+                            echo <<<HTML
+                            <div class="business-card">
+                                <div class="business-info">
+                                    <div class="info-content">
+                                        <div class="yellow-highlight">
+                                            <img src="../assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                            <div class="limit-text">
+                                                    {$empresa->textoBusiness}
+                                                </div>
+                                            <a class="link-completo" href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}"></a>
                                         </div>
-                                    </a>
+                                        <div class="social-media">
+                                            {$redes}
+                                        </div>
+                                        <a href="../empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
+                                            <div class="outline-button">Saiba mais <img src="../assets/svg/seta-dir-marrom.svg"
+                                                    alt="Saiba Mais">
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        HTML;
+                            HTML;
+                        }
                     }
                     ?>
                 </div>
