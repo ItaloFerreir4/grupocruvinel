@@ -388,7 +388,11 @@
   font-weight: 800;
   line-height: normal;
   text-align: center;
-  margin: 45px 0;
+  margin: 20px 0;
+  height: 68px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .swiper-financial .financial-card:nth-child(odd) h1 {
