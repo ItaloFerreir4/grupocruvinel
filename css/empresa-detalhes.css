@@ -7,11 +7,11 @@
 }
 
 @media (max-width: 992px) {
-  .banner{
+  .banner {
     padding: 200px 0 100px;
   }
 
-  .banner .title{
+  .banner .title {
     margin: 0 0 50px;
   }
 
@@ -22,7 +22,7 @@
 
 /* shaped-content */
 
-.shaped-content{
+.shaped-content {
   max-width: 900px;
 }
 
@@ -30,7 +30,7 @@
   padding: 120px 0 50px;
 }
 
-.shaped-content::before{
+.shaped-content::before {
   height: calc(100% + 100px);
 }
 
@@ -73,7 +73,7 @@
 }
 
 .company-image .img-wrapper::after {
-  content: '';
+  content: "";
   background: url(../assets/svg/hexagono-amarelo.svg) no-repeat;
   background-size: cover;
   left: 50%;
@@ -87,7 +87,7 @@
 }
 
 @media (max-width: 992px) {
-  .company-image{
+  .company-image {
     margin: 0;
   }
 
@@ -97,7 +97,7 @@
 }
 /* company-description */
 
-.company-description{
+.company-description {
   display: flex;
   flex-direction: column;
 }
@@ -205,7 +205,7 @@
 }
 
 .field-details ul > li:before {
-  content: '';
+  content: "";
   background: url("../assets/svg/traco-lista-amarelo.svg") no-repeat;
   background-size: cover;
   display: block;
@@ -232,14 +232,13 @@
     margin-right: 5px;
   }
 
-  .field-details ul{
+  .field-details ul {
     grid-auto-flow: row;
   }
 
   .field-details li {
     font-size: 14px;
   }
-  
 }
 
 /* customer-service */
@@ -272,13 +271,13 @@ select::placeholder {
   color: var(--branco);
 }
 
-#contatoTelefone{
+#contatoTelefone {
   border: 1px solid var(--amarelo);
   color: var(--amarelo);
   background-color: transparent;
 }
 
-#contatoTelefone::placeholder{
+#contatoTelefone::placeholder {
   color: var(--amarelo);
 }
 
@@ -329,7 +328,7 @@ form button.send.botao-enviar {
 .swiper-services .service {
   width: 300px;
   height: 100%;
-  min-height: 120px;
+  min-height: 168px;
   display: flex;
   align-items: center;
   padding: 25px 35px;
@@ -343,7 +342,6 @@ form button.send.botao-enviar {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  -webkit-line-clamp: 5;
 }
 
 .swiper-services .slick-dots {
@@ -355,11 +353,11 @@ form button.send.botao-enviar {
     margin: 25px 0 35px;
   }
 
-  .swiper-services .service{
+  .swiper-services .service {
     width: 100%;
   }
 
-  .swiper-services .slick-list{
+  .swiper-services .slick-list {
     margin: 0 15px;
   }
 

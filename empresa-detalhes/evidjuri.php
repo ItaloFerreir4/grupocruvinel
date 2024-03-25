@@ -169,8 +169,7 @@ $redes = ob_get_clean();
                         <input type="hidden" name="tituloPagina" id="tituloPagina" value="">
                         <input name="contatoNome" id="contatoNome" type="text" placeholder="Nome" />
                         <input name="contatoEmail" id="contatoEmail" type="text" placeholder="E-mail" />
-                        <input name="contatoTelefone" id="contatoTelefone" type="text" placeholder="WhatsApp"
-                            onkeyup="mascaraTel(this);" maxlength="15" />
+                        <input name="contatoTelefone" id="contatoTelefone" type="text" placeholder="WhatsApp" onkeyup="mascaraTel(this);" maxlength="15" />
                         <label for="contact-checkbox">
                             <input id="contact-checkbox" type="checkbox" name="contatoTermo" id="contatoTermo" />
                             Concordo com os Termos Gerais da Lei Geral de Proteção de Dados.</label>
@@ -194,10 +193,10 @@ $redes = ob_get_clean();
                 <?php
                 $numColumns = 3;
 
-                $conteudosFiltrados = array_filter($conteudosArray, function($conteudo) {
+                $conteudosFiltrados = array_filter($conteudosArray, function ($conteudo) {
                     return $conteudo->numeroConteudo == 5;
                 });
-                
+
                 $totalConteudos = count($conteudosFiltrados);
 
                 foreach (array_chunk($conteudosFiltrados, $numColumns) as $chunk) {
@@ -205,7 +204,7 @@ $redes = ob_get_clean();
                     foreach ($chunk as $conteudo) {
                         echo <<<HTML
                         <div class="service">
-                            <p class="limit-text">{$conteudo->tituloConteudo}</p>
+                            <p>{$conteudo->tituloConteudo}</p>
                         </div>
                         HTML;
                     }
@@ -226,7 +225,7 @@ $redes = ob_get_clean();
                     $idPagina = $conteudoSeo['idPagina'];
 
                     foreach ($empresasArray as $empresa) {
-                        if($empresa->idPagina != $idPagina){
+                        if ($empresa->idPagina != $idPagina) {
                             echo <<<HTML
                             <div class="business-card">
                                 <div class="business-info">
@@ -296,21 +295,19 @@ $redes = ob_get_clean();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".swiper-services").slick({
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
                 autoplay: true,
                 autoplaySpeed: 2500,
-                responsive: [
-                    {
-                        breakpoint: 992,
-                        settings: {
-                            slidesToShow: 1,
-                        },
+                responsive: [{
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 1,
                     },
-                ],
+                }, ],
             });
             $(".swiper-business").slick({
                 infinite: true,
@@ -321,6 +318,20 @@ $redes = ob_get_clean();
         });
     </script>
     <script src="../javascript/global.js"></script>
+    <script>
+        const serviceElements = document.querySelectorAll('.swiper-services .service');
+        console.log(serviceElements)
+        let maxHeight = 0;
+        serviceElements.forEach((element) => {
+            const elementHeight = element.clientHeight;
+            if (elementHeight > maxHeight) {
+                maxHeight = elementHeight;
+            }
+        });
+        serviceElements.forEach((element) => {
+            element.style.height = `${maxHeight}px`;
+        });
+    </script>
 </body>
 
 </html>
