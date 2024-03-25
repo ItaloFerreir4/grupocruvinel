@@ -113,7 +113,23 @@ $redesAmarelo = ob_get_clean();
                             $iframe = '<iframe class="video-fundo" src="' . $url_base . '/assets/video-fundo-home.html?idVideo=' . $videoId . '"></iframe>';
                         }
                     } else {
-                        $iframe = '<img src="assets/uploads/' . $conteudo->imagem1Conteudo . '" alt="' . $conteudo->legendaImagem1Conteudo . '">';
+                        $iframe = '
+                        <img class="desktop" src="assets/uploads/' . $conteudo->imagem1Conteudo . '" alt="' . $conteudo->legendaImagem1Conteudo . '">
+                        <img class="mobile" src="assets/uploads/' . $conteudo->imagem2Conteudo . '" alt="' . $conteudo->legendaImagem2Conteudo . '">
+                        ';
+                    }
+
+                    if($conteudo->nomeBotao1 == '' || $conteudo->nomeBotao1 == ' '){
+                        $botao = '';                        
+                    }else{
+                        $botao = '
+                        <a href="'.$conteudo->linkBotao1.'" title="'.$conteudo->nomeBotao1.'" target="'.$conteudo->targetBotao1.'">
+                            <div class="outline-button white">
+                                '.$conteudo->nomeBotao1.'
+                                <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
+                            </div>
+                        </a>
+                        ';
                     }
 
                     echo <<<HTML
@@ -121,12 +137,7 @@ $redesAmarelo = ob_get_clean();
                         {$iframe}
                         <div class="content">
                             {$conteudo->textoConteudo}
-                            <a href="{$conteudo->linkBotao1}" title="{$conteudo->nomeBotao1}" target="{$conteudo->targetBotao1}">
-                                <div class="outline-button white">
-                                    {$conteudo->nomeBotao1}
-                                    <img src="assets/svg/seta-dir-bege.svg" alt="Ler Mais">
-                                </div>
-                            </a>
+                            {$botao}
                         </div>
                     </div>
                     HTML;
@@ -226,7 +237,7 @@ $redesAmarelo = ob_get_clean();
                             }
 
                             echo <<<HTML
-                            <div class="slide-testimonial cursor-pointer"  onClick="PopUpVideo('{$videoId}')">
+                            <div class="slide-testimonial cursor-pointer">
                                 <div class="row">
                                     <div class="col-12 col-lg-3 company">
                                         <img src="./assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
@@ -283,7 +294,6 @@ $redesAmarelo = ob_get_clean();
                 </div>
             </div>
         </section>
-
         <section class="business">
             <h1>Empresas do <strong>Grupo Cruvinel</strong></h1>
             <div class="row">
@@ -352,7 +362,6 @@ $redesAmarelo = ob_get_clean();
                 </button>
             </div>
         </section>
-
         <section class="what-we-do">
             <img src="assets/svg/fundo-mapa.svg" alt="Fundo">
             <div class="container">
@@ -497,6 +506,7 @@ $redesAmarelo = ob_get_clean();
                 infinite: true,
                 dots: true,
                 slidesToShow: 4,
+                slidesToScroll: 4,
                 autoplay: true,
                 autoplaySpeed: 2500,
                 responsive: [

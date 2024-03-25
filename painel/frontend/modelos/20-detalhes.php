@@ -94,11 +94,6 @@ $redes = ob_get_clean();
     <section class="blogs">
         <div class="shaped-content container">
             <div class="row">
-                <div class="col-12">
-                    <h1 class="page-title container">0 blogs</h1>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-12 col-lg-4">
                     <div class="container">
                         <div class="filter" data-filter="category">
@@ -134,6 +129,9 @@ $redes = ob_get_clean();
                 </div>
                 <div class="col-12 col-lg-8">
                     <div class="row">
+                        <div class="col-12">
+                            <h1 class="page-title container">0 blogs</h1>
+                        </div>
                         <?php
                         foreach ($blogsArray as $blog) {
 
