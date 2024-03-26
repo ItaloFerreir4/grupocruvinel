@@ -1132,11 +1132,12 @@ if (isset($_POST['origem'])) {
             break;
         case "atualizaCliente":
             try {
-                $sql = $con->prepare('UPDATE clientes SET imagemCliente = :imagemCliente, legendaImagemCliente = :legendaImagemCliente, linkCliente = :linkCliente, status = :status WHERE idCliente = :idCliente');
+                $sql = $con->prepare('UPDATE clientes SET imagemCliente = :imagemCliente, legendaImagemCliente = :legendaImagemCliente, linkCliente = :linkCliente, ordemCliente = :ordemCliente, status = :status WHERE idCliente = :idCliente');
                 $sql->bindValue(":idCliente", $_POST['idCliente']);
                 $sql->bindValue(":imagemCliente", $_POST['imagemCliente']);
                 $sql->bindValue(":legendaImagemCliente", $_POST['legendaImagemCliente']);
                 $sql->bindValue(":linkCliente", $_POST['linkCliente']);
+                $sql->bindValue(":ordemCliente", $_POST['ordemCliente']);
                 $sql->bindValue(":status", $_POST['status']);
 
                 if ($sql->execute()) {

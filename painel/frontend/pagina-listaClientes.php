@@ -61,6 +61,12 @@ echo ''
                             </div>
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group">
+                                    <label>Ordem (do menor para o maior)</label>
+                                    <input type="text" class="form-control" id="ordemCliente" name="ordemCliente">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control" name="status" id="status">
                                         <option value="0">Inativo</option>
@@ -173,6 +179,7 @@ echo ''
         const imagemCliente = formulario.find("#imagemCliente")[0];
         const legendaImagemCliente = formulario.find("#legendaImagemCliente")[0];
         const linkCliente = formulario.find("#linkCliente")[0];
+        const ordemCliente = formulario.find("#ordemCliente")[0];
         const status = formulario.find("#status")[0];
 
         $.ajax({
@@ -189,6 +196,7 @@ echo ''
             idClienteFormulario.value = conteudoPagina.idCliente;
             legendaImagemCliente.value = conteudoPagina.legendaImagemCliente;
             linkCliente.value = conteudoPagina.linkCliente;
+            ordemCliente.value = conteudoPagina.ordemCliente;
             status.value = conteudoPagina.status;
 
             imagemCliente.src = "../assets/uploads/" + conteudoPagina.imagemCliente;
@@ -202,6 +210,7 @@ echo ''
         const imagemCliente = formulario.find("#imagemCliente")[0];
         const legendaImagemCliente = formulario.find("#legendaImagemCliente")[0];
         const linkCliente = formulario.find("#linkCliente")[0];
+        const ordemCliente = formulario.find("#ordemCliente")[0];
         const status = formulario.find("#status")[0];
         const botaoAtualiza = formulario.find("#btn-atualiza-cliente")[0];
 
@@ -213,6 +222,7 @@ echo ''
         formData.append("imagemCliente", srcimagemCliente);
         formData.append("legendaImagemCliente", legendaImagemCliente.value);
         formData.append("linkCliente", linkCliente.value);
+        formData.append("ordemCliente", ordemCliente.value);
         formData.append("status", status.value);
 
         botaoAtualiza.innerHTML = "<i class='fa fa-spinner fa-spin'></i> <span>Carregando...</span>";
@@ -241,6 +251,7 @@ echo ''
         const imagemCliente = formulario.find("#imagemCliente")[0];
         const legendaImagemCliente = formulario.find("#legendaImagemCliente")[0];
         const linkCliente = formulario.find("#linkCliente")[0];
+        const ordemCliente = formulario.find("#ordemCliente")[0];
         const status = formulario.find("#status")[0];
         const botaoCadastra = formulario.find("#btn-cadastra-cliente")[0];
 
@@ -251,6 +262,7 @@ echo ''
         formData.append("imagemCliente", srcimagemCliente);
         formData.append("legendaImagemCliente", legendaImagemCliente.value);
         formData.append("linkCliente", linkCliente.value);
+        formData.append("ordemCliente", ordemCliente.value);
         formData.append("status", status.value);
 
         botaoCadastra.innerHTML = "<i class='fa fa-spinner fa-spin'></i> <span>Carregando...</span>";

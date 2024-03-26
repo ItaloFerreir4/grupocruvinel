@@ -14,7 +14,7 @@ $sqlConteudos->execute();
 $conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
 $conteudosArray = json_decode(json_encode($conteudosArray));
 
-$sqlClientes = $con->prepare("SELECT * FROM clientes WHERE status = 1");
+$sqlClientes = $con->prepare("SELECT * FROM clientes WHERE status = 1 ORDER BY ordemCliente ASC");
 $sqlClientes->execute();
 $clientesArray = $sqlClientes->fetchAll(PDO::FETCH_ASSOC);
 $clientesArray = json_decode(json_encode($clientesArray));
