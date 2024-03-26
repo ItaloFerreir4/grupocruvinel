@@ -1,21 +1,15 @@
 <?php
 
-include_once "../../assets/componentes.php";
-include_once "../../painel/backend/conexao-banco.php";
+include_once "assets/componentes.php";
+include_once "painel/backend/conexao-banco.php";
 
-$nomeDoArquivoCompleto = $_SERVER["SCRIPT_FILENAME"];
-$nomeDoArquivoSemExtensao = pathinfo($nomeDoArquivoCompleto, PATHINFO_FILENAME);
-
-$paginaSelecionada = $nomeDoArquivoSemExtensao;
-
-$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE nomePagina = :nomePagina AND categoriaId = :categoriaId");
-$sqlSeo->bindValue(":nomePagina", $paginaSelecionada);
-$sqlSeo->bindValue(":categoriaId", 20);
+$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE idPagina = :idPagina");
+$sqlSeo->bindValue(":idPagina", 10);
 $sqlSeo->execute();
 $conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
 
 $sqlConteudos = $con->prepare("SELECT * FROM conteudos WHERE paginaId = :idPagina");
-$sqlConteudos->bindValue(":idPagina", 10);
+$sqlConteudos->bindValue(":idPagina", $conteudoSeo["idPagina"]);
 $sqlConteudos->execute();
 $conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
 $conteudosArray = json_decode(json_encode($conteudosArray));
@@ -39,7 +33,6 @@ $empresasArray = json_decode(json_encode($empresasArray));
 ob_start();
 redesSociais("marrom");
 $redes = ob_get_clean();
-
 ?>
 
 <!DOCTYPE html>
@@ -67,12 +60,12 @@ $redes = ob_get_clean();
 
     <?php linksHead(); ?>
 
-    <link rel="icon" type="image/svg" href="../../assets/svg/favicon.svg">
+    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/blog.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 
 <body>
@@ -81,11 +74,11 @@ $redes = ob_get_clean();
     foreach ($conteudosArray as $conteudo) {
         if ($conteudo->numeroConteudo == 1) {
             banner(
-                "{$conteudoSeo['tituloPagina']}",
+                "BLOG",
                 "{$conteudo->legendaImagem1Conteudo}",
                 "{$conteudo->legendaImagem2Conteudo}",
-                "../../assets/uploads/{$conteudo->imagem1Conteudo}",
-                "../../assets/uploads/{$conteudo->imagem2Conteudo}"
+                "./assets/uploads/{$conteudo->imagem1Conteudo}",
+                "./assets/uploads/{$conteudo->imagem2Conteudo}"
             );
         }
     }
@@ -164,17 +157,17 @@ $redes = ob_get_clean();
                             $categoriasBlog = implode(',', $categoriasBlog);
 
                             echo <<<HTML
-                                <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href="../../blog-detalhes/{$blog->nomePagina}" class="col-12
+                                <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href=" ./blog-detalhes/{$blog->nomePagina}" class="col-12
                                     col-lg-6 card-blog-wrapper">
                                     <div class="card-blog">
-                                        <img src="../../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                        <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
                                         <div>
                                             <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                         </div>
                                         <h1>{$blog->tituloBlog}</h1>
                                         <div class="outline-button">
                                             Ler mais
-                                            <img src="../../assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                            <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
                                         </div>
                                     </div>
                                 </a>
@@ -183,7 +176,7 @@ $redes = ob_get_clean();
                         ?>
 
                     </div>
-                    <button class="outline-button load-more" onclick="loadMore(listElements, 3)">
+                    <button class="outline-button load-more" onclick="loadMore(listElements, 4)">
                         Carregar Mais
                         <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
                     </button>
@@ -204,7 +197,7 @@ $redes = ob_get_clean();
                                 <div class="business-info">
                                     <div class="info-content">
                                         <div class="yellow-highlight">
-                                            <img src="../../assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
+                                            <img src="assets/uploads/{$empresa->imagemBusiness}" alt="{$empresa->legendaImagemBusiness}" class="business-logo">
                                             <div class="limit-text">
                                                 {$empresa->textoBusiness}
                                             </div>
@@ -214,7 +207,7 @@ $redes = ob_get_clean();
                                             {$redes}
                                         </div>
                                         <a href="./empresa-detalhes/{$empresa->nomePagina}" title="{$empresa->tituloPagina}">
-                                            <div class="outline-button">Saiba mais <img src="../../assets/svg/seta-dir-marrom.svg"
+                                            <div class="outline-button">Saiba mais <img src="assets/svg/seta-dir-marrom.svg"
                                                     alt="Saiba Mais">
                                             </div>
                                         </a>
@@ -249,14 +242,14 @@ $redes = ob_get_clean();
                         }
 
                         echo <<<HTML
-                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="../../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                            <img class="video-bg cursor-pointer" onClick="PopUpVideo('{$videoId}')" src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
                         HTML;
                     }
                 }
                 ?>
             </div>
             <button onclick="scrollElemento('footer')" class="scroll-down">
-                <img src="../../assets/svg/seta-baixo-marrom.svg" alt="Seta">
+                <img src="assets/svg/seta-baixo-marrom.svg" alt="Seta">
             </button>
         </div>
     </section>
@@ -279,21 +272,9 @@ $redes = ob_get_clean();
     <script>
         let maxVisibleElements = 4;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
-
-        sessionStorage.setItem("t", "");
-        sessionStorage.setItem("y", new Date().getFullYear().toString().substring(2, 2));
-        sessionStorage.setItem("m", "");
     </script>
-    <script src="../../javascript/global.js"></script>
-    <script src="../../javascript/filter.js"></script>
-    <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const visibleBlogs = document.querySelectorAll(".card-blog-wrapper[style^='display: block']");
-            const pageTitle = document.querySelector('.page-title');
-            pageTitle.textContent = `${visibleBlogs.length} blogs`;
-            console.log(visibleBlogs)
-        })
-    </script>
+    <script src="javascript/global.js"></script>
+    <script src="javascript/filter.js"></script>
 </body>
 
 </html>

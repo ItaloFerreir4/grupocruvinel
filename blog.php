@@ -279,14 +279,6 @@ $redes = ob_get_clean();
     </script>
     <script src="javascript/global.js"></script>
     <script src="javascript/filter.js"></script>
-    <script>
-        window.addEventListener("DOMContentLoaded", () => {
-            const visibleBlogs = document.querySelectorAll(".card-blog-wrapper[style^='display: block']");
-            const pageTitle = document.querySelector('.page-title');
-            pageTitle.textContent = `${visibleBlogs.length} blogs`;
-            console.log(visibleBlogs)
-        })
-    </script>
 </body>
 
 </html>

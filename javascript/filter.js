@@ -143,7 +143,7 @@ function loadButtonsFunctionality() {
 }
 
 function loadContent(listElements) {
-  const title = document.querySelector(".counter-title span");
+  const title = document.querySelector(".page-title");
   const urlParams = new URLSearchParams(window.location.search);
   const sessionCategory = urlParams.get("c");
   const sessionTag = sessionStorage.getItem("t");
@@ -162,19 +162,28 @@ function loadContent(listElements) {
       (typeof e.dataset.month === "undefined" ||
         e.dataset.month.includes(sessionMonth))
     ) {
-      e.style.display = "block";
-      visibleElements++;
+      e.classList.add("filtered");
     } else {
-      e.style.display = "none";
+      e.classList.remove("filtered");
     }
+  });
 
-    if (visibleElements > maxVisibleElements) {
-      e.style.display = "none";
-      visibleElements--;
+  const filteredElements = document.querySelectorAll(".filtered");
+  filteredElements.forEach((element) => {
+    console.log(visibleElements);
+    if (visibleElements < maxVisibleElements) {
+      visibleElements++;
+      element.style.display = "block";
+    } else {
+      console.log("none");
+      element.style.display = "none";
     }
   });
   if (title)
-    title.textContent = title.textContent.replace(/\d+/, visibleElements);
+    title.textContent = title.textContent.replace(
+      /\d+/,
+      filteredElements.length
+    );
   toggleLoadMoreButtonVisibility(listElements, visibleElements);
 }
 
