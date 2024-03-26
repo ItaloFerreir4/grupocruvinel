@@ -1206,6 +1206,167 @@ echo ''
                     </div>
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Clientes</h2>
+                    </div>
+                    <div class="body">   
+                        <div class="row mb-1">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-info btn-volta" style="float: right;" id="btn-volta-conteudo-9" onClick="ListaConteudo(9)"><span class="sr-only">Fechar</span> <i class="fa fa-reply"></i></button>
+                                <button class="btn btn-primary btn-adiciona" style="float: right;" type="button" id="btn-adiciona-conteudo-9" onClick="MostraCadastro(9)">Adicionar</button>
+                            </div>
+                        </div>
+                        <form method="post" id="form-9">
+                            <div class="row clearfix mt-5">
+                                <input type="hidden" class="form-control" name="paginaId" id="paginaId" value="1">
+                                <input type="hidden" class="form-control" name="idConteudo" id="idConteudo" value="">
+                                <input type="hidden" class="form-control" name="numeroConteudo" id="numeroConteudo" value="9">
+                                
+                                <div class="col-12 hidden">
+                                    <div class="form-group">    
+                                        <label>Titulo</label>
+                                        <input type="text" class="form-control" id="tituloConteudo" name="tituloConteudo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">    
+                                        <label>Imagem</label>
+                                        <button class="btn btn-default selecionarImagem" formConteudo="9" imagem="imagem1Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
+                                        <img class="img-fluid wauto h200" id="imagem1Conteudo" src="null" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Imagem Mobile</label>
+                                        <button class="btn btn-default selecionarImagem" formConteudo="9" imagem="imagem2Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
+                                        <img class="img-fluid wauto h200" id="imagem2Conteudo" src="null" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="form-group">  
+                                        <label>Legenda da imagem</label>                                            
+                                        <input type="text" class="form-control" id="legendaImagem1Conteudo" name="legendaImagem1Conteudo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Autor</label>                                            
+                                        <input type="text" class="form-control" id="legendaImagem2Conteudo" name="legendaImagem2Conteudo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 hidden">
+                                    <div class="form-group">    
+                                        <label>Imagem 3</label>
+                                        <button class="btn btn-default selecionarImagem" imagem="imagem3Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
+                                        <img class="img-fluid wauto h200" id="imagem3Conteudo" src="null" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Imagem 4</label>
+                                        <button class="btn btn-default selecionarImagem" imagem="imagem4Conteudo" type="button" target="modalMidia" onClick="AbreModal(this)">Escolher Imagem</button>
+                                        <img class="img-fluid wauto h200" id="imagem4Conteudo" src="null" alt="">
+                                    </div>
+                                </div>                                
+                                <div class="col-lg-6 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Função</label>                                            
+                                        <input type="text" class="form-control" id="legendaImagem3Conteudo" name="legendaImagem3Conteudo">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Legenda da imagem 4</label>                                            
+                                        <input type="text" class="form-control" id="legendaImagem4Conteudo" name="legendaImagem4Conteudo">
+                                    </div>
+                                </div>
+                                <div class="col-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Link Video</label>                                            
+                                        <input type="text" class="form-control" id="linkVideoConteudo" name="linkVideoConteudo">
+                                    </div>
+                                </div>
+                                <div class="col-12 hidden">
+                                    <div class="form-group"> 
+                                        <label>Texto</label>
+                                        <textarea class="form-control" id="textoConteudo9" name="textoConteudo9" rows="10"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Nome do botão</label>                                            
+                                        <input type="text" class="form-control" id="nomeBotao1" name="nomeBotao1">
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">  
+                                        <label>Link</label>                                            
+                                        <input type="text" class="form-control" id="linkBotao1" name="linkBotao1">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Target do botão</label>                                            
+                                        <select class="form-control" name="targetBotao1" id="targetBotao1">
+                                            <option value="_blank">Blank</option>
+                                            <option value="_self">Self</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Nome do botão</label>                                            
+                                        <input type="text" class="form-control" id="nomeBotao2" name="nomeBotao2">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Link do botão</label>                                            
+                                        <input type="text" class="form-control" id="linkBotao2" name="linkBotao2">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-12 hidden">
+                                    <div class="form-group">  
+                                        <label>Target do botão</label>                                            
+                                        <select class="form-control" name="targetBotao2" id="targetBotao2">
+                                            <option value="_blank">Blank</option>
+                                            <option value="_self">Self</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-success btn-atualiza" type="button" id="btn-atualiza-conteudo-9" onClick="AtualizaConteudo(9)">Atualizar</button>
+                                    <button class="btn btn-success btn-cadastra" type="button" id="btn-cadastra-conteudo-9" onClick="CadastraConteudo(9)">Cadastrar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="tabela-9">
+                            <div class="table-responsive">
+                                <table class="table table-hover dataTable table-custom spacing5" id="tabela-conteudo-9">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagem</th>
+                                            <th>Texto</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Imagem</th>
+                                            <th>Texto</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody id="listaconteudo9">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1219,6 +1380,7 @@ echo ''
             ListaConteudo(4);
             ListaConteudo(5);
             ListaConteudo(8);
+            ListaConteudo(9);
             CarregaConteudo(2);
             CarregaConteudo(3);
             CarregaConteudo(6);

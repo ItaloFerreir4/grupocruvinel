@@ -445,6 +445,7 @@ include_once 'tema/assets/componentes/componentes.php';
 
                     const linha = document.createElement("tr");
                     linha.classList.add("bg-cinza");
+
                     const primeiraLinha = mostrarPrimeiraLinha(conteudo.textoConteudo);
 
                     let imagem1 = false;

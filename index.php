@@ -403,14 +403,16 @@ $redesAmarelo = ob_get_clean();
                 <h1>Nossos clientes</h1>
                 <div class="swiper-clients">
                     <?php
-                    foreach ($clientesArray as $cliente) {
-                        echo <<<HTML
-                        <a href="{$cliente->linkCliente}" class="client-wrapper" target="_blank">
-                            <div class="client">
-                                <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
-                            </div>
-                        </a>
-                        HTML;
+                    foreach ($conteudosArray as $conteudo) {
+                        if($conteudo->numeroConteudo == 9){
+                            echo <<<HTML
+                            <a href="{$conteudo->linkBotao1}" class="client-wrapper" target="_blank">
+                                <div class="client">
+                                    <img src="assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
+                                </div>
+                            </a>
+                            HTML;
+                        }
                     }
                     ?>
                 </div>
