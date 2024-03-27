@@ -343,7 +343,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     function handleNavButtonsSizeOnMobile(navIsOpen) {
-      console.log("chamou");
       const expand = document.querySelector("nav .expand");
       navIsOpen
         ? (expand.style.maxHeight = "calc(100vh - 115px)")

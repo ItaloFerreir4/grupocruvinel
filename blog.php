@@ -91,14 +91,25 @@ $redes = ob_get_clean();
                     <div class="container">
                         <div class="filter" data-filter="category">
                             <h1>Categorias</h1>
-                            <button class="active" data-category="" data-url="/blog">Todas as Categorias</button>
+                            <button class="active desktop" data-category="" data-url="/blog">Todas as Categorias</button>
                             <?php
                             foreach ($categoriasArray as $categoria) {
                                 echo <<<HTML
-                                    <button data-url="/blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
+                                    <button class="desktop" data-url="/blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
                                     HTML;
                             }
                             ?>
+                            <select class="mobile" change="" type="text" placeholder="Categoria">
+                                <option data-url="/blog" data-category="" value="Todas as Categorias" selected="selected">Todas as Categorias</option>
+                                <?php
+                                foreach ($categoriasArray as $categoria) {
+                                    echo <<<HTML
+                                
+                                <option data-url="/blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}" value="{$categoria->nomeCategoria}">{$categoria->nomeCategoria}</option>
+                                HTML;
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class=" tag-filter">
                             <h1>Tags</h1>
@@ -158,17 +169,17 @@ $redes = ob_get_clean();
                             $categoriasBlog = implode(',', $categoriasBlog);
 
                             echo <<<HTML
-                                <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href=" ./blog-detalhes/{$blog->nomePagina}" class="col-12
+                                <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href="../../blog-detalhes/{$blog->nomePagina}" class="col-12
                                     col-lg-6 card-blog-wrapper">
                                     <div class="card-blog">
-                                        <img src="assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                        <img src="../../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
                                         <div>
                                             <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                         </div>
                                         <h1>{$blog->tituloBlog}</h1>
                                         <div class="outline-button">
                                             Ler mais
-                                            <img src="assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                            <img src="../../assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
                                         </div>
                                     </div>
                                 </a>
@@ -179,7 +190,7 @@ $redes = ob_get_clean();
                     </div>
                     <button class="outline-button load-more" onclick="loadMore(listElements, 4)">
                         Carregar Mais
-                        <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
+                        <img src="../../assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
                     </button>
                 </div>
             </div>

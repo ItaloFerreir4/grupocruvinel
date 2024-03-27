@@ -20,6 +20,9 @@ function setActiveClasses() {
   const filterCategoryButtons = document.querySelectorAll(
     '.filter[data-filter="category"] > *'
   );
+  const filterCategoryOptions = document.querySelectorAll(
+    '.filter[data-filter="category"] select > option'
+  );
   const filterTagButtons = document.querySelectorAll(
     ".tag-filter .buttons > button"
   );
@@ -69,6 +72,17 @@ function setActiveClasses() {
     }
   }
 
+  if (filterCategoryOptions) {
+    if (sessionCategory !== null) {
+      filterCategoryOptions[0].removeAttribute("selected");
+      filterCategoryOptions.forEach((element) => {
+        if (element.dataset.category === sessionCategory) {
+          element.setAttribute("selected", "selected");
+        }
+      });
+    }
+  }
+
   if (filterTagButtons.length > 0) {
     if (sessionTag !== "") {
       const filterTagButtons = document.querySelectorAll(
@@ -105,7 +119,10 @@ function loadButtonsFunctionality() {
     '.filter[data-filter="month"] button'
   );
   const filterCategoryButtons = document.querySelectorAll(
-    '.filter[data-filter="category"] > *'
+    '.filter[data-filter="category"] > button'
+  );
+  const filterCategorySelect = document.querySelector(
+    '.filter[data-filter="category"] > select'
   );
   const filterTags = document.querySelectorAll(".tag-filter .buttons > button");
 
@@ -135,6 +152,20 @@ function loadButtonsFunctionality() {
       element.setAttribute(
         "onclick",
         `filterByCategory("${element.dataset.category}", "${element.dataset.url}")`
+      );
+    });
+    filterCategorySelect.removeEventListener(
+      "click",
+      toggleActiveClassCategory
+    );
+    filterCategorySelect.addEventListener("change", (event) => {
+      filterByCategory(
+        event.target.options[event.target.selectedIndex].getAttribute(
+          "data-category"
+        ),
+        event.target.options[event.target.selectedIndex].getAttribute(
+          "data-url"
+        )
       );
     });
   }

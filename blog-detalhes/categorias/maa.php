@@ -91,14 +91,25 @@ $redes = ob_get_clean();
                     <div class="container">
                         <div class="filter" data-filter="category">
                             <h1>Categorias</h1>
-                            <button class="active" data-category="" data-url="/blog">Todas as Categorias</button>
+                            <button class="active desktop" data-category="" data-url="/blog">Todas as Categorias</button>
                             <?php
                             foreach ($categoriasArray as $categoria) {
                                 echo <<<HTML
-                                    <button data-url="/blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
+                                    <button class="desktop" data-url="/blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}">{$categoria->nomeCategoria}</button>
                                     HTML;
                             }
                             ?>
+                            <select class="mobile" change="" type="text" placeholder="Categoria">
+                                <option data-url="/blog" data-category="" value="Todas as Categorias" selected="selected">Todas as Categorias</option>
+                                <?php
+                                foreach ($categoriasArray as $categoria) {
+                                    echo <<<HTML
+                                
+                                <option data-url="/blog-detalhes/categorias/{$categoria->nomePagina}" data-category="{$categoria->idCategoria}" value="{$categoria->nomeCategoria}">{$categoria->nomeCategoria}</option>
+                                HTML;
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class=" tag-filter">
                             <h1>Tags</h1>
