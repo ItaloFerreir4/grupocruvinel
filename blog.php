@@ -174,13 +174,14 @@ $redes = ob_get_clean();
                                     <div class="card-blog">
                                         <img src="./assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
                                         <div class="category-date">
-                                            <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
+                                            <div class="author">
+                                                <img loading="lazy" src="./assets/uploads/{$blog->imagemAutorBlog}" alt="{$blog->nomeAutorBlog}" />
+                                                <span class="limit-text">{$blog->nomeAutorBlog}</span>
+                                            </div>
+                                            <span class="tag">{$nomeCategoriaBlog}</span>
+                                            <span class="date">{$dataBlog}</span>
                                         </div>
                                         <h1>{$blog->tituloBlog}</h1>
-                                        <div class="author">
-                                            <img loading="lazy" src="./assets/png/solucoes-especializadas-home.png" alt="Nome do autor" />
-                                            <span class="limit-text">Nome do autor</span>
-                                        </div>
                                         <div class="outline-button">
                                             Ler mais
                                             <img src="./assets/svg/seta-dir-marrom.svg" alt="Ler Mais">

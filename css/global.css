@@ -578,15 +578,15 @@ footer .rights span {
 .author {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   flex-wrap: nowrap;
   vertical-align: bottom;
 }
 
 .author img {
   border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
 }
 
 .author span {
@@ -1727,30 +1727,24 @@ label {
 .card-blog span {
   color: var(--preto);
   font-family: "OpenSans";
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-transform: uppercase;
 }
 
-.card-blog .author {
-  margin-bottom: 10px;
+.card-blog .category-date{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
 
 .card-blog .author span {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--preto);
-}
-
-.card-blog .author img {
-  width: 20px;
-  height: 20px;
-}
-
-.card-blog .author span {
-  font-size: 14px;
-  color: var(--preto);
+  text-transform: none;
 }
 
 .card-blog .author img {

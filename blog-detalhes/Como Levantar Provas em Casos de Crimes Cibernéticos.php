@@ -191,7 +191,11 @@ $redes = ob_get_clean();
                                 col-lg-6 card-blog-wrapper">
                                 <div class="card-blog">
                                     <img src="../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
-                                    <div>
+                                    <div class="category-date">
+                                            <div class="author">
+                                            <img loading="lazy" src="./assets/uploads/{$blog->imagemAutorBlog}" alt="{$blog->nomeAutorBlog}" />
+                                            <span class="limit-text">{$blog->nomeAutorBlog}</span>
+                                        </div>
                                         <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                     </div>
                                     <h1>{$blog->tituloBlog}</h1>

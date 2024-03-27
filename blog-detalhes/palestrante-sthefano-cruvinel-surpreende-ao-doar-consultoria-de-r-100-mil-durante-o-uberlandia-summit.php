@@ -107,6 +107,10 @@ $redes = ob_get_clean();
                         <?php echo $blog['tituloBlog']; ?>
                     </h1>
                     <div class="bottom">
+                        <div class="author">
+                            <img loading="lazy" src="../assets/uploads/<?php echo $blog['imagemAutorBlog']; ?>" alt="<?php echo $blog['nomeAutorBlog']; ?>" />
+                            <span class="limit-text"><?php echo $blog['nomeAutorBlog']; ?></span>
+                        </div>
                         <div class="tag"><span>
                                 <?php echo $nomeCategoriaBlogSel; ?>
                             </span></div>
@@ -114,10 +118,6 @@ $redes = ob_get_clean();
                             <span>
                                 <?php echo $dataBlogSel; ?>
                             </span>
-                        </div>
-                        <div class="author">
-                            <img loading="lazy" src="../assets/png/solucoes-especializadas-home.png" alt="Nome do autor" />
-                            <span class="limit-text">Nome do autor</span>
                         </div>
                     </div>
                     <div class="outline-button white" onclick="scrollElemento('.post')">
@@ -185,7 +185,11 @@ $redes = ob_get_clean();
                                 col-lg-6 card-blog-wrapper">
                                 <div class="card-blog">
                                     <img src="../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
-                                    <div>
+                                    <div class="category-date">
+                                            <div class="author">
+                                            <img loading="lazy" src="../assets/uploads/{$blog->imagemAutorBlog}" alt="{$blog->nomeAutorBlog}" />
+                                            <span class="limit-text">{$blog->nomeAutorBlog}</span>
+                                        </div>
                                         <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                     </div>
                                     <h1>{$blog->tituloBlog}</h1>
