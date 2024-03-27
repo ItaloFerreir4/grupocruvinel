@@ -784,13 +784,25 @@
   max-width: 180px;
 }
 
-.clients .slick-arrow {
-  display: none !important;
+.clients .slick-prev{
+  left: -50px;
+}
+
+.clients .slick-next{
+  right: -35px;
+}
+
+.clients .slick-next::before{
+  content: url(../assets/svg/seta-dir-preto.svg);
+}
+
+.clients .slick-prev::before {
+  content: url(../assets/svg/seta-esq-preto.svg);
 }
 
 @media (max-width: 992px) {
   .swiper-clients .slick-next {
-    right: -15px;
+    right: 0;
     z-index: 2;
   }
 

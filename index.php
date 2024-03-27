@@ -516,7 +516,6 @@ $redesAmarelo = ob_get_clean();
                         breakpoint: 992,
                         settings: {
                             slidesToShow: 1,
-                            arrows: false,
                         },
                     },
                 ],

@@ -97,16 +97,7 @@ $redes = ob_get_clean();
 <body>
     <?php cHeader(); ?>
     <div class="banner">
-        <?php
-        foreach ($conteudosArray as $conteudo) {
-            if ($conteudo->numeroConteudo == 1) {
-                echo <<<HTML
-                <img class="img-background desktop" src="../assets/uploads/{$conteudo->imagem1Conteudo}" alt="{$conteudo->legendaImagem1Conteudo}">
-                <img class="img-background mobile" src="../assets/uploads/{$conteudo->imagem2Conteudo}" alt="{$conteudo->legendaImagem2Conteudo}">
-                HTML;
-            }
-        }
-        ?>
+        <img class="img-background" src="../assets/png/banner-blog-detalhes.png" alt="Fundo Imagem">
         <div class="container">
             <div class="row">
                 <div class="col-12 bloco-1">
@@ -143,7 +134,9 @@ $redes = ob_get_clean();
                     <div class="social-media">
                         <?php echo $redes; ?>
                     </div>
-                    <?php echo $blog['textoBlog']; ?>
+                    <div class="texto-blog">
+                        <?php echo $blog['textoBlog']; ?>
+                    </div>
                 </div>
             </div>
         </div>

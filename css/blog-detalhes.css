@@ -28,6 +28,10 @@
   line-height: normal;
 }
 
+.post .texto-blog a{
+  color: #277cdd;
+}
+
 @media(max-width: 1200px){
   .banner{
     padding: 180px 0 60px;
