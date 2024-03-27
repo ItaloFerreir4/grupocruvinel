@@ -17,6 +17,7 @@
 .banner .bottom {
   display: flex;
   gap: 25px;
+  align-items: center;
 }
 
 .banner .bottom span {
@@ -32,12 +33,16 @@
   color: #277cdd;
 }
 
-@media(max-width: 1200px){
-  .banner{
+.post .texto-blog a{
+  color: #277cdd;
+}
+
+@media (max-width: 1200px) {
+  .banner {
     padding: 180px 0 60px;
   }
 
-  .banner h1{
+  .banner h1 {
     font-size: 30px;
   }
 }
