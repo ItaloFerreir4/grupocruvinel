@@ -880,6 +880,11 @@ input[type="text"].parsley-error::placeholder {
 
 /* tag-filter */
 
+.tag-filter{
+  display: flex;
+  flex-direction: column;
+}
+
 .tag-filter h1 {
   color: var(--bege-2);
   font-family: "Montserrat SemiBold";
@@ -892,22 +897,22 @@ input[type="text"].parsley-error::placeholder {
 }
 
 .tag-filter > button {
-  background-color: var(--bege-2);
+  background-color: var(--bege);
   border-radius: 15px;
   display: inline-flex;
   height: 26px;
-  padding: 12px;
+  padding: 12px 20px;
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: var(--cinza);
+  color: var(--branco);
   font-family: "OpenSans";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 20px auto 0;
   text-transform: uppercase;
 }
 

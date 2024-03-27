@@ -117,7 +117,7 @@ $redes = ob_get_clean();
                                 }
                                 ?>
                             </div>
-                            <button>Ver mais</button>
+                            <button>Carregar mais</button>
                         </div>
                     </div>
                 </div>
@@ -271,7 +271,7 @@ $redes = ob_get_clean();
         });
     </script>
     <script>
-        let maxVisibleElements = 4;
+        let maxVisibleElements = 10;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
 
         sessionStorage.setItem("t", "");
