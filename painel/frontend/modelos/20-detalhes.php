@@ -282,7 +282,7 @@ $redes = ob_get_clean();
         });
     </script>
     <script>
-        let maxVisibleElements = 4;
+        let maxVisibleElements = 6;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
     </script>
     <script src="../../javascript/global.js"></script>

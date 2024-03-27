@@ -282,7 +282,7 @@ $redes = ob_get_clean();
         });
     </script>
     <script>
-        let maxVisibleElements = 10;
+        let maxVisibleElements = 6;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
 
         sessionStorage.setItem("t", "");
