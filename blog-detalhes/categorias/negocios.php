@@ -271,12 +271,8 @@ $redes = ob_get_clean();
         });
     </script>
     <script>
-        let maxVisibleElements = 10;
+        let maxVisibleElements = 4;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
-
-        sessionStorage.setItem("t", "");
-        sessionStorage.setItem("y", new Date().getFullYear().toString().substring(2, 2));
-        sessionStorage.setItem("m", "");
     </script>
     <script src="../../javascript/global.js"></script>
     <script src="../../javascript/filter.js"></script>

@@ -170,17 +170,15 @@ function loadContent(listElements) {
     } else {
       e.classList.remove("filtered");
     }
+
+    e.style.display = "none";
   });
 
   const filteredElements = document.querySelectorAll(".filtered");
   filteredElements.forEach((element) => {
-    console.log(visibleElements);
     if (visibleElements < maxVisibleElements) {
       visibleElements++;
       element.style.display = "block";
-    } else {
-      console.log("none");
-      element.style.display = "none";
     }
   });
   if (title)
