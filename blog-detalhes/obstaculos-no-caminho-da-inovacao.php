@@ -18,7 +18,7 @@ $sqlBlogs->bindValue(":idPagina", $conteudoSeo["idPagina"]);
 $sqlBlogs->execute();
 $blog = $sqlBlogs->fetch(PDO::FETCH_ASSOC);
 
-$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, destaques d, blogs c WHERE p.idPagina = d.idItem AND c.paginaId = p.idPagina AND c.status = 1");
 $sqlBlogs->execute();
 $blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
 $blogsArray = json_decode(json_encode($blogsArray));

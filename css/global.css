@@ -475,7 +475,7 @@ footer .rights span {
     width: 90%;
   }
 
-  footer .rights span{
+  footer .rights span {
     text-align: left;
     max-width: calc(100% - 70px);
   }
@@ -891,14 +891,37 @@ input[type="text"].parsley-error::placeholder {
   text-transform: uppercase;
 }
 
+.tag-filter > button {
+  background-color: var(--bege-2);
+  border-radius: 15px;
+  display: inline-flex;
+  height: 26px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: var(--cinza);
+  font-family: "OpenSans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
 .tag-filter .buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   margin-top: 30px;
+  max-height: 124px;
+  overflow: hidden;
+  transition: all 0.5s ease-out;
 }
 
-.tag-filter button {
+.tag-filter .buttons > button {
   background-color: #e2dccf;
   border-radius: 15px;
   display: inline-flex;
@@ -916,7 +939,7 @@ input[type="text"].parsley-error::placeholder {
   cursor: pointer;
 }
 
-.tag-filter button.active {
+.tag-filter .buttons > button.active {
   background-color: var(--preto);
   color: #e2dccf;
 }

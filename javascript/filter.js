@@ -20,7 +20,9 @@ function setActiveClasses() {
   const filterCategoryButtons = document.querySelectorAll(
     '.filter[data-filter="category"] > *'
   );
-  const filterTagButtons = document.querySelectorAll(".tag-filter button");
+  const filterTagButtons = document.querySelectorAll(
+    ".tag-filter .buttons > button"
+  );
 
   if (filterYearButtons.length > 0) {
     if (sessionYear !== "") {
@@ -69,7 +71,9 @@ function setActiveClasses() {
 
   if (filterTagButtons.length > 0) {
     if (sessionTag !== "") {
-      const filterTagButtons = document.querySelectorAll(".tag-filter button");
+      const filterTagButtons = document.querySelectorAll(
+        ".tag-filter .buttons > button"
+      );
       filterTagButtons.forEach((element) => {
         if (element.dataset.tag === sessionTag) {
           element.classList.add("active");
@@ -103,7 +107,7 @@ function loadButtonsFunctionality() {
   const filterCategoryButtons = document.querySelectorAll(
     '.filter[data-filter="category"] > *'
   );
-  const filterTags = document.querySelectorAll(".tag-filter button");
+  const filterTags = document.querySelectorAll(".tag-filter .buttons > button");
 
   if (filterYear) {
     filterYearButtons.forEach((element) => {

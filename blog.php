@@ -117,6 +117,7 @@ $redes = ob_get_clean();
                                 }
                                 ?>
                             </div>
+                            <button>Ver mais</button>
                         </div>
                     </div>
                 </div>
@@ -279,6 +280,23 @@ $redes = ob_get_clean();
     </script>
     <script src="javascript/global.js"></script>
     <script src="javascript/filter.js"></script>
+    <script>
+        const tagsContainer = document.querySelector('.tag-filter .buttons');
+        const tagsFilterButton = document.querySelector('.tag-filter > button');
+
+        function showMoreTags() {
+            tagsContainer.style.maxHeight = tagsContainer.scrollHeight + "px";
+            tagsFilterButton.style.display = "none";
+        }
+
+        tagsFilterButton.setAttribute("onclick", "showMoreTags()")
+
+        if (tagsContainer.scrollHeight > tagsContainer.clientHeight) {
+            tagsFilterButton.style.display = "inline-flex";
+        } else {
+            tagsFilterButton.style.display = "none";
+        }
+    </script>
 </body>
 
 </html>

@@ -1,21 +1,15 @@
 <?php
 
-include_once "../../assets/componentes.php";
-include_once "../../painel/backend/conexao-banco.php";
+include_once "assets/componentes.php";
+include_once "painel/backend/conexao-banco.php";
 
-$nomeDoArquivoCompleto = $_SERVER["SCRIPT_FILENAME"];
-$nomeDoArquivoSemExtensao = pathinfo($nomeDoArquivoCompleto, PATHINFO_FILENAME);
-
-$paginaSelecionada = $nomeDoArquivoSemExtensao;
-
-$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE nomePagina = :nomePagina AND categoriaId = :categoriaId");
-$sqlSeo->bindValue(":nomePagina", $paginaSelecionada);
-$sqlSeo->bindValue(":categoriaId", 20);
+$sqlSeo = $con->prepare("SELECT * FROM paginas WHERE idPagina = :idPagina");
+$sqlSeo->bindValue(":idPagina", 10);
 $sqlSeo->execute();
 $conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
 
 $sqlConteudos = $con->prepare("SELECT * FROM conteudos WHERE paginaId = :idPagina");
-$sqlConteudos->bindValue(":idPagina", 10);
+$sqlConteudos->bindValue(":idPagina", $conteudoSeo["idPagina"]);
 $sqlConteudos->execute();
 $conteudosArray = $sqlConteudos->fetchAll(PDO::FETCH_ASSOC);
 $conteudosArray = json_decode(json_encode($conteudosArray));
@@ -66,12 +60,12 @@ $redes = ob_get_clean();
 
     <?php linksHead(); ?>
 
-    <link rel="icon" type="image/svg" href="../../assets/svg/favicon.svg">
+    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/blog.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/blog.css">
 </head>
 
 <body>
