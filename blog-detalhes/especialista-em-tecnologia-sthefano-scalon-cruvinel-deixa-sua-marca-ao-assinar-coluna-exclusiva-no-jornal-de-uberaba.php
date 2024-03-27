@@ -50,7 +50,6 @@ if ($primeiraCategoriaBlog) {
             $nomeCategoriaBlogSel = $rowCat->nomeCategoria;
         }
     }
-
 } else {
     $nomeCategoriaBlogSel = "";
 }
@@ -125,6 +124,10 @@ $redes = ob_get_clean();
                                 <?php echo $dataBlogSel; ?>
                             </span>
                         </div>
+                        <div class="author">
+                            <img loading="lazy" src="../assets/png/solucoes-especializadas-home.png" alt="Nome do autor" />
+                            <span class="limit-text">Nome do autor</span>
+                        </div>
                     </div>
                     <div class="outline-button white" onclick="scrollElemento('.post')">
                         Ler mais
@@ -138,8 +141,7 @@ $redes = ob_get_clean();
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <img src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>"
-                        alt="<?php echo $blog['legendaImagemBlog']; ?>">
+                    <img src="../assets/uploads/<?php echo $blog['imagemBlog']; ?>" alt="<?php echo $blog['legendaImagemBlog']; ?>">
                     <div class="social-media">
                         <?php echo $redes; ?>
                     </div>
@@ -172,7 +174,6 @@ $redes = ob_get_clean();
                                     $nomeCategoriaBlog = $rowCat->nomeCategoria;
                                 }
                             }
-
                         } else {
                             $nomeCategoriaBlog = "";
                         }
@@ -214,19 +215,17 @@ $redes = ob_get_clean();
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".swiper-other-blogs").slick({
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
-                responsive: [
-                    {
-                        breakpoint: 992,
-                        settings: {
-                            slidesToShow: 1,
-                        },
+                responsive: [{
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 1,
                     },
-                ],
+                }, ],
             });
         });
     </script>

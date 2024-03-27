@@ -880,7 +880,7 @@ input[type="text"].parsley-error::placeholder {
 
 /* tag-filter */
 
-.tag-filter{
+.tag-filter {
   display: flex;
   flex-direction: column;
 }
@@ -1734,11 +1734,35 @@ label {
   text-transform: uppercase;
 }
 
-.card-blog > div {
+.card-blog .author {
+  margin-bottom: 10px;
+}
+
+.card-blog .author span {
+  font-size: 14px;
+  color: var(--preto);
+}
+
+.card-blog .author img {
+  width: 20px;
+  height: 20px;
+}
+
+.card-blog .author span {
+  font-size: 14px;
+  color: var(--preto);
+}
+
+.card-blog .author img {
+  width: 20px;
+  height: 20px;
+}
+
+.card-blog > .category-date {
   margin: 15px 0 15px;
 }
 
-.card-blog > div span:first-child {
+.card-blog > .category-date span:first-child {
   margin-right: 20px;
 }
 
@@ -1749,7 +1773,7 @@ label {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;

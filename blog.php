@@ -173,10 +173,14 @@ $redes = ob_get_clean();
                                     col-lg-6 card-blog-wrapper">
                                     <div class="card-blog">
                                         <img src="./assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
-                                        <div>
+                                        <div class="category-date">
                                             <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                         </div>
                                         <h1>{$blog->tituloBlog}</h1>
+                                        <div class="author">
+                                            <img loading="lazy" src="./assets/png/solucoes-especializadas-home.png" alt="Nome do autor" />
+                                            <span class="limit-text">Nome do autor</span>
+                                        </div>
                                         <div class="outline-button">
                                             Ler mais
                                             <img src="./assets/svg/seta-dir-marrom.svg" alt="Ler Mais">

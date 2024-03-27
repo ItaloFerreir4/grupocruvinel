@@ -60,7 +60,7 @@ $redes = ob_get_clean();
 
     <?php linksHead(); ?>
 
-    <link rel="icon" type="image/svg" href="assets/svg/favicon.svg">
+    <link rel="icon" type="image/svg" href="../../assets/svg/favicon.svg">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" href="../../css/bootstrap.css">
@@ -173,10 +173,14 @@ $redes = ob_get_clean();
                                     col-lg-6 card-blog-wrapper">
                                     <div class="card-blog">
                                         <img src="../../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
-                                        <div>
+                                        <div class="category-date">
                                             <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                         </div>
                                         <h1>{$blog->tituloBlog}</h1>
+                                        <div class="author">
+                                            <img loading="lazy" src="../../assets/png/solucoes-especializadas-home.png" alt="Nome do autor" />
+                                            <span class="limit-text">Nome do autor</span>
+                                        </div>
                                         <div class="outline-button">
                                             Ler mais
                                             <img src="../../assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
@@ -282,7 +286,7 @@ $redes = ob_get_clean();
         });
     </script>
     <script>
-        let maxVisibleElements = 4;
+        let maxVisibleElements = 6;
         const listElements = document.querySelectorAll(".card-blog-wrapper");
     </script>
     <script src="../../javascript/global.js"></script>
