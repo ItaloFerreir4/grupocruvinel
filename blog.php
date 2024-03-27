@@ -169,17 +169,17 @@ $redes = ob_get_clean();
                             $categoriasBlog = implode(',', $categoriasBlog);
 
                             echo <<<HTML
-                                <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href="../../blog-detalhes/{$blog->nomePagina}" class="col-12
+                                <a data-category="{$categoriasBlog}" data-tag="{$blog->tagsBlog}" href="./blog-detalhes/{$blog->nomePagina}" class="col-12
                                     col-lg-6 card-blog-wrapper">
                                     <div class="card-blog">
-                                        <img src="../../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
+                                        <img src="./assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
                                         <div>
                                             <span class="tag">{$nomeCategoriaBlog}</span><span class="date">{$dataBlog}</span>
                                         </div>
                                         <h1>{$blog->tituloBlog}</h1>
                                         <div class="outline-button">
                                             Ler mais
-                                            <img src="../../assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
+                                            <img src="./assets/svg/seta-dir-marrom.svg" alt="Ler Mais">
                                         </div>
                                     </div>
                                 </a>
@@ -190,7 +190,7 @@ $redes = ob_get_clean();
                     </div>
                     <button class="outline-button load-more" onclick="loadMore(listElements, 4)">
                         Carregar Mais
-                        <img src="../../assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
+                        <img src="./assets/svg/seta-dir-marrom.svg" alt="Carregar mais">
                     </button>
                 </div>
             </div>
