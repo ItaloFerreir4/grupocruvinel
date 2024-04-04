@@ -217,6 +217,8 @@ $redes = ob_get_clean();
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [{
                     breakpoint: 992,
                     settings: {

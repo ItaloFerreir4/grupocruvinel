@@ -5,6 +5,7 @@ session_start();
 
 include_once './conexao-banco.php';
 include_once './gerar-pagina.php';
+include_once './atualizar-paginas-geral.php';
 
 //Verificar se o usuário está logado
 if (!isset($_SESSION['idUsuario'])) {
@@ -29,9 +30,11 @@ if (isset($_POST['origem'])) {
             //     echo false;
             // } else {
                 try {
+                    $nomeFormatado = removerAcentos($_POST['nomePagina']);
+
                     $sql = $con->prepare('INSERT INTO paginas(categoriaId, nomePagina, tituloPagina, descricaoPagina, imagemPagina, legendaImagemPagina, palavrasChavesPagina) VALUES(:categoriaId, :nomePagina, :tituloPagina, :descricaoPagina, :imagemPagina, :legendaImagemPagina, :palavrasChavesPagina)');
                     $sql->bindValue(":categoriaId", $_POST['categoriaId']);
-                    $sql->bindValue(":nomePagina", $_POST['nomePagina']);
+                    $sql->bindValue(":nomePagina", $nomeFormatado);
                     $sql->bindValue(":tituloPagina", $_POST['tituloPagina']);
                     $sql->bindValue(":descricaoPagina", $_POST['descricaoPagina']);
                     $sql->bindValue(":imagemPagina", $_POST['imagemPagina']);

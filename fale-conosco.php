@@ -222,6 +222,8 @@ $categoriasArray = json_decode(json_encode($categoriasArray));
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [
                     {
                         breakpoint: 992,

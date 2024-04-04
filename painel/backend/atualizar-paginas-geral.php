@@ -38,11 +38,18 @@ if(isset($_POST['origem']) && $_POST['origem'] == "atualizarGeral"){
             // Verifica se a categoriaId existe no mapeamento
             if (isset($mapeamentoDiretorio[$categoriaId])) {
                 $diretorio = $mapeamentoDiretorio[$categoriaId];
-                $nomeArquivoAtual = $baseDirectory . '/' . $diretorio . '/' . $row->nomePagina . '.php';
+                $nomeFormatado = removerAcentos($row->nomePagina);
+                // $nomeArquivoAtual = $baseDirectory . '/' . $diretorio . '/' . $nomeFormatado . '.php';
 
-                geraPagina($categoriaId, $diretorio, $row->nomePagina);
+                geraPagina($categoriaId, $diretorio, $nomeFormatado);
+                
+                // Atualiza o nome formatado no banco de dados
+                // $sqlUpdate = $con->prepare("UPDATE paginas SET nomePagina = :nomePagina WHERE idPagina = :idPagina");
+                // $sqlUpdate->bindValue(":nomePagina", $nomeFormatado);
+                // $sqlUpdate->bindValue(":idPagina", $row->idPagina);
+                // $sqlUpdate->execute();
 
-                echo "id: " . $diretorio . "\n";
+                echo "diretorio: " . $diretorio . "\n";
             }
 
         }
@@ -52,4 +59,24 @@ if(isset($_POST['origem']) && $_POST['origem'] == "atualizarGeral"){
     }
     
 
+}
+
+function removerAcentos($string) {
+    
+    // Substitui os caracteres acentuados por não acentuados
+    $string = strtr(utf8_decode($string), 
+                    utf8_decode('áàãâäéèẽêëíìĩîïóòõôöúùũûüñçÁÀÃÂÄÉÈẼÊËÍÌĨÎÏÓÒÕÔÖÚÙŨÛÜÑÇ'),
+                    'aaaaaeeeeeiiiiiooooouuuuuncAAAAAEEEEEIIIIIOOOOOUUUUUNC');
+                    
+    // Remove caracteres especiais, exceto o espaço
+    $string = preg_replace('/[^a-zA-Z0-9\s]/', '', $string);
+
+    // Converte para minúsculas
+    $string = strtolower($string);
+
+    // Remove espaços extras e substitui espaços por hífens
+    $string = preg_replace('/\s+/', ' ', $string);
+    $string = str_replace(' ', '-', $string);
+
+    return $string;
 }
