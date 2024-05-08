@@ -3,9 +3,21 @@
 define('BASE_URL', 'http://localhost/grupocruvinel');
 
 function cHeader(){
+    try {
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
+    } catch (PDOException $ex) {
+        echo 'Erro: ' . $ex->getMessage();
+    }
+    
+    $sql = $con->prepare("SELECT * FROM scripts WHERE tipoScript = :tipoScript");
+    $sql->bindValue(":tipoScript", "iniBody");
+    $sql->execute();
+    $script = $sql->fetch(PDO::FETCH_ASSOC);
+
     $baseURL = BASE_URL;
 
     echo <<<HTML
+    {$script["script"]}
     <header>
         <a href="{$baseURL}" title="home"><img src="{$baseURL}/assets/svg/logo-cruvinel-dourado.svg" alt="Logo" class="logo"></a>
         <nav>
@@ -77,7 +89,7 @@ function cFooter(){
                                 <a href="{$urlBase}/clientes">NOSSOS CLIENTES</a>
                                 <a href="{$urlBase}/blog">BLOG</a>
                                 <a href="{$urlBase}/fale-conosco">FALE CONOSCO</a>
-                                <a href="{$urlBase}/">STHEFANO CRUVINEL CEO E FUNDADOR</a>
+                                <a href="https://sthefanocruvinel.com.br/" target="_blank">STHEFANO CRUVINEL CEO E FUNDADOR</a>
                             </div>
                         </div>
                         <a href="{$urlBase}/quem-somos">QUEM SOMOS</a>
@@ -87,7 +99,7 @@ function cFooter(){
                         <a href="{$urlBase}/clientes">NOSSOS CLIENTES</a>
                         <a href="{$urlBase}/blog">BLOG</a>
                         <a href="{$urlBase}/fale-conosco">FALE CONOSCO</a>
-                        <a href="{$urlBase}/">STHEFANO CRUVINEL CEO E FUNDADOR</a>
+                        <a href="https://sthefanocruvinel.com.br/" target="_blank">STHEFANO CRUVINEL CEO E FUNDADOR</a>
                     </div>
                     <div class="col-12 col-lg-3 contact">
                         <span>{$conteudoContatos['whatsappContato']}</span>
@@ -122,7 +134,7 @@ function cFooter(){
                     parcial, de
                     qualquer elemento de identidade, sem expressa autorização. A violação de qualquer direito mencionado
                     implicará na responsabilização cível e criminal nos termos da Lei.</p>
-                <span>© 2024 EvidJuri Desenvolvido por: WMB Marketing Digital</span>
+                <span>© 2024 EvidJuri Desenvolvido por: <a href="https://www.wmbmarketingdigital.com.br/" target="_blank">WMB Marketing Digital</a></span>
             </div>
         </div>
     </footer>
@@ -131,7 +143,7 @@ function cFooter(){
             <div class="col-12">
                 <div class="row box">
                     <div class="col-12 text">
-                        <p>Cookies</p>
+                        <p>Cookies: a gente guarda estatísticas de visitas para melhorar sua experiência de navegação. Ao continuar, você concorda com nossa <a href="./politica-de-privacidade">Política de Privacidade</a></p>
                         <button type="button" class="close_cookie" onClick="acceptCookies()"> Concordo e fechar </button>
                     </div>
                 </div>
@@ -207,17 +219,39 @@ function elementosGerais(){
 }
 
 function linksHead(){
+    try {
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
+    } catch (PDOException $ex) {
+        echo 'Erro: ' . $ex->getMessage();
+    }
+
+    $sql = $con->prepare("SELECT * FROM scripts WHERE tipoScript = :tipoScript");
+    $sql->bindValue(":tipoScript", "head");
+    $sql->execute();
+    $script = $sql->fetch(PDO::FETCH_ASSOC);
+
     echo '
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.min.css">
-    ';
+    '.$script["script"];
 }
 
 function scriptBody(){
+    try {
+        $con = new PDO('mysql:host=localhost;dbname=grupocruvinel', 'admin', '');
+    } catch (PDOException $ex) {
+        echo 'Erro: ' . $ex->getMessage();
+    }
+
+    $sql = $con->prepare("SELECT * FROM scripts WHERE tipoScript = :tipoScript");
+    $sql->bindValue(":tipoScript", "fimBody");
+    $sql->execute();
+    $script = $sql->fetch(PDO::FETCH_ASSOC);
+
     echo '
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.js"></script>
-    ';
+    '.$script["script"];
 }
 
 function formEmailNewsletter(){

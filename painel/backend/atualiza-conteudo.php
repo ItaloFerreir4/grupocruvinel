@@ -489,7 +489,7 @@ if (isset($_POST['origem'])) {
 
         case "atualizaBusiness":
             try {
-                $sql = $con->prepare('UPDATE business SET nomeBusiness = :nomeBusiness, tituloBusiness = :tituloBusiness, imagemBusiness = :imagemBusiness, legendaImagemBusiness = :legendaImagemBusiness, categoriaBusiness = :categoriaBusiness, nomeBotao1 = :nomeBotao1, linkBotao1 = :linkBotao1, targetBotao1 = :targetBotao1, textoBusiness = :textoBusiness WHERE paginaId = :paginaId');
+                $sql = $con->prepare('UPDATE business SET nomeBusiness = :nomeBusiness, tituloBusiness = :tituloBusiness, imagemBusiness = :imagemBusiness, legendaImagemBusiness = :legendaImagemBusiness, categoriaBusiness = :categoriaBusiness, nomeBotao1 = :nomeBotao1, linkBotao1 = :linkBotao1, targetBotao1 = :targetBotao1, textoBusiness = :textoBusiness, status = :status WHERE paginaId = :paginaId');
                 $sql->bindValue(":paginaId", $_POST['paginaId']);
                 $sql->bindValue(":nomeBusiness", $_POST['nomeBusiness']);
                 $sql->bindValue(":tituloBusiness", $_POST['tituloBusiness']);
@@ -500,6 +500,7 @@ if (isset($_POST['origem'])) {
                 $sql->bindValue(":linkBotao1", $_POST['linkBotao1']);
                 $sql->bindValue(":targetBotao1", $_POST['targetBotao1']);
                 $sql->bindValue(":textoBusiness", $_POST['textoBusiness']);
+                $sql->bindValue(":status", $_POST['status']);
 
                 if ($sql->execute()) {
                     echo true;
@@ -1160,6 +1161,54 @@ if (isset($_POST['origem'])) {
                         echo false;
                     }
                 }
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
+                echo false;
+            }
+            break;
+            
+        case "atualizaScriptHead":
+            try {
+                $sql = $con->prepare('UPDATE scripts SET script = :script WHERE tipoScript = :tipoScript');
+                $sql->bindValue(":tipoScript", 'head');
+                $sql->bindValue(":script", $_POST['script']);
+
+                if ($sql->execute()) {
+                    echo true;
+                }
+
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
+                echo false;
+            }
+            break;
+
+        case "atualizaScriptIniBody":
+            try {
+                $sql = $con->prepare('UPDATE scripts SET script = :script WHERE tipoScript = :tipoScript');
+                $sql->bindValue(":tipoScript", 'iniBody');
+                $sql->bindValue(":script", $_POST['script']);
+
+                if ($sql->execute()) {
+                    echo true;
+                }
+
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
+                echo false;
+            }
+            break;
+
+        case "atualizaScriptFimBody":
+            try {
+                $sql = $con->prepare('UPDATE scripts SET script = :script WHERE tipoScript = :tipoScript');
+                $sql->bindValue(":tipoScript", 'fimBody');
+                $sql->bindValue(":script", $_POST['script']);
+
+                if ($sql->execute()) {
+                    echo true;
+                }
+
             } catch (PDOException $e) {
                 // // echo "Erro: " . $e->getMessage();
                 echo false;

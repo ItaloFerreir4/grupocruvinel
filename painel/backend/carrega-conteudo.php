@@ -508,5 +508,39 @@ if (isset($_POST['origem'])) {
                 echo json_encode($conteudoPagina);
             }
             break;
+            
+        case "carregaScriptHead":
+
+            $sql = $con->prepare("SELECT * FROM scripts WHERE tipoScript = :tipoScript");
+            $sql->bindValue(":tipoScript", 'head');
+            if ($sql->execute()) {
+                $conteudos = $sql->fetch(PDO::FETCH_ASSOC);
+
+                echo json_encode($conteudos);
+            }
+        break;
+
+        case "carregaScriptIniBody":
+
+            $sql = $con->prepare("SELECT * FROM scripts WHERE tipoScript = :tipoScript");
+            $sql->bindValue(":tipoScript", 'iniBody');
+            if ($sql->execute()) {
+                $conteudos = $sql->fetch(PDO::FETCH_ASSOC);
+
+                echo json_encode($conteudos);
+            }
+        break;
+
+        case "carregaScriptFimBody":
+
+            $sql = $con->prepare("SELECT * FROM scripts WHERE tipoScript = :tipoScript");
+            $sql->bindValue(":tipoScript", 'fimBody');
+            if ($sql->execute()) {
+                $conteudos = $sql->fetch(PDO::FETCH_ASSOC);
+
+                echo json_encode($conteudos);
+            }
+        break;
+    
     }
 }

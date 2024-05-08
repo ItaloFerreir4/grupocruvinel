@@ -13,7 +13,7 @@ $sqlSeo->bindValue(":categoriaId", 21);
 $sqlSeo->execute();
 $conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
 
-$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, saiunamidias c WHERE c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, saiunamidias c WHERE c.paginaId = p.idPagina AND c.status = 1 ORDER BY c.dataBlog DESC");
 $sqlBlogs->execute();
 $blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
 $blogsArray = json_decode(json_encode($blogsArray));

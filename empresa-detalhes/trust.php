@@ -134,10 +134,10 @@ $redes = ob_get_clean();
                         <?php echo $redes; ?>
                     </div>
                     <?php echo $business['textoBusiness']; ?>
-                    <button onclick="scrollElemento('.field')" class="outline-button">
-                        Saiba Mais
-                        <img src="../assets/svg/seta-dir-marrom.svg" alt="Saiba Mais">
-                    </button>
+                    <a class="outline-button" href="<?php echo $business['linkBotao1']; ?>" title="<?php echo $business['nomeBotao1']; ?>" target="<?php echo $business['targetBotao1']; ?>">
+                        <?php echo $business['nomeBotao1']; ?>
+                        <img src="../assets/svg/seta-dir-marrom.svg" alt="<?php echo $business['nomeBotao1']; ?>">
+                    </a>
                 </div>
             </div>
         </div>
@@ -154,7 +154,11 @@ $redes = ob_get_clean();
                         foreach ($conteudosArray as $conteudo) {
                             if ($conteudo->numeroConteudo == 2) {
                                 echo <<<HTML
-                                <li>$conteudo->tituloConteudo</li>
+                                <li>
+                                    <div class="text-field">
+                                        $conteudo->tituloConteudo
+                                    </div>
+                                </li>
                                 HTML;
                             }
                         }

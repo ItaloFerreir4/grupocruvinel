@@ -24,7 +24,7 @@ $sqlFormulario->bindValue(":paginaId", 16);
 $sqlFormulario->execute();
 $formulario = $sqlFormulario->fetch(PDO::FETCH_ASSOC);
 
-$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, destaques d, blogs c WHERE p.idPagina = d.idItem AND c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, destaques d, blogs c WHERE p.idPagina = d.idItem AND c.paginaId = p.idPagina AND c.status = 1 ORDER BY c.dataBlog DESC");
 $sqlBlogs->execute();
 $blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
 $blogsArray = json_decode(json_encode($blogsArray));

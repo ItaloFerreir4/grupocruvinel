@@ -13,12 +13,12 @@ $sqlSeo->bindValue(":categoriaId", 10);
 $sqlSeo->execute();
 $conteudoSeo = $sqlSeo->fetch(PDO::FETCH_ASSOC);
 
-$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = :idPagina AND c.paginaId = p.idPagina");
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, blogs c WHERE c.paginaId = :idPagina AND c.paginaId = p.idPagina ORDER BY c.dataBlog DESC");
 $sqlBlogs->bindValue(":idPagina", $conteudoSeo["idPagina"]);
 $sqlBlogs->execute();
 $blog = $sqlBlogs->fetch(PDO::FETCH_ASSOC);
 
-$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, destaques d, blogs c WHERE p.idPagina = d.idItem AND c.paginaId = p.idPagina AND c.status = 1");
+$sqlBlogs = $con->prepare("SELECT p.*, c.* FROM paginas p, destaques d, blogs c WHERE p.idPagina = d.idItem AND c.paginaId = p.idPagina AND c.status = 1 ORDER BY c.dataBlog DESC");
 $sqlBlogs->execute();
 $blogsArray = $sqlBlogs->fetchAll(PDO::FETCH_ASSOC);
 $blogsArray = json_decode(json_encode($blogsArray));
@@ -186,7 +186,7 @@ $redes = ob_get_clean();
                                 <div class="card-blog">
                                     <img src="../assets/uploads/{$blog->imagemBlog}" alt="{$blog->legendaImagemBlog}">
                                     <div class="category-date">
-                                            <div class="author">
+                                        <div class="author">
                                             <img loading="lazy" src="../assets/uploads/{$blog->imagemAutorBlog}" alt="{$blog->nomeAutorBlog}" />
                                             <span class="limit-text">{$blog->nomeAutorBlog}</span>
                                         </div>
@@ -217,6 +217,8 @@ $redes = ob_get_clean();
                 infinite: true,
                 dots: true,
                 slidesToShow: 3,
+                autoplay: true,
+                autoplaySpeed: 2500,
                 responsive: [{
                     breakpoint: 992,
                     settings: {

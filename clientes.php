@@ -86,11 +86,11 @@ $redes = ob_get_clean();
                     <?php
                     foreach ($clientesArray as $cliente) {
                         echo <<<HTML
-                        <a href="{$cliente->linkCliente}" class="client-wrapper" target="_blank">
+                        <div class="client-wrapper" target="_blank">
                             <div class="client">
                                 <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
                             </div>
-                        </a>
+                        </div>
                         HTML;
                     }
                     ?>
@@ -105,11 +105,11 @@ $redes = ob_get_clean();
                     <?php
                     foreach ($clientesArray as $cliente) {
                         echo <<<HTML
-                        <a href="{$cliente->linkCliente}" class="client-wrapper">
+                        <div class="client-wrapper">
                             <div class="client">
                                 <img src="assets/uploads/{$cliente->imagemCliente}" alt="{$cliente->legendaImagemCliente}">
                             </div>
-                        </a>
+                        </div>
                         HTML;
                     }
                     ?>

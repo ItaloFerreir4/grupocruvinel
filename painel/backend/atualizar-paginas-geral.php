@@ -38,10 +38,10 @@ if(isset($_POST['origem']) && $_POST['origem'] == "atualizarGeral"){
             // Verifica se a categoriaId existe no mapeamento
             if (isset($mapeamentoDiretorio[$categoriaId])) {
                 $diretorio = $mapeamentoDiretorio[$categoriaId];
-                $nomeFormatado = removerAcentos($row->nomePagina);
+                // $nomeFormatado = removerAcentos($row->nomePagina);
                 // $nomeArquivoAtual = $baseDirectory . '/' . $diretorio . '/' . $nomeFormatado . '.php';
 
-                geraPagina($categoriaId, $diretorio, $nomeFormatado);
+                geraPagina($categoriaId, $diretorio, $row->nomePagina);
                 
                 // Atualiza o nome formatado no banco de dados
                 // $sqlUpdate = $con->prepare("UPDATE paginas SET nomePagina = :nomePagina WHERE idPagina = :idPagina");

@@ -64,19 +64,19 @@ echo ''
                                     <textarea class="form-control" id="textoBusiness" name="textoBusiness" rows="10"></textarea>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 hidden">
+                            <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
                                     <label>Nome do botão</label>
                                     <input type="text" class="form-control" id="nomeBotao1" name="nomeBotao1">
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 hidden">
+                            <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
                                     <label>Link</label>
                                     <input type="text" class="form-control" id="linkBotao1" name="linkBotao1">
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 hidden">
+                            <div class="col-lg-4 col-md-12">
                                 <div class="form-group">
                                     <label>Target</label>
                                     <select class="form-control" name="targetBotao1" id="targetBotao1">
