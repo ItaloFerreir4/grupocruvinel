@@ -257,6 +257,42 @@ header .expand {
 
 /* footer */
 
+footer .feed-instagram {
+  background-color: #141414;
+  padding: 50px 0;
+}
+
+footer .feed-instagram .title h1{
+  text-align: center;
+  color: var(--branco);
+  font-family: "OpenSans";
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+footer .feed-instagram .images .wrapper {
+  position: relative;
+  box-shadow: 0px 15px 10.2px rgba(0, 0, 0, 0.25);
+  border: 10px solid var(--branco);
+  margin: 0 10px;
+}
+
+footer .feed-instagram .images .wrapper a{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+footer .feed-instagram .images .wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 footer .links {
   background-color: #141414;
   padding: 45px 0 75px;

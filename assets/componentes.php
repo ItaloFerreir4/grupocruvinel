@@ -69,6 +69,16 @@ function cFooter(){
         </a>
     </div>
     <footer>
+        <div class="feed-instagram">
+            <div class="container">
+                <div class="title">
+                    <h1>Siga meu instagram</h1>
+                </div>
+                <div class="images">
+                    <div class="swiper-insta" id="feedInsta"></div>
+                </div>
+            </div>
+        </div>
         <div class="links">
             <div class="container">
                 <div class="row">
@@ -251,6 +261,7 @@ function scriptBody(){
     echo '
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script defer src="' . BASE_URL . '/painel/tema/assets/vendor/toastr/toastr.js"></script>
+    <script defer src="' . BASE_URL . '/javascript/feed-insta.js"></script>
     '.$script["script"];
 }
 

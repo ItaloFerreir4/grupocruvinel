@@ -1082,10 +1082,11 @@ if (isset($_POST['origem'])) {
             break;
         case "atualizaInstagram":
             try {
-                $sql = $con->prepare('UPDATE instagram SET token = :token, idUser = :idUser WHERE idInstagram = :idInstagram');
+                $sql = $con->prepare('UPDATE instagram SET token = :token, dataGerado = :dataGerado, tempoExpira = :tempoExpira WHERE idInstagram = :idInstagram');
                 $sql->bindValue(":idInstagram", 1);
                 $sql->bindValue(":token", null);
-                $sql->bindValue(":idUser", null);
+                $sql->bindValue(":dataGerado", null);
+                $sql->bindValue(":tempoExpira", null);
 
                 if ($sql->execute()) {
                     echo true;

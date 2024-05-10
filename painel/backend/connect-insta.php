@@ -6,7 +6,7 @@ include_once '../../assets/componentes.php';
 if(isset($_POST['origem']) && $_POST['origem'] == "connect"){
     // Parâmetros da solicitação de autorização do Instagram
     $urlBase = BASE_URL;
-    $clientId = '1544729609652851';  // Substitua pelo seu ID de cliente real
+    $clientId = '829841622325096';  // Substitua pelo seu ID de cliente real
     $redirectUri = $urlBase.'/auth';
     $scope = 'user_profile,user_media';
     $responseType = 'code';
