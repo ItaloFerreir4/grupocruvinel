@@ -78,3 +78,7 @@
         transform: rotate(405deg);
     }
 }
+
+.cke_notifications_area{
+    display: none;
+}

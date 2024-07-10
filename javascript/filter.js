@@ -263,7 +263,7 @@ function filterByTag(filter) {
 }
 
 function filterByCategory(filter, redirect) {
-  let url = new URL(window.location.origin + "/grupocruvinel" + redirect);
+  let url = new URL(window.location.origin + redirect);
   url.searchParams.set("c", filter);
   window.location.href = url.href;
 }

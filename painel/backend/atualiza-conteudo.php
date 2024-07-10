@@ -1215,5 +1215,26 @@ if (isset($_POST['origem'])) {
                 echo false;
             }
             break;
+
+        case "atualizaUsuario":
+
+            $hashedPassword = password_hash($_POST['senhaUsuario'], PASSWORD_DEFAULT);
+            
+            try {
+                $sql = $con->prepare('UPDATE usuarios SET nomeUsuario = :nomeUsuario, emailUsuario = :emailUsuario, senhaUsuario = :senhaUsuario WHERE idUsuario = :idUsuario');
+                $sql->bindValue(":idUsuario", $_POST['idUsuario']);
+                $sql->bindValue(":nomeUsuario", $_POST['nomeUsuario']);
+                $sql->bindValue(":emailUsuario", $_POST['emailUsuario']);
+                $sql->bindValue(":senhaUsuario", $hashedPassword);
+
+                if ($sql->execute()) {
+                    echo true;
+                }
+
+            } catch (PDOException $e) {
+                // // echo "Erro: " . $e->getMessage();
+                echo false;
+            }
+            break;
     }
 }

@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     $.ajax({		
         type: "GET",
-        url: "https://italoferreiracode.com.br/grupocruvinel/feed-insta.php"
+        url: "https://grupocruvinel.com.br/feed-insta.php"
     }).done(function(data){
 
         const feed = document.getElementById("feedInsta");
@@ -10,9 +10,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             $(".swiper-insta").slick({
+                autoplay: true,
+                autoplaySpeed: 2000,
                 infinite: true,
                 slidesToShow: 4,
-                autoplay: true,
+                pauseOnHover: false,
                 responsive: [
                 {
                     breakpoint: 992,

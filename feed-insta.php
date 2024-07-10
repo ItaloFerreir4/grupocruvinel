@@ -14,7 +14,7 @@ try {
 
         // Dados a serem enviados na solicitação GET
         $token = $insta['token'];
-        $fields = 'id,caption,media_url,permalink,thumbnail_url';
+        $fields = 'id,media_type,caption,media_url,permalink,thumbnail_url';
 
         // Construir a URL com os parâmetros
         $urlCurl .= "?access_token={$token}&fields={$fields}";
@@ -55,12 +55,14 @@ try {
             }
             else{
                 foreach ($data['data'] as $item) {
-                    echo <<<HTML
-                    <div class="wrapper">
-                        <a class="link-feed-insta" href="{$item['permalink']}" target="_blank"></a>
-                        <img class="img-feed-insta" src="{$item['media_url']}">
-                    </div>
-                    HTML;
+                    if($item['media_type'] == "IMAGE"){
+                        echo <<<HTML
+                            <div class="wrapper">
+                                <a class="link-feed-insta" href="{$item['permalink']}" target="_blank"></a>
+                                <img class="img-feed-insta" src="{$item['media_url']}">
+                            </div>
+                        HTML;
+                    }
                 }
             }
         }

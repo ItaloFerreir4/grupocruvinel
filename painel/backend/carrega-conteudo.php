@@ -497,6 +497,28 @@ if (isset($_POST['origem'])) {
 
             echo json_encode($conteudoPagina);
             break;
+        
+        case "listaUsuarios":
+            $sql = $con->prepare("SELECT * FROM usuarios");
+
+            if ($sql->execute()) {
+
+                $conteudoPagina = $sql->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            echo json_encode($conteudoPagina);
+            break;
+
+        case "carregaUser":
+            $sql = $con->prepare("SELECT * FROM usuarios WHERE idUsuario = :idUsuario");
+            $sql->bindValue(":idUsuario", $_POST['idUsuario']);
+
+            if ($sql->execute()) {
+                $conteudoPagina = $sql->fetch(PDO::FETCH_ASSOC);
+
+                echo json_encode($conteudoPagina);
+            }
+            break;
 
         case "carregaCliente":
             $sql = $con->prepare("SELECT * FROM clientes WHERE idCliente = :idCliente");

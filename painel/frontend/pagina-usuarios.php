@@ -40,6 +40,7 @@ echo ''
                         <div class="btn-group mt-2" id="pagination"></div>
                     </div>
                     <form method="post" id="formUsuarios">
+                        <input type="hidden" class="form-control" id="idUsuario" name="idUsuario" value="0">
                         <div class="row clearfix">
                             <div class="col-12">
                                 <div class="form-group">
@@ -66,7 +67,8 @@ echo ''
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-success btn-cadastra" type="button" id="btn-cadastra-Usuarios" onClick="CadastraUsuarios()">Cadastrar</button>
+                                <button class="btn btn-success btn-atualiza" type="button" id="btn-atualiza-user" onClick="AtualizaUser()">Atualizar</button>
+                                <button class="btn btn-success btn-cadastra" type="button" id="btn-cadastra-user" onClick="CadastraUsuarios()">Cadastrar</button>
                             </div>
                         </div>
                     </form>
@@ -116,7 +118,7 @@ echo ''
         }).done(function(data) {
 
             const conteudoPagina = JSON.parse(data);
-            conteudoPagina.paginas.forEach(function(pagina) {
+            conteudoPagina.forEach(function(pagina) {
 
                 const linha = document.createElement("tr");
                 linha.classList.add("bg-cinza");
@@ -125,14 +127,15 @@ echo ''
                         <td class="200">${pagina.nomeUsuario}</td>
                         <td>
                             <div style="display: flex; justify-content: flex-end;">
-                                <button class="btn btn-danger btn-sm btn-deleta-imagem ml-2" id="${pagina.idUsuario}" onClick="DeletaUsuarios(this.id)">Deletar</button>
+                                <button class="btn btn-success btn-sm ml-2" id="${pagina.idUsuario}" onClick="MostrarEdicaoUser(this.id)">Editar</button>
+                                <button class="btn btn-danger btn-sm ml-2" id="${pagina.idUsuario}" onClick="DeletaUsuarios(this.id)">Deletar</button>
                             </div>
                         </td>
                     `;
 
                 tabela1.row.add(linha).draw();
             });
-            if (conteudoPagina.paginas.length == 0) {
+            if (conteudoPagina.length == 0) {
                 tabela1.clear().draw();
             }
 
@@ -144,11 +147,14 @@ echo ''
         $("#btn-adiciona").hide();
         $("#formUsuarios").show();
         $("#btn-volta").show();
+        
+        $("#btn-cadastra-user").show();
+        $("#btn-atualiza-user").hide();
     }
 
     function CadastraUsuarios() {
         const formUsuarios = $("#formUsuarios");
-        const botaoCadastra = formUsuarios.find("#btn-cadastra-Usuarios")[0];
+        const botaoCadastra = formUsuarios.find("#btn-cadastra-user")[0];
         const inputFields = formUsuarios.find("input");
 
         let hasEmptyField = false;
@@ -224,6 +230,75 @@ echo ''
                 toastr["error"]("Falha ao deletar!");
             }
 
+        });
+    }
+
+    function MostrarEdicaoUser(idUser) {
+        $("#tabela-Usuarios").hide();
+        $("#btn-adiciona").hide();
+        $("#formUsuarios").show();
+        $("#btn-volta").show();
+        
+        $("#btn-cadastra-user").hide();
+        $("#btn-atualiza-user").show();
+
+        const formulario = $("#formUsuarios");
+        const idUsuario = formulario.find("#idUsuario")[0];
+        const nomeUsuario = formulario.find("#nomeUsuario")[0];
+        const emailUsuario = formulario.find("#emailUsuario")[0];
+        const senhaUsuario = formulario.find("#senhaUsuario")[0];
+
+        $.ajax({
+            type: "POST",
+            url: "backend/carrega-conteudo.php",
+            data: {
+                origem: "carregaUser",
+                idUsuario: idUser,
+            }
+        }).done(function(data) {
+
+            const conteudoPagina = JSON.parse(data);
+
+            idUsuario.value = conteudoPagina.idUsuario;
+            nomeUsuario.value = conteudoPagina.nomeUsuario;
+            emailUsuario.value = conteudoPagina.emailUsuario;
+            senhaUsuario.value = conteudoPagina.senhaUsuario;
+        });
+    }
+
+    function AtualizaUser() {
+        const formulario = $("#formUsuarios");
+        const idUsuario = formulario.find("#idUsuario")[0];
+        const nomeUsuario = formulario.find("#nomeUsuario")[0];
+        const emailUsuario = formulario.find("#emailUsuario")[0];
+        const senhaUsuario = formulario.find("#senhaUsuario")[0];
+        const botaoAtualiza = formulario.find("#btn-atualiza-user")[0];
+
+        const formData = new FormData();
+        formData.append("origem", "atualizaUsuario");
+        formData.append("idUsuario", idUsuario.value);
+        formData.append("nomeUsuario", nomeUsuario.value);
+        formData.append("emailUsuario", emailUsuario.value);
+        formData.append("senhaUsuario", senhaUsuario.value);
+
+        botaoAtualiza.innerHTML = "<i class='fa fa-spinner fa-spin'></i> <span>Carregando...</span>";
+
+        $.ajax({
+            type: "POST",
+            url: "backend/atualiza-conteudo.php",
+            data: formData,
+            contentType: false, // Importante: não defina o tipo de conteúdo
+            processData: false, // Importante: não processar os dados
+        }).done(function(data) {
+            toastr.options.timeOut = "2000";
+
+            botaoAtualiza.innerHTML = "Atualizar";
+
+            if (data) {
+                toastr["success"]("Atualizado com sucesso!");
+            } else {
+                toastr["error"]("Falha ao atualizar!");
+            }
         });
     }
 </script>
